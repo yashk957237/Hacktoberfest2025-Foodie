@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Ultimate Double Cheddar Burger",
+    "price": "$9.83",
+    "image": "imgs/burger.png"
+  },
+  {
+    "id": 2,
+    "name": "Fiery Chicken Wrap Delight",
+    "price": "$7.49",
+    "image": "imgs/chicken-roll.png"
+  },
+  {
+    "id": 3,
+    "name": "Crispy Southern Fried Chicken",
+    "price": "$6.99",
+    "image": "imgs/fried-chicken.png"
+  },
+  {
+    "id": 4,
+    "name": "Wood-Fired Margherita Pizza",
+    "price": "$11.25",
+    "image": "imgs/pizza.png"
+  },
+  {
+    "id": 5,
+    "name": "Triple-Layer Spicy Lasagna",
+    "price": "$2.95",
+    "image": "imgs/lasagna.png"
+  },
+  {
+    "id": 6,
+    "name": "Loaded Italian Deli Sandwich",
+    "price": "$9.83",
+    "image": "imgs/sandwich.png"
+  },
+  {
+    "id": 7,
+    "name": "Garlic-Herb Spaghetti Bowl",
+    "price": "$2.95",
+    "image": "imgs/spaghetti.png"
+  },
+  {
+    "id": 8,
+    "name": "Golden Veggie Spring Rolls",
+    "price": "$9.36",
+    "image": "imgs/spring-roll.png"
+  }
+]
