@@ -1,5 +1,8 @@
+🎃 Hacktoberfest 2025
+This repository is participating in Hacktoberfest 2025! Don't forget to Star ⭐️ the Repo and show your support!
+
 # Responsive Food Delivery Website
-# Foodie.
+🍽️Foodie.
 
 Fully Responsive Food Delivery App
 A sleek, mobile-first food delivery platform built with modern web technologies to ensure seamless user experience across all devices. Designed with accessibility, performance, and scalability in mind, this app empowers users to browse menus, customize orders, and track deliveries with ease.
@@ -22,3 +25,11 @@ Deployment:GitHub Pages
 <img width="1710" height="1112" alt="Screenshot 2025-08-23 at 12 11 02 PM" src="https://github.com/user-attachments/assets/2db44e8c-1ac5-40ce-bdee-2afad2043666" />
 <img width="1710" height="1112" alt="Screenshot 2025-08-23 at 12 11 10 PM" src="https://github.com/user-attachments/assets/84a4cfd0-9292-4529-8dc6-df6edc654a7d" />
 <img width="1710" height="1112" alt="Screenshot 2025-08-23 at 12 11 20 PM" src="https://github.com/user-attachments/assets/814d8e8f-755f-4985-a1c5-69e09f147076" />
+
+ Getting Started
+ Follow these steps to run DineFit on your local machine:
+ 1. Clone the repository
+     https://github.com/janavipandole/Foodie..git
+    
+ 3. Navigate into the project folder
+    cd Foodie
