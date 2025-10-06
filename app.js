@@ -22,8 +22,7 @@ const bars = document.querySelector('.fa-bars');
 cartIcon.addEventListener('click', () => cartTab.classList.add("cart-tab-active"));
 closeBtn.addEventListener('click', () => cartTab.classList.remove("cart-tab-active"));
 hamberger.addEventListener('click', () => mobileMenu.classList.toggle("mobile-menu-active"));
-hamberger.addEventListener('click', () => bars.classList.toggle("fa-xmark"));
-
+hamberger.addEventListener('click', () => {bars.classList.toggle("fa-xmark"); bars.classList.toggle("fa-bars")});
 
 let produtList = [];
 let AddProduct = [];
