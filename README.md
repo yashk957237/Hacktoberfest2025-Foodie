@@ -1,7 +1,7 @@
-🎃 Hacktoberfest 2025
+# 🎃 Hacktoberfest 2025
 This repository is participating in Hacktoberfest 2025! Don't forget to Star ⭐️ the Repo and show your support!
 
-# Responsive Food Delivery Website
+Responsive Food Delivery Website
 🍽️Foodie.
 
 Fully Responsive Food Delivery App
