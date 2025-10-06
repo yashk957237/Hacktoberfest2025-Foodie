@@ -34,7 +34,7 @@ Follow these steps to run DineFit on your local machine:
 
 1. **Clone the repository**
    ```sh
-    https://github.com/janavipandole/Foodie..git
+    https://github.com/janavipandole/Foodie.git
    ```
 
 2. **Navigate into the project folder**
