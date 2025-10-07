@@ -6,33 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foodie</title>
 
-    <!-- Discription -->
     <meta name="description"
         content="Experience fast, reliable food delivery with a personalized touch. Our app combines advanced algorithms with vibrant design to bring delicious meals right to your door.">
 
-    <!-- Fabicon -->
     <link rel="icon" href="imgs/fabicon.png" type="image/png">
 
-    <!-- CSS link -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- swiper js cdn -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 </head>
 
 <body>
-    <!-- HEADER -->
     <header>
         <nav class="navbar flex between wrapper">
             <a href="#" class="logo">Foodie.</a>
 
-            <!-- DESKTOP MENU -->
             <ul class="navList flex gap-3 between">
                 <li>
                     <a href="#home">Home</a>
@@ -66,7 +59,6 @@
                 </a>
 
             </div>
-            <!-- MOBILE MENU -->
             <ul class="mobile-menu">
                 <li>
                     <a href="#home">Home</a>
@@ -93,9 +85,7 @@
         </nav>
     </header>
 
-    <!-- SECTION -->
     <main>
-        <!-- HERO SECTION -->
         <section id="home">
             <div class="hero-section flex wrapper">
                 <div class="content">
@@ -107,27 +97,26 @@
 
                         <div class="media flex gap-2">
                             <a href="https://github.com/janavipandole" class="social-media">
-                                <img src="imgs/GitHub.png" alt="">
+                                <img src="imgs/GitHub.png" alt="GitHub Profile">
                             </a>
                             <a href="https://www.linkedin.com/in/janavi-pandole-80a7b2290" class="social-media linkdin">
-                                <img src="imgs/linkdin.png" alt="">
+                                <img src="imgs/linkdin.png" alt="LinkedIn Profile">
                             </a>
                             <a href="https://www.youtube.com/@JanaviPandole" class="social-media">
-                                <img src="imgs/youtube.png" alt="">
+                                <img src="imgs/youtube.png" alt="YouTube Channel">
                             </a>
                             <a href="https://x.com/JanaviPandole" class="social-media">
-                                <img src="imgs/twitter.png" alt="">
+                                <img src="imgs/twitter.png" alt="Twitter Profile">
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="image-container">
-                    <img src="imgs/delivery-boy.png">
+                    <img src="imgs/delivery-boy.png" alt="Delivery boy illustration">
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 01 -->
         <section id="services">
             <div class="wrapper p-top">
                 <div class="text-center">
@@ -138,7 +127,7 @@
                 <div class="flex text-center gap-4 mt-4">
                     <div class="srevice-card">
                         <div class="image-container">
-                            <img src="imgs/easy-to-order.png" alt="">
+                            <img src="imgs/easy-to-order.png" alt="Easy to order icon">
                         </div>
                         <h3>Easy to Order</h3>
                         <p>You only need a few steps in ordering food.</p>
@@ -146,7 +135,7 @@
 
                     <div class="srevice-card">
                         <div class="image-container">
-                            <img src="imgs/fast-delivery.png" alt="">
+                            <img src="imgs/fast-delivery.png" alt="Fast delivery icon">
                         </div>
                         <h3>Fast delivery</h3>
                         <p>Delivery that is always ontime even faster.</p>
@@ -154,7 +143,7 @@
 
                     <div class="srevice-card">
                         <div class="image-container">
-                            <img src="imgs/best-quality.png" alt="">
+                            <img src="imgs/best-quality.png" alt="Best quality icon">
                         </div>
                         <h3>Best quality</h3>
                         <p>Not only fast for us in quality is also number one.</p>
@@ -163,7 +152,6 @@
             </div>
         </section>
 
-        <!-- SECTION 02 -->
         <section id="menu">
             <div class="wrapper p-top mt-4 text-center">
                 <div class="text-center">
@@ -172,36 +160,68 @@
                 </div>
 
                 <div class="card-list flex mt-4 gap-3">
-                    <!-- <div class="order-card">
-                    </div> -->
+                    <div class="order-card">
+                        <div class="card-image-container">
+                            <img src="imgs/paneer-tikka-masala.jpeg" alt="Paneer Tikka Masala Bowl">
+                        </div>
+                        <div class="card-content">
+                            <h3>Paneer Tikka Masala Bowl</h3>
+                            <div class="price-and-button">
+                                <p class="price">₹199</p>
+                                <button class="add-to-cart-btn btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-card">
+                        <div class="card-image-container">
+                            <img src="imgs/thai-basil-noodles.jpeg" alt="Thai Basil Noodles">
+                        </div>
+                        <div class="card-content">
+                            <h3>Thai Basil Noodles</h3>
+                            <div class="price-and-button">
+                                <p class="price">₹179</p>
+                                <button class="add-to-cart-btn btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-card">
+                        <div class="card-image-container">
+                            <img src="imgs/chocolate-lava-cake.jpeg" alt="Chocolate Lava Cake">
+                        </div>
+                        <div class="card-content">
+                            <h3>Chocolate Lava Cake</h3>
+                            <div class="price-and-button">
+                                <p class="price">₹149</p>
+                                <button class="add-to-cart-btn btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-card">
+                        <div class="card-image-container">
+                            <img src="imgs/mango-smoothie.jpeg" alt="Mango Smoothie">
+                        </div>
+                        <div class="card-content">
+                            <h3>Mango Smoothie</h3>
+                            <div class="price-and-button">
+                                <p class="price">₹99</p>
+                                <button class="add-to-cart-btn btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- CART TAB -->
                 <div class="cart-tab">
                     <h4>Your Cart</h4>
 
                     <div class="cart-list">
-                        <!-- <div class="item">
-                            <div class="images-container">
-                                <img src="imgs/chicken-roll.png">
-                            </div>
-
-                            <div>
-                                <h4>Double Beef Bureger</h4>
-                                <h4 class="item-total">$200</h4>
-                            </div>
-
-                            <div class="flex">
-                                <a href="#" class="quatity-btn"><i class="fa-solid fa-minus"></i></a>
-                                <h4 class="quatity-value">1</h4>
-                                <a href="#" class="quatity-btn"><i class="fa-solid fa-plus"></i></a>
-                            </div>
-                        </div> -->
-                    </div>
+                        </div>
 
                     <div class="total-container">
                         <h4>Total : </h4>
-                        <h4 class="cart-total">$ 0.00</h4>
+                        <h4 class="cart-total">₹ 0.00</h4>
                     </div>
                     <div class="btn-container flex gap-2">
                         <a href="#" class="btn close-btn">Close</a>
@@ -211,11 +231,10 @@
             </div>
         </section>
 
-        <!-- SECTION 03 -->
         <section>
             <div class="wrapper p-top flex gap-3">
                 <div class="image-container">
-                    <img src="imgs/delivery-boy-with-phone.png">
+                    <img src="imgs/delivery-boy-with-phone.png" alt="Delivery boy with phone illustration">
                 </div>
                 <div class="review-container">
                     <h5>Our reviews</h5>
@@ -225,7 +244,7 @@
                             <div class="swiper-slide">
                                 <div class="flex gap-3 mt-4">
                                     <div class="profile">
-                                        <img src="imgs/profile1.jpeg">
+                                        <img src="imgs/profile1.jpeg" alt="Profile picture of Guy Hawkins">
                                     </div>
                                     <div class="">
                                         <h4>Guy Hawkins</h4>
@@ -246,7 +265,7 @@
                             <div class="swiper-slide">
                                 <div class="flex gap-3 mt-4">
                                     <div class="profile">
-                                        <img src="imgs/profile2.jpeg">
+                                        <img src="imgs/profile2.jpeg" alt="Profile picture of Sophia Anderson">
                                     </div>
                                     <div class="">
                                         <h4>Sophia Anderson</h4>
@@ -268,7 +287,7 @@
                             <div class="swiper-slide">
                                 <div class="flex gap-3 mt-4">
                                     <div class="profile">
-                                        <img src="imgs/profile3.jpeg">
+                                        <img src="imgs/profile3.jpeg" alt="Profile picture of Olivia Smith">
                                     </div>
                                     <div class="">
                                         <h4>Olivia Smith</h4>
@@ -296,12 +315,11 @@
             </div>
         </section>
 
-        <!-- SECTION 04 -->
         <section id="about">
             <div class="wrapper p-top ">
                 <div class="app-container flex gap-3">
                     <div class="app-image">
-                        <img src="imgs/mobile-app.png">
+                        <img src="imgs/mobile-app.png" alt="Mobile app interface">
                     </div>
                     <div class="content">
                         <h5>Our Application</h5>
@@ -313,7 +331,6 @@
             </div>
         </section>
 
-        <!-- SECTION 05 -->
         <section>
             <div class="wrapper p-top">
                 <div class="text-center">
@@ -332,7 +349,6 @@
         </section>
     </main>
 
-    <!-- FOOTER -->
     <footer id="contacts">
         <div class="footer-container">
             <div class="flex wrapper gap-4">
@@ -342,16 +358,16 @@
                         food with fast delivery</p>
                     <div class="media flex gap-2 mt-one">
                         <a href="https://github.com/janavipandole" class="social-media">
-                            <img src="imgs/GitHub.png" alt="">
+                            <img src="imgs/GitHub.png" alt="GitHub Profile">
                         </a>
                         <a href="https://www.linkedin.com/in/janavi-pandole-80a7b2290" class="social-media linkdin">
-                            <img src="imgs/linkdin.png" alt="">
+                            <img src="imgs/linkdin.png" alt="LinkedIn Profile">
                         </a>
                         <a href="https://www.youtube.com/@JanaviPandole" class="social-media">
-                            <img src="imgs/youtube.png" alt="">
+                            <img src="imgs/youtube.png" alt="YouTube Channel">
                         </a>
                         <a href="https://x.com/JanaviPandole" class="social-media">
-                            <img src="imgs/twitter.png" alt="">
+                            <img src="imgs/twitter.png" alt="Twitter Profile">
                         </a>
                     </div>
                 </div>
@@ -415,10 +431,8 @@
         <i class="fa-solid fa-arrow-up"></i>
     </a>
 
-    <!-- swiper js -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-    <!-- app js -->
     <script src="app.js"></script>
 
 
