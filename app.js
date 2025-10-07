@@ -16,13 +16,27 @@ const cartValue = document.querySelector('.cart-value');
 const hamberger = document.querySelector('.hamberger')
 const mobileMenu = document.querySelector('.mobile-menu');
 const bars = document.querySelector('.fa-bars');
+const backToTop = document.querySelector('.back-to-top');
 
 
 
 cartIcon.addEventListener('click', () => cartTab.classList.add("cart-tab-active"));
 closeBtn.addEventListener('click', () => cartTab.classList.remove("cart-tab-active"));
 hamberger.addEventListener('click', () => mobileMenu.classList.toggle("mobile-menu-active"));
-hamberger.addEventListener('click', () => {bars.classList.toggle("fa-xmark"); bars.classList.toggle("fa-bars")});
+hamberger.addEventListener('click', () => { bars.classList.toggle("fa-xmark"); bars.classList.toggle("fa-bars") });
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+        backToTop && backToTop.classList.add('visible');
+    } else {
+        backToTop && backToTop.classList.remove('visible');
+    }
+});
+
+backToTop && backToTop.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
 let produtList = [];
 let AddProduct = [];
