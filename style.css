@@ -19,6 +19,10 @@ body {
     background-color: var(--eye-ball);
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body::-webkit-scrollbar {
     width: 0;
 }
