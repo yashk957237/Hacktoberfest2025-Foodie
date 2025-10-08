@@ -1,5 +1,4 @@
 # Contributing to Foodie.
-# Contributing to DineFit
 
 First off, thank you for considering contributing to **DineFit**!
 Your help makes this project better for everyone.  
