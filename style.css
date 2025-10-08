@@ -28,6 +28,7 @@ body::-webkit-scrollbar {
 }
 
 /* BASIC STYLING */
+
 a {
     color: var(--lead);
     text-decoration: none;
@@ -51,6 +52,7 @@ li {
 .gap-2 {
     gap: 2rem;
 }
+
 
 .gap-3 {
     gap: 3rem;
@@ -94,6 +96,7 @@ img {
 }
 
 /* HEADER STYLING */
+
 .navbar {
     height: 14vh;
 }
@@ -149,6 +152,7 @@ img {
 }
 
 /* SECTION STYLING */
+
 /* HREO SECTION */
 .hero-section {
     min-height: calc(100vh - 14vh);
@@ -230,59 +234,37 @@ h3 {
 }
 
 /* SECTION 02 */
-.card-list {
-    justify-content: center;
-}
-
-/* --- Final Update: Standardized menu card width and height for consistent layout --- */
 .order-card {
-    width: 280px; /* Enforces consistent width */
-    height: 450px; /* Enforces consistent height */
-    display: flex; /* Makes the card a flex container */
-    flex-direction: column; /* Stacks items vertically inside the card */
+    flex: 1;
+    flex-basis: 300px;
     background: var(--pure-while);
     border: 2px solid var(--gold-finger);
     border-radius: 2rem;
-    box-shadow: rgba(0, 0, 0, 0.281) 8px 8px 8px, rgba(0, 0, 0, 0.281) 8px 8px 8px inset;
+    box-shadow:
+        rgba(0, 0, 0, 0.281) 8px 8px 8px,
+        rgba(0, 0, 0, 0.281) 8px 8px 8px inset;
     transition: all 0.5s ease-in-out;
-    padding: 1.5rem;
+    padding: 0 1rem 2rem 1rem;
 }
 
-.order-card .card-image-container {
-    width: 100%;
-    height: 180px;
-    overflow: hidden;
-    border-radius: 1rem;
-    flex-shrink: 0; /* Prevents image container from shrinking */
+.order-card img {
+    width: 15rem;
+    filter: drop-shadow(rgba(0, 0, 0, 0.2) 0px 10px 10px);
 }
 
-.order-card .card-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.order-card .card-content {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Makes the content area fill the remaining space */
-    text-align: center;
-    margin-top: 1rem;
-}
-
-.order-card .card-content h3 {
-    font-size: 1.5rem; /* Adjusted font size for better fit */
-    flex-grow: 1; /* Allows title to take up space, pushing price/button down */
+h4 {
+    font-size: 1.8rem;
+    color: var(--lead);
 }
 
 .price {
     font-size: 1.7rem;
-    padding: 1rem 0;
+    padding: 1.3rem 0 2rem 0;
     color: var(--gold-finger);
 }
 
-
 /* CART TAB STYLING */
+
 .cart-tab {
     background-color: var(--hint-yellow);
     position: fixed;
@@ -296,6 +278,7 @@ h3 {
     z-index: 9;
     box-shadow: rgba(0, 0, 0, 0.11) -10px -10px 20px;
     transition: .3s ease-in-out;
+
 }
 
 .cart-tab-active {
@@ -437,7 +420,8 @@ h3 {
     font-size: 4.5rem;
 }
 
-/* SECTION 05 STYLING */
+/*  SECTION 05 STYLING */
+
 .input-container {
     width: 40rem;
     max-width: 100%;
@@ -462,6 +446,7 @@ input[type="email"]:focus {
 }
 
 /* FOOTER STYLING */
+
 .footer-container {
     background-color: var(--hint-yellow);
     margin-top: 10rem;
@@ -496,6 +481,7 @@ input[type="email"]:focus {
     color: var(--lead);
 }
 
+
 /* BACK TO TOP BUTTON */
 .back-to-top {
     position: fixed;
@@ -522,6 +508,9 @@ input[type="email"]:focus {
     pointer-events: auto;
     transform: translateY(0);
 }
+
+
+
 
 /* MEDIA STYLING */
 @media screen and (max-width: 800px) {
@@ -552,7 +541,9 @@ input[type="email"]:focus {
         background: var(--pure-while);
         border: 2px solid var(--gold-finger);
         border-radius: 2rem;
-        box-shadow: rgba(0, 0, 0, 0.281) 8px 8px 8px, rgba(0, 0, 0, 0.281) 8px 8px 8px inset;
+        box-shadow:
+            rgba(0, 0, 0, 0.281) 8px 8px 8px,
+            rgba(0, 0, 0, 0.281) 8px 8px 8px inset;
         transition: all 0.5s ease-in-out;
     }
 
@@ -562,6 +553,7 @@ input[type="email"]:focus {
     }
 
     /* SECTION STYLING */
+
     /* HERO SECTION */
     h1 {
         font-size: 3.6rem;
