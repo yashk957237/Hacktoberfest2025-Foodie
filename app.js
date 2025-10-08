@@ -17,6 +17,7 @@ const hamberger = document.querySelector('.hamberger')
 const mobileMenu = document.querySelector('.mobile-menu');
 const bars = document.querySelector('.fa-bars');
 const backToTop = document.querySelector('.back-to-top');
+const themeToggles = document.querySelectorAll('.theme-toggle');
 
 
 
@@ -37,6 +38,43 @@ backToTop && backToTop.addEventListener('click', (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+// Theme toggle functionality
+const initTheme = () => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcons(savedTheme);
+};
+
+const updateThemeIcons = (theme) => {
+    themeToggles.forEach(toggle => {
+        const icon = toggle.querySelector('i');
+        if (theme === 'dark') {
+            icon.className = 'fa-solid fa-sun';
+            toggle.classList.add('dark');
+        } else {
+            icon.className = 'fa-solid fa-moon';
+            toggle.classList.remove('dark');
+        }
+    });
+};
+
+const toggleTheme = () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcons(newTheme);
+};
+
+// Add event listeners to all theme toggle buttons
+themeToggles.forEach(toggle => {
+    toggle.addEventListener('click', toggleTheme);
+});
+
+// Initialize theme on page load
+initTheme();
 
 let produtList = [];
 let AddProduct = [];
