@@ -43,15 +43,15 @@
 
 /* Dark theme specific improvements */
 [data-theme="dark"] .order-card {
-    border-color: var(--gold-finger);
+    border-color: var(--hint-yellow);
 }
 
 [data-theme="dark"] .social-media {
-    background-color: var(--bg-secondary);
+    background-color: var(--text-secondary) !important;
 }
 
 [data-theme="dark"] .social-media:hover {
-    background-color: var(--gold-finger);
+    background-color: var(--gold-finger) !important;
 }
 
 [data-theme="dark"] .btn:hover {
@@ -109,7 +109,6 @@ li {
 .gap-2 {
     gap: 2rem;
 }
-
 
 .gap-3 {
     gap: 3rem;
