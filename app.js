@@ -167,4 +167,26 @@ const initApp = () => {
         })
 }
 
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Load stored preference:
+if (localStorage.getItem('theme') === 'dark') {
+  body.classList.add('dark-mode');
+  themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+}
+
+// Handle toggle click:
+themeToggle.addEventListener('click', () => {
+  body.classList.toggle('dark-mode');
+  const isDarkMode = body.classList.contains('dark-mode');
+
+  // Update icon and save choice
+  themeToggle.innerHTML = isDarkMode
+    ? '<i class="fa-solid fa-sun"></i>'
+    : '<i class="fa-solid fa-moon"></i>';
+
+  localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+});
+
 initApp();
