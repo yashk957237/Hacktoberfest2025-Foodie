@@ -49,15 +49,20 @@ const initTheme = () => {
 const updateThemeIcons = (theme) => {
     themeToggles.forEach(toggle => {
         const icon = toggle.querySelector('i');
+        const label = toggle.querySelector('span'); // Get span if exists
+
         if (theme === 'dark') {
             icon.className = 'fa-solid fa-sun';
             toggle.classList.add('dark');
+            if (label) label.textContent = 'Light Mode'; // <-- change label
         } else {
             icon.className = 'fa-solid fa-moon';
             toggle.classList.remove('dark');
+            if (label) label.textContent = 'Dark Mode'; // <-- reset label
         }
     });
 };
+
 
 const toggleTheme = () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
