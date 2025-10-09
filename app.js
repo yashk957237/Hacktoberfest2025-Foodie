@@ -49,15 +49,20 @@ const initTheme = () => {
 const updateThemeIcons = (theme) => {
     themeToggles.forEach(toggle => {
         const icon = toggle.querySelector('i');
+        const label = toggle.querySelector('span'); // Get span if exists
+
         if (theme === 'dark') {
             icon.className = 'fa-solid fa-sun';
             toggle.classList.add('dark');
+            if (label) label.textContent = 'Light Mode'; // <-- change label
         } else {
             icon.className = 'fa-solid fa-moon';
             toggle.classList.remove('dark');
+            if (label) label.textContent = 'Dark Mode'; // <-- reset label
         }
     });
 };
+
 
 const toggleTheme = () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
@@ -76,7 +81,7 @@ themeToggles.forEach(toggle => {
 // Initialize theme on page load
 initTheme();
 
-let produtList = [];
+let productList = [];
 let AddProduct = [];
 
 const updateTotalPrice = () => {
@@ -102,7 +107,7 @@ const updateTotalPrice = () => {
 // === Show Cards ===
 const showCards = () => {
     cardList.innerHTML = "";
-    produtList.forEach(product => {
+    productList.forEach(product => {
         const orderCard = document.createElement('div');
         orderCard.classList.add('order-card');
 
@@ -208,12 +213,53 @@ const initApp = () => {
     fetch('products.json').then
         (response => response.json()).then
         (data => {
-            produtList = data;
+            productList = data;
             showCards();
         })
 }
 
 initApp();
+
+const searchInput = document.getElementById('search');
+const priceFilter = document.getElementById('price-filter');
+
+const renderCards = (filteredList) => {
+  cardList.innerHTML = ''; // Clear existing items
+  filteredList.forEach(product => {
+    const orderCard = document.createElement('div');
+    orderCard.classList.add('order-card');
+    orderCard.innerHTML = `
+      <div class="card-image"><img src="${product.image}" alt=""></div>
+      <h4>${product.name}</h4>
+      <h4 class="price">${product.price}</h4>
+      <a href="#" class="btn card-btn">Add to Cart</a>`;
+    cardList.appendChild(orderCard);
+  });
+};
+
+// Filter logic
+const applyFilters = () => {
+  const searchTerm = searchInput.value.toLowerCase();
+  const priceOption = priceFilter.value;
+
+  const filtered = productList.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm);
+
+    const priceValue = parseFloat(product.price.replace('$', ''));
+    let matchesPrice = true;
+
+    if (priceOption === 'low') matchesPrice = priceValue < 10;
+    else if (priceOption === 'mid') matchesPrice = priceValue >= 10 && priceValue <= 20;
+    else if (priceOption === 'high') matchesPrice = priceValue > 20;
+
+    return matchesSearch && matchesPrice;
+  });
+
+  renderCards(filtered);
+};
+
+searchInput.addEventListener('input', applyFilters);
+priceFilter.addEventListener('change', applyFilters);
 
 // Modal Feature Implement
 const modal = document.getElementById("foodModal");
@@ -255,3 +301,27 @@ themeToggle.forEach(btn => {
     document.documentElement.toggleAttribute('data-theme', 'dark');
   });
 });
+
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Load stored preference:
+if (localStorage.getItem('theme') === 'dark') {
+  body.classList.add('dark-mode');
+  themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+}
+
+// Handle toggle click:
+themeToggle.addEventListener('click', () => {
+  body.classList.toggle('dark-mode');
+  const isDarkMode = body.classList.contains('dark-mode');
+
+  // Update icon and save choice
+  themeToggle.innerHTML = isDarkMode
+    ? '<i class="fa-solid fa-sun"></i>'
+    : '<i class="fa-solid fa-moon"></i>';
+
+  localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+});
+
+// initApp();
