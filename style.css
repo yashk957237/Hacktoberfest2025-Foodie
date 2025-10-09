@@ -834,3 +834,111 @@ div#card-btn-container {
   font-size: 20px;
   cursor: pointer;
 }
+/* CUSTOM CURSOR STYLING */
+.cursor,
+.cursor-follower {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.15s ease-out, opacity 0.3s ease;
+}
+
+.cursor {
+    width: 10px;
+    height: 10px;
+    background-color: var(--gold-finger);
+    transform: translate(-50%, -50%);
+}
+
+.cursor-follower {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--gold-finger);
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease-out, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+}
+
+/* Cursor hover states */
+.cursor.hover {
+    transform: translate(-50%, -50%) scale(1.5);
+    background-color: var(--lead);
+}
+
+.cursor-follower.hover {
+    width: 60px;
+    height: 60px;
+    border-color: var(--lead);
+}
+
+/* Cursor click state */
+.cursor.click {
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+.cursor-follower.click {
+    width: 50px;
+    height: 50px;
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .cursor,
+    .cursor-follower {
+        display: none;
+    }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .cursor,
+    .cursor-follower {
+        display: none;
+    }
+    
+    body * {
+        cursor: auto !important;
+    }
+}
+
+/* Hide default cursor on interactive elements */
+body:not(.touch-device) {
+    cursor: none;
+}
+
+body:not(.touch-device) a,
+body:not(.touch-device) button,
+body:not(.touch-device) .btn,
+body:not(.touch-device) .cart-icon,
+body:not(.touch-device) .social-media,
+body:not(.touch-device) .order-card,
+body:not(.touch-device) .quatity-btn,
+body:not(.touch-device) input[type="email"] {
+    cursor: none;
+}
+
+/* Magnetic effect preparation */
+.btn,
+.cart-icon,
+.social-media,
+.order-card {
+    transition: transform 0.3s ease;
+}
+
+/* Dark theme cursor adjustments */
+[data-theme="dark"] .cursor {
+    background-color: var(--gold-finger);
+}
+
+[data-theme="dark"] .cursor-follower {
+    border-color: var(--gold-finger);
+}
+
+[data-theme="dark"] .cursor.hover {
+    background-color: var(--text-primary);
+}
+
+[data-theme="dark"] .cursor-follower.hover {
+    border-color: var(--text-primary);
+}
