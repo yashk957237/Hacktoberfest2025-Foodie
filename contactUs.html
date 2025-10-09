@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foodie - Contact Us</title>
     <link rel="stylesheet" href="./contactUs.css">
@@ -22,7 +23,14 @@
             <!-- Added Toggle theme button -->
             <div class="nav-right">
                 <button class="icon-btn theme-toggle" onclick="toggleTheme()" title="Toggle theme">
-                    <span id="themeIcon">🌙</span>
+                    <div class="theme-icon-wrapper">
+                        <span class="theme-icon sun-icon">
+                            <i class="fa-solid fa-moon"></i>
+                        </span>
+                        <span class="theme-icon moon-icon">
+                            <i class="fa-solid fa-sun"></i>
+                        </span>
+                    </div>
                 </button>
                 <a href="./signup.html" class="sign-in-btn">Sign in →</a>
             </div>
@@ -258,32 +266,26 @@
         // Theme Toggle Functionality
         function toggleTheme() {
             const html = document.documentElement;
-            const themeIcon = document.getElementById('themeIcon');
             const currentTheme = html.getAttribute('data-theme');
             
             if (currentTheme === 'light') {
                 html.removeAttribute('data-theme');
-                themeIcon.textContent = '🌙';
                 localStorage.setItem('theme', 'dark');
             } else {
                 html.setAttribute('data-theme', 'light');
-                themeIcon.textContent = '☀️';
                 localStorage.setItem('theme', 'light');
             }
         }
 
         // Load saved theme on page load
-        function loadTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            const themeIcon = document.getElementById('themeIcon');
-            
-            if (savedTheme === 'light') {
-                document.documentElement.setAttribute('data-theme', 'light');
-                themeIcon.textContent = '☀️';
-            } else {
-                themeIcon.textContent = '🌙';
-            }
+    function loadTheme() 
+    {
+        const savedTheme = localStorage.getItem('theme');
+        
+        if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
         }
+    }
 
         // Initialize theme on page load
         loadTheme();
