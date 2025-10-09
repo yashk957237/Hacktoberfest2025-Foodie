@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foodie - Contact Us</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./contactUs.css">
-    <link rel="icon" href="imgs/fabicon.png" type="image/png">
-
+        <link rel="icon" href="imgs/fabicon.png" type="image/png">
 </head>
 <body>
+    <!-- Header -->
     <header>
         <nav>
             <div class="logo">Foodie.</div>
@@ -20,7 +21,18 @@
                 <li><a href="./index.html#menu">About us</a></li>
                 <li><a href="#" class="active">Contact Us</a></li>
             </ul>
+            <!-- Added Toggle theme button -->
             <div class="nav-right">
+                <button class="icon-btn theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+                    <div class="theme-icon-wrapper">
+                        <span class="theme-icon sun-icon">
+                            <i class="fa-solid fa-moon"></i>
+                        </span>
+                        <span class="theme-icon moon-icon">
+                            <i class="fa-solid fa-sun"></i>
+                        </span>
+                    </div>
+                </button>
                 <a href="./signup.html" class="sign-in-btn">Sign in →</a>
             </div>
             <button class="mobile-menu-btn">☰</button>
@@ -90,7 +102,6 @@
                     <a href="https://www.youtube.com/@JanaviPandole" class="social-btn">▶️</a>
                 </div>
             </div>
-
         </div>
 
         <!-- Contact Form -->
@@ -194,6 +205,7 @@
             </div>
         </div>
     </section>
+  
 <!-- FOOTER -->
     <footer id="contacts">
         <div class="footer-container">
@@ -281,6 +293,33 @@
     </a>
 
     <script>
+        // Theme Toggle Functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            
+            if (currentTheme === 'light') {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Load saved theme on page load
+    function loadTheme() 
+    {
+        const savedTheme = localStorage.getItem('theme');
+        
+        if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    }
+
+        // Initialize theme on page load
+        loadTheme();
+
         function handleSubmit(event) {
             event.preventDefault();
             const firstName = document.getElementById('firstName').value;
@@ -294,6 +333,15 @@
         }
 
         function toggleFaq(element) {
+            // Close other FAQs
+            const allFaqs = document.querySelectorAll('.faq-item');
+            allFaqs.forEach(faq => {
+                if (faq !== element && faq.classList.contains('active')) {
+                    faq.classList.remove('active');
+                }
+            });
+            
+            // Toggle current FAQ
             element.classList.toggle('active');
         }
         // Simple dark mode sync
