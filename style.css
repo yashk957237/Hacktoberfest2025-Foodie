@@ -70,6 +70,37 @@
 }
 
 body {
+    background-color: var(--eye-ball);
+    color: var(--lead);
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Dark mode overrides */
+body.dark-mode {
+  --lead: #E0E0E0;
+  --eye-ball: #1c1c1c;
+  --hint-yellow: #4b3b00;
+  --pure-while: #2c2c2c;
+  --gold-finger: #ffca28; /* brighter accent */
+  background-color: var(--eye-ball);
+  color: var(--lead);
+}
+
+.theme-toggle {
+  background: var(--gold-finger);
+  border: none;
+  border-radius: 50%;
+  padding: 0.6rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--lead);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: rotate(15deg) scale(1.1);
+  background: var(--lead);
+  color: var(--pure-while);
     background-color: var(--bg-primary);
     color: var(--text-primary);
     transition: background-color 0.3s ease, color 0.3s ease;
