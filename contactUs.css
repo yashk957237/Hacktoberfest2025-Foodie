@@ -33,7 +33,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: "Roboto Condensed";
             background: var(--bg-primary);
             color: var(--text-primary);
             transition: background-color 0.3s ease, color 0.3s ease;
@@ -41,14 +41,14 @@
 
         /* Header Styles */
         header {
-            background: var(--bg-secondary);
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px var(--shadow);
-            transition: background-color 0.3s ease;
-        }
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-secondary);
+    box-shadow: 0 2px 5px var(--shadow);
+    z-index: 1000;
+}
 
         nav {
             max-width: 1400px;
@@ -174,7 +174,7 @@
         }
 
         /* Smooth transition for all themed elements */
-        header, .hero, .info-card, .contact-form, .faq-item, footer,
+        .hero, .info-card, .contact-form, .faq-item, footer,
         input, select, textarea, .social-btn, .map-container
         {
             transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
