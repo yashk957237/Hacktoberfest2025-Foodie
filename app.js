@@ -220,61 +220,6 @@ const initApp = () => {
 
 initApp();
 
-// Modal Feature Implement
-const modal = document.getElementById("foodModal");
-const modalImage = document.getElementById("modalImage");
-const modalName = document.getElementById("modalName");
-const modalPrice = document.getElementById("modalPrice");
-const modalDescription = document.getElementById("modalDescription");
-const modalAddBtn = document.getElementById("addToCartBtn");
-const modalViewBtn = document.getElementById("viewCartBtn");
-const modalClose = document.querySelector(".modal .close");
-
-function openFoodModal(product) {
-    modalImage.src = product.image;
-    modalName.textContent = product.name;
-    modalPrice.textContent = product.price;
-    modalDescription.textContent = product.description || "No description available.";
-    modal.style.display = "flex";
-
-    modalAddBtn.onclick = () => {
-        addToCart(product);
-        modal.style.display = "none";
-    };
-
-    modalViewBtn.onclick = () => {
-        modal.style.display = "none";
-        cartTab.classList.add("cart-tab-active");
-    };
-}
-
-// Modal closing handlers
-modalClose.onclick = () => modal.style.display = "none";
-window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
-document.addEventListener("keydown", e => { if (e.key === "Escape") modal.style.display = "none"; });
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
-
-// Load stored preference:
-if (localStorage.getItem('theme') === 'dark') {
-  body.classList.add('dark-mode');
-  themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
-}
-
-// Handle toggle click:
-themeToggle.addEventListener('click', () => {
-  body.classList.toggle('dark-mode');
-  const isDarkMode = body.classList.contains('dark-mode');
-
-  // Update icon and save choice
-  themeToggle.innerHTML = isDarkMode
-    ? '<i class="fa-solid fa-sun"></i>'
-    : '<i class="fa-solid fa-moon"></i>';
-
-  localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-});
-
-initApp();
 // CUSTOM CURSOR IMPLEMENTATION
 (function() {
     // Check if device supports hover (desktop)
@@ -425,3 +370,60 @@ initApp();
 
     observer.observe(document.body, { childList: true, subtree: true });
 })();
+
+// Modal Feature Implement
+const modal = document.getElementById("foodModal");
+const modalImage = document.getElementById("modalImage");
+const modalName = document.getElementById("modalName");
+const modalPrice = document.getElementById("modalPrice");
+const modalDescription = document.getElementById("modalDescription");
+const modalAddBtn = document.getElementById("addToCartBtn");
+const modalViewBtn = document.getElementById("viewCartBtn");
+const modalClose = document.querySelector(".modal .close");
+
+function openFoodModal(product) {
+    modalImage.src = product.image;
+    modalName.textContent = product.name;
+    modalPrice.textContent = product.price;
+    modalDescription.textContent = product.description || "No description available.";
+    modal.style.display = "flex";
+
+    modalAddBtn.onclick = () => {
+        addToCart(product);
+        modal.style.display = "none";
+    };
+
+    modalViewBtn.onclick = () => {
+        modal.style.display = "none";
+        cartTab.classList.add("cart-tab-active");
+    };
+}
+
+// Modal closing handlers
+modalClose.onclick = () => modal.style.display = "none";
+window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+document.addEventListener("keydown", e => { if (e.key === "Escape") modal.style.display = "none"; });
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Load stored preference:
+if (localStorage.getItem('theme') === 'dark') {
+  body.classList.add('dark-mode');
+  themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+}
+
+// Handle toggle click:
+themeToggle.addEventListener('click', () => {
+  body.classList.toggle('dark-mode');
+  const isDarkMode = body.classList.contains('dark-mode');
+
+  // Update icon and save choice
+  themeToggle.innerHTML = isDarkMode
+    ? '<i class="fa-solid fa-sun"></i>'
+    : '<i class="fa-solid fa-moon"></i>';
+
+  localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+});
+
+initApp();
+
