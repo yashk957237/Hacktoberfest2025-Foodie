@@ -247,3 +247,11 @@ function openFoodModal(product) {
 modalClose.onclick = () => modal.style.display = "none";
 window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
 document.addEventListener("keydown", e => { if (e.key === "Escape") modal.style.display = "none"; });
+
+// Theme toggle script
+const themeToggle = document.querySelectorAll('.theme-toggle');
+themeToggle.forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.documentElement.toggleAttribute('data-theme', 'dark');
+  });
+});

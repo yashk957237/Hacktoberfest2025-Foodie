@@ -156,12 +156,19 @@ img {
 
 .navbar {
     height: 14vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background-color: var(--navbar-bg, #fff);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .logo {
     font-size: 2rem;
     font-weight: bold;
     color: var(--gold-finger);
+    transition: color 0.3s ease;
 }
 
 .btn {
@@ -803,4 +810,26 @@ div#card-btn-container {
   right: 18px;
   font-size: 20px;
   cursor: pointer;
+}
+
+/*  Dark Theme */
+:root[data-theme="dark"] {
+  --navbar-bg: #111;
+  --logo-color: #fff;
+}
+
+/* Light Theme */
+:root {
+  --navbar-bg: #fff;
+  --logo-color: #111;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+  .logo {
+    font-size: 1.5rem;
+  }
 }
