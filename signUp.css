@@ -10,7 +10,7 @@
     align-items: center;
     gap: 8px;
     padding: 12px 20px;
-    background: linear-gradient(135deg, #f4b400 0%, #e89800 100%);
+    background: linear-gradient(135deg, #F2BD12 0%, #e89800 100%);
     color: #2a2a2a;
     text-decoration: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -94,7 +94,7 @@
 
         .hero-section {
             flex: 1;
-            background: linear-gradient(135deg, #f4b400 0%, #e89800 100%);
+            background: linear-gradient(135deg, #F2BD12 0%, #e89800 100%);
             padding: 60px 40px;
             display: flex;
             flex-direction: column;
@@ -251,7 +251,7 @@
         }
 
         .forgot-password a {
-            color: #f4b400;
+            color: #F2BD12;
             text-decoration: none;
             font-size: 13px;
             transition: color 0.3s ease;
@@ -264,7 +264,7 @@
         .btn {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, #f4b400 0%, #e89800 100%);
+            background: linear-gradient(135deg, #F2BD12 0%, #e89800 100%);
             border: none;
             border-radius: 10px;
             color: #2a2a2a;
@@ -339,7 +339,7 @@
         }
 
         .switch-form a {
-            color: #f4b400;
+            color: #F2BD12;
             text-decoration: none;
             font-weight: 600;
             cursor: pointer;
