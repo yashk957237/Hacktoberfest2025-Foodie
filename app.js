@@ -252,27 +252,158 @@ function openFoodModal(product) {
 modalClose.onclick = () => modal.style.display = "none";
 window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
 document.addEventListener("keydown", e => { if (e.key === "Escape") modal.style.display = "none"; });
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
+// const themeToggle = document.getElementById('theme-toggle');
+// const body = document.body;
 
-// Load stored preference:
-if (localStorage.getItem('theme') === 'dark') {
-  body.classList.add('dark-mode');
-  themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+// // Load stored preference:
+// if (localStorage.getItem('theme') === 'dark') {
+//   body.classList.add('dark-mode');
+//   themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+// }
+
+// // Handle toggle click:
+// themeToggle.addEventListener('click', () => {
+//   body.classList.toggle('dark-mode');
+//   const isDarkMode = body.classList.contains('dark-mode');
+
+//   // Update icon and save choice
+//   themeToggle.innerHTML = isDarkMode
+//     ? '<i class="fa-solid fa-sun"></i>'
+//     : '<i class="fa-solid fa-moon"></i>';
+
+//   localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+// });
+
+//initApp();
+// CUSTOM CURSOR IMPLEMENTATION
+(function() {
+    // Check if device supports hover (desktop)
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    if (isTouchDevice) {
+        document.body.classList.add('touch-device');
+        return;
+    }
+
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+        return;
+    }
+
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
+    
+    if (!cursor || !cursorFollower) return;
+
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
+
+    // Track mouse position
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
+    });
+
+    // Smooth follower animation
+    function animateFollower() {
+        const dx = mouseX - followerX;
+        const dy = mouseY - followerY;
+        
+        followerX += dx * 0.15;
+        followerY += dy * 0.15;
+        
+        cursorFollower.style.left = followerX + 'px';
+        cursorFollower.style.top = followerY + 'px';
+        
+        requestAnimationFrame(animateFollower);
+    }
+    animateFollower();
+
+    // Hover effect on interactive elements
+    const addHoverEffect = (elements) => {
+        elements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+                cursorFollower.classList.add('hover');
+                el.style.transform = 'scale(1.05)';
+            });
+
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+                cursorFollower.classList.remove('hover');
+                el.style.transform = '';
+            });
+        });
+    };
+
+    // Initial interactive elements
+    const interactiveElements = document.querySelectorAll(
+        'a, button, .btn, .cart-icon, .social-media, .order-card, .quatity-btn, input[type="email"], .theme-toggle, .hamberger'
+    );
+    addHoverEffect(interactiveElements);
+
+    // Click animation
+    document.addEventListener('mousedown', () => {
+        cursor.classList.add('click');
+        cursorFollower.classList.add('click');
+        createRipple(mouseX, mouseY);
+    });
+
+    document.addEventListener('mouseup', () => {
+        cursor.classList.remove('click');
+        cursorFollower.classList.remove('click');
+    });
+
+    // Ripple effect
+    // ...
+// Ripple effect
+function createRipple(x, y) {
+    const ripple = document.createElement('div');
+    // FIX: Get the dynamically computed value of --gold-finger
+    const style = getComputedStyle(document.documentElement);
+    const goldColor = style.getPropertyValue('--gold-finger').trim();
+    
+    ripple.style.cssText = `
+        position: fixed;
+        left: ${x}px;
+        top: ${y}px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 2px solid ${goldColor}; // Use the dynamic color
+        transform: translate(-50%, -50%) scale(0);
+        pointer-events: none;
+        z-index: 9998;
+        transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+        opacity: 1;
+    `;
+    // ...
 }
+// ...
 
-// Handle toggle click:
-themeToggle.addEventListener('click', () => {
-  body.classList.toggle('dark-mode');
-  const isDarkMode = body.classList.contains('dark-mode');
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', () => {
+        cursor.style.opacity = '0';
+        cursorFollower.style.opacity = '0';
+    });
 
-  // Update icon and save choice
-  themeToggle.innerHTML = isDarkMode
-    ? '<i class="fa-solid fa-sun"></i>'
-    : '<i class="fa-solid fa-moon"></i>';
+    document.addEventListener('mouseenter', () => {
+        cursor.style.opacity = '1';
+        cursorFollower.style.opacity = '1';
+    });
 
-  localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-});
+    // Observe new elements
+    const observer = new MutationObserver(() => {
+        const newElements = document.querySelectorAll('.order-card:not([data-cursor-initialized]), .item:not([data-cursor-initialized])');
+        if (newElements.length > 0) {
+            addHoverEffect(newElements);
+            newElements.forEach(el => el.setAttribute('data-cursor-initialized', 'true'));
+        }
+    });
 
-initApp();
-
+    observer.observe(document.body, { childList: true, subtree: true });
+})();
