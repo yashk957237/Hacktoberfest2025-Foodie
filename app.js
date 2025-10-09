@@ -252,29 +252,29 @@ function openFoodModal(product) {
 modalClose.onclick = () => modal.style.display = "none";
 window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
 document.addEventListener("keydown", e => { if (e.key === "Escape") modal.style.display = "none"; });
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
+// const themeToggle = document.getElementById('theme-toggle');
+// const body = document.body;
 
-// Load stored preference:
-if (localStorage.getItem('theme') === 'dark') {
-  body.classList.add('dark-mode');
-  themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
-}
+// // Load stored preference:
+// if (localStorage.getItem('theme') === 'dark') {
+//   body.classList.add('dark-mode');
+//   themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+// }
 
-// Handle toggle click:
-themeToggle.addEventListener('click', () => {
-  body.classList.toggle('dark-mode');
-  const isDarkMode = body.classList.contains('dark-mode');
+// // Handle toggle click:
+// themeToggle.addEventListener('click', () => {
+//   body.classList.toggle('dark-mode');
+//   const isDarkMode = body.classList.contains('dark-mode');
 
-  // Update icon and save choice
-  themeToggle.innerHTML = isDarkMode
-    ? '<i class="fa-solid fa-sun"></i>'
-    : '<i class="fa-solid fa-moon"></i>';
+//   // Update icon and save choice
+//   themeToggle.innerHTML = isDarkMode
+//     ? '<i class="fa-solid fa-sun"></i>'
+//     : '<i class="fa-solid fa-moon"></i>';
 
-  localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-});
+//   localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+// });
 
-initApp();
+//initApp();
 // CUSTOM CURSOR IMPLEMENTATION
 (function() {
     // Check if device supports hover (desktop)
@@ -359,35 +359,31 @@ initApp();
     });
 
     // Ripple effect
-    function createRipple(x, y) {
-        const ripple = document.createElement('div');
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const goldColor = currentTheme === 'dark' ? '#F2BD12' : '#F2BD12';
-        
-        ripple.style.cssText = `
-            position: fixed;
-            left: ${x}px;
-            top: ${y}px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            border: 2px solid ${goldColor};
-            transform: translate(-50%, -50%) scale(0);
-            pointer-events: none;
-            z-index: 9998;
-            transition: transform 0.6s ease-out, opacity 0.6s ease-out;
-            opacity: 1;
-        `;
-        
-        document.body.appendChild(ripple);
-        
-        setTimeout(() => {
-            ripple.style.transform = 'translate(-50%, -50%) scale(5)';
-            ripple.style.opacity = '0';
-        }, 10);
-        
-        setTimeout(() => ripple.remove(), 600);
-    }
+    // ...
+// Ripple effect
+function createRipple(x, y) {
+    const ripple = document.createElement('div');
+    // FIX: Get the dynamically computed value of --gold-finger
+    const style = getComputedStyle(document.documentElement);
+    const goldColor = style.getPropertyValue('--gold-finger').trim();
+    
+    ripple.style.cssText = `
+        position: fixed;
+        left: ${x}px;
+        top: ${y}px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 2px solid ${goldColor}; // Use the dynamic color
+        transform: translate(-50%, -50%) scale(0);
+        pointer-events: none;
+        z-index: 9998;
+        transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+        opacity: 1;
+    `;
+    // ...
+}
+// ...
 
     // Hide cursor when leaving window
     document.addEventListener('mouseleave', () => {
