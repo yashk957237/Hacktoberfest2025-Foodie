@@ -2,12 +2,12 @@
    INTERACTIVE CURSOR ANIMATION SCRIPT
    ======================================== */
 
-(function() {
+(function () {
     'use strict';
 
     // Check if device supports hover (desktop only)
     const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    
+
     if (!isDesktop) {
         return; // Exit early on touch devices
     }
@@ -18,13 +18,13 @@
     // Create cursor elements
     const cursor = document.createElement('div');
     cursor.className = 'custom-cursor';
-    
+
     const cursorDot = document.createElement('div');
     cursorDot.className = 'cursor-dot';
-    
+
     const cursorRing = document.createElement('div');
     cursorRing.className = 'cursor-ring';
-    
+
     cursor.appendChild(cursorDot);
     cursor.appendChild(cursorRing);
     document.body.appendChild(cursor);
@@ -56,15 +56,15 @@
         // Smooth follow with easing
         dotX += distX * dotSpeed;
         dotY += distY * dotSpeed;
-        
+
         ringX += (mouseX - ringX) * ringSpeed;
         ringY += (mouseY - ringY) * ringSpeed;
 
         // Apply transforms
-        cursorDot.style.left = ${dotX}px;
-        cursorDot.style.top = ${dotY}px;
-        cursorRing.style.left = ${ringX}px;
-        cursorRing.style.top = ${ringY}px;
+        cursorDot.style.left = `${dotX}px`;
+        cursorDot.style.top = `${dotY}px`;
+        cursorRing.style.left = ` ${ringX}px`;
+        cursorRing.style.top = `${ringY}px`;
 
         requestAnimationFrame(animateCursor);
     }
@@ -78,16 +78,16 @@
     document.addEventListener('mouseover', (e) => {
         if (e.target.closest(interactiveElements)) {
             cursor.classList.add('hover');
-            
+
             // Magnetic effect (optional enhancement)
             if (!prefersReducedMotion) {
                 applyMagneticEffect(e.target.closest(interactiveElements));
             }
         }
-        
+
         // Text selection highlight
-        if (e.target.tagName === 'P' || e.target.tagName === 'H1' || 
-            e.target.tagName === 'H2' || e.target.tagName === 'H3' || 
+        if (e.target.tagName === 'P' || e.target.tagName === 'H1' ||
+            e.target.tagName === 'H2' || e.target.tagName === 'H3' ||
             e.target.tagName === 'SPAN') {
             cursor.classList.add('text');
         }
@@ -98,7 +98,7 @@
             cursor.classList.remove('hover');
             removeMagneticEffect();
         }
-        
+
         cursor.classList.remove('text');
     });
 
@@ -109,7 +109,7 @@
 
     document.addEventListener('mouseup', () => {
         cursor.classList.remove('click');
-        
+
         // Create ripple effect
         if (!prefersReducedMotion) {
             createRipple(mouseX, mouseY);
@@ -134,22 +134,22 @@
 
     function applyMagneticEffect(element) {
         magneticElement = element;
-        
+
         element.addEventListener('mousemove', magneticMove);
         element.addEventListener('mouseleave', magneticReset);
     }
 
     function magneticMove(e) {
         if (!magneticElement) return;
-        
+
         const rect = magneticElement.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
-        
+
         // Calculate pull strength (max 15px)
         const deltaX = (e.clientX - centerX) * 0.3;
         const deltaY = (e.clientY - centerY) * 0.3;
-        
+
         mouseX = centerX + deltaX;
         mouseY = centerY + deltaY;
     }
@@ -170,8 +170,8 @@
     function createRipple(x, y) {
         const ripple = document.createElement('div');
         ripple.className = 'cursor-ripple';
-        ripple.style.left = ${x}px;
-        ripple.style.top = ${y}px;
+        ripple.style.left = `${x} px`;
+        ripple.style.top = `${y} px`;
         document.body.appendChild(ripple);
 
         // Remove ripple after animation
