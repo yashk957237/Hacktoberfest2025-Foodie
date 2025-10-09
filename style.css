@@ -903,6 +903,47 @@ div#card-btn-container {
     box-shadow: 0 0 4px var(--gold-finger);
 }
 
+.custom-select {
+  position: relative;
+  border: 2px solid var(--gold-finger);
+  border-radius: 1rem;
+  background: var(--pure-while);
+  color: var(--lead);
+  width: 10rem;
+  cursor: pointer;
+}
+
+.custom-select .selected {
+  padding: 0.7rem 1rem;
+}
+
+.custom-select ul.options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: var(--pure-while);
+  border: 2px solid var(--gold-finger);
+  border-radius: 1rem;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  z-index: 5;
+}
+
+.custom-select ul.options li {
+  padding: 0.6rem 1rem;
+}
+
+.custom-select ul.options li:hover {
+  background: var(--hint-yellow);
+}
+
+.custom-select.open ul.options {
+  display: block;
+}
+
 /*  Dark Theme */
 :root[data-theme="dark"] {
   --navbar-bg: #111;
@@ -913,6 +954,17 @@ div#card-btn-container {
 :root {
   --navbar-bg: #fff;
   --logo-color: #111;
+}
+
+.no-items-message {
+  text-align: center;
+  opacity: 0.7;
+  margin-top: 2rem;
+  font-size: 2.1rem;
+}
+
+.card-list{
+    justify-content: center;
 }
 
 /* Responsiveness */

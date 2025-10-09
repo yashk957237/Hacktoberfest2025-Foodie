@@ -220,11 +220,48 @@ const initApp = () => {
 
 initApp();
 
-const searchInput = document.getElementById('search');
-const priceFilter = document.getElementById('price-filter');
+// ===== Custom Dropdown =====
+const priceSelector = document.getElementById('priceSelector');
+const selected = priceSelector.querySelector('.selected');
+const options = priceSelector.querySelectorAll('.options li');
+
+// Optional hidden <select> (only if you have one in HTML)
+const hiddenPriceFilter = document.getElementById('price-filter');
+
+// Set default selected value
+let currentPriceFilter = 'all';
+
+selected.addEventListener('click', () => {
+  priceSelector.classList.toggle('open');
+});
+
+options.forEach(opt => {
+  opt.addEventListener('click', e => {
+    currentPriceFilter = e.target.dataset.value;  // store current value
+    selected.textContent = e.target.textContent + ' ▾';
+    priceSelector.classList.remove('open');
+
+    if (hiddenPriceFilter) hiddenPriceFilter.value = currentPriceFilter;
+    applyFilters();  // trigger filtering
+  });
+});
+
+document.addEventListener('click', e => {
+  if (!priceSelector.contains(e.target)) priceSelector.classList.remove('open');
+});
 
 const renderCards = (filteredList) => {
   cardList.innerHTML = ''; // Clear existing items
+
+  if (!filteredList || filteredList.length === 0) {
+    // Show friendly fallback when nothing matches
+    const msg = document.createElement('div');
+    msg.classList.add('no-items-message');
+    msg.textContent = 'Opps No Items Available At The Moment!!';
+    cardList.appendChild(msg);
+    return; // nothing else to render
+  }
+
   filteredList.forEach(product => {
     const orderCard = document.createElement('div');
     orderCard.classList.add('order-card');
@@ -237,10 +274,14 @@ const renderCards = (filteredList) => {
   });
 };
 
-// Filter logic
+// ===== Filter Logic =====
+const searchInput = document.getElementById('search');
+
 const applyFilters = () => {
+  if (!productList || productList.length === 0) return; // Guard for data not loaded
+
   const searchTerm = searchInput.value.toLowerCase();
-  const priceOption = priceFilter.value;
+  const priceOption = currentPriceFilter; // use custom dropdown's value
 
   const filtered = productList.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm);
@@ -255,11 +296,11 @@ const applyFilters = () => {
     return matchesSearch && matchesPrice;
   });
 
-  renderCards(filtered);
+  renderCards(filtered); // fixed function name
 };
 
+// Listen for typing in search bar
 searchInput.addEventListener('input', applyFilters);
-priceFilter.addEventListener('change', applyFilters);
 
 // Modal Feature Implement
 const modal = document.getElementById("foodModal");
@@ -302,7 +343,7 @@ themeToggle.forEach(btn => {
   });
 });
 
-const themeToggle = document.getElementById('theme-toggle');
+themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
 // Load stored preference:

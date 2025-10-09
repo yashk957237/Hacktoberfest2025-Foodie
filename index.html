@@ -186,15 +186,18 @@
 
                 <div class="filter-bar flex gap-2 mt-one">
                     <input type="text" id="search" placeholder="Search your favorite dish..." />
-                    <select id="price-filter">
-                        <option value="all">All Prices</option>
-                        <option value="low">Below $10</option>
-                        <option value="mid">$10 - $20</option>
-                        <option value="high">Above $20</option>
-                    </select>
+                    <div class="custom-select" id="priceSelector">
+                        <div class="selected">All Prices ▾</div>
+                        <ul class="options">
+                            <li data-value="all">All Prices</li>
+                            <li data-value="low">Below $10</li>
+                            <li data-value="mid">$10 - $20</li>
+                            <li data-value="high">Above $20</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="card-list flex mt-4 gap-3">
+                <div class="card-list flex mt-4 gap-3" id="itemsNotAvailable">
                     <!-- <div class="order-card">
                     </div> -->
                 </div>
