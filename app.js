@@ -220,157 +220,6 @@ const initApp = () => {
 
 initApp();
 
-// CUSTOM CURSOR IMPLEMENTATION
-(function() {
-    // Check if device supports hover (desktop)
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    
-    if (isTouchDevice) {
-        document.body.classList.add('touch-device');
-        return; // Exit if touch device
-    }
-
-    // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-        return; // Exit if user prefers reduced motion
-    }
-
-    const cursor = document.querySelector('.cursor');
-    const cursorFollower = document.querySelector('.cursor-follower');
-    
-    if (!cursor || !cursorFollower) return;
-
-    let mouseX = 0, mouseY = 0;
-    let followerX = 0, followerY = 0;
-    let isClicking = false;
-
-    // Track mouse position
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        
-        // Update cursor position immediately
-        cursor.style.left = mouseX + 'px';
-        cursor.style.top = mouseY + 'px';
-    });
-
-    // Smooth follower animation
-    function animateFollower() {
-        const dx = mouseX - followerX;
-        const dy = mouseY - followerY;
-        
-        followerX += dx * 0.15;
-        followerY += dy * 0.15;
-        
-        cursorFollower.style.left = followerX + 'px';
-        cursorFollower.style.top = followerY + 'px';
-        
-        requestAnimationFrame(animateFollower);
-    }
-    animateFollower();
-
-    // Hover effect on interactive elements
-    const interactiveElements = document.querySelectorAll(
-        'a, button, .btn, .cart-icon, .social-media, .order-card, .quatity-btn, input[type="email"], .theme-toggle, .hamberger'
-    );
-
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.classList.add('hover');
-            cursorFollower.classList.add('hover');
-            
-            // Optional: Magnetic effect
-            el.style.transform = 'scale(1.05)';
-        });
-
-        el.addEventListener('mouseleave', () => {
-            cursor.classList.remove('hover');
-            cursorFollower.classList.remove('hover');
-            
-            // Reset magnetic effect
-            el.style.transform = '';
-        });
-    });
-
-    // Click animation
-    document.addEventListener('mousedown', () => {
-        isClicking = true;
-        cursor.classList.add('click');
-        cursorFollower.classList.add('click');
-        
-        // Ripple effect on click
-        createRipple(mouseX, mouseY);
-    });
-
-    document.addEventListener('mouseup', () => {
-        isClicking = false;
-        cursor.classList.remove('click');
-        cursorFollower.classList.remove('click');
-    });
-
-    // Ripple animation on click
-    function createRipple(x, y) {
-        const ripple = document.createElement('div');
-        ripple.style.position = 'fixed';
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        ripple.style.width = '10px';
-        ripple.style.height = '10px';
-        ripple.style.borderRadius = '50%';
-        ripple.style.border = '2px solid ' + getComputedStyle(document.documentElement).getPropertyValue('--gold-finger');
-        ripple.style.transform = 'translate(-50%, -50%) scale(0)';
-        ripple.style.pointerEvents = 'none';
-        ripple.style.zIndex = '9998';
-        ripple.style.transition = 'transform 0.6s ease-out, opacity 0.6s ease-out';
-        ripple.style.opacity = '1';
-        
-        document.body.appendChild(ripple);
-        
-        // Trigger animation
-        setTimeout(() => {
-            ripple.style.transform = 'translate(-50%, -50%) scale(5)';
-            ripple.style.opacity = '0';
-        }, 10);
-        
-        // Remove after animation
-        setTimeout(() => {
-            ripple.remove();
-        }, 600);
-    }
-
-    // Hide cursor when leaving window
-    document.addEventListener('mouseleave', () => {
-        cursor.style.opacity = '0';
-        cursorFollower.style.opacity = '0';
-    });
-
-    document.addEventListener('mouseenter', () => {
-        cursor.style.opacity = '1';
-        cursorFollower.style.opacity = '1';
-    });
-
-    // Update interactive elements when new cards are added
-    const observer = new MutationObserver(() => {
-        const newElements = document.querySelectorAll('.order-card, .item');
-        newElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
-                cursorFollower.classList.add('hover');
-                el.style.transform = 'scale(1.05)';
-            });
-
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-                cursorFollower.classList.remove('hover');
-                el.style.transform = '';
-            });
-        });
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
-})();
-
 // Modal Feature Implement
 const modal = document.getElementById("foodModal");
 const modalImage = document.getElementById("modalImage");
@@ -426,4 +275,139 @@ themeToggle.addEventListener('click', () => {
 });
 
 initApp();
+// CUSTOM CURSOR IMPLEMENTATION
+(function() {
+    // Check if device supports hover (desktop)
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    if (isTouchDevice) {
+        document.body.classList.add('touch-device');
+        return;
+    }
 
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+        return;
+    }
+
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
+    
+    if (!cursor || !cursorFollower) return;
+
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
+
+    // Track mouse position
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
+    });
+
+    // Smooth follower animation
+    function animateFollower() {
+        const dx = mouseX - followerX;
+        const dy = mouseY - followerY;
+        
+        followerX += dx * 0.15;
+        followerY += dy * 0.15;
+        
+        cursorFollower.style.left = followerX + 'px';
+        cursorFollower.style.top = followerY + 'px';
+        
+        requestAnimationFrame(animateFollower);
+    }
+    animateFollower();
+
+    // Hover effect on interactive elements
+    const addHoverEffect = (elements) => {
+        elements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+                cursorFollower.classList.add('hover');
+                el.style.transform = 'scale(1.05)';
+            });
+
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+                cursorFollower.classList.remove('hover');
+                el.style.transform = '';
+            });
+        });
+    };
+
+    // Initial interactive elements
+    const interactiveElements = document.querySelectorAll(
+        'a, button, .btn, .cart-icon, .social-media, .order-card, .quatity-btn, input[type="email"], .theme-toggle, .hamberger'
+    );
+    addHoverEffect(interactiveElements);
+
+    // Click animation
+    document.addEventListener('mousedown', () => {
+        cursor.classList.add('click');
+        cursorFollower.classList.add('click');
+        createRipple(mouseX, mouseY);
+    });
+
+    document.addEventListener('mouseup', () => {
+        cursor.classList.remove('click');
+        cursorFollower.classList.remove('click');
+    });
+
+    // Ripple effect
+    function createRipple(x, y) {
+        const ripple = document.createElement('div');
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const goldColor = currentTheme === 'dark' ? '#F2BD12' : '#F2BD12';
+        
+        ripple.style.cssText = `
+            position: fixed;
+            left: ${x}px;
+            top: ${y}px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid ${goldColor};
+            transform: translate(-50%, -50%) scale(0);
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+            opacity: 1;
+        `;
+        
+        document.body.appendChild(ripple);
+        
+        setTimeout(() => {
+            ripple.style.transform = 'translate(-50%, -50%) scale(5)';
+            ripple.style.opacity = '0';
+        }, 10);
+        
+        setTimeout(() => ripple.remove(), 600);
+    }
+
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', () => {
+        cursor.style.opacity = '0';
+        cursorFollower.style.opacity = '0';
+    });
+
+    document.addEventListener('mouseenter', () => {
+        cursor.style.opacity = '1';
+        cursorFollower.style.opacity = '1';
+    });
+
+    // Observe new elements
+    const observer = new MutationObserver(() => {
+        const newElements = document.querySelectorAll('.order-card:not([data-cursor-initialized]), .item:not([data-cursor-initialized])');
+        if (newElements.length > 0) {
+            addHoverEffect(newElements);
+            newElements.forEach(el => el.setAttribute('data-cursor-initialized', 'true'));
+        }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+})();
