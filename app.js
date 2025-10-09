@@ -49,15 +49,20 @@ const initTheme = () => {
 const updateThemeIcons = (theme) => {
     themeToggles.forEach(toggle => {
         const icon = toggle.querySelector('i');
+        const label = toggle.querySelector('span'); // Get span if exists
+
         if (theme === 'dark') {
             icon.className = 'fa-solid fa-sun';
             toggle.classList.add('dark');
+            if (label) label.textContent = 'Light Mode'; // <-- change label
         } else {
             icon.className = 'fa-solid fa-moon';
             toggle.classList.remove('dark');
+            if (label) label.textContent = 'Dark Mode'; // <-- reset label
         }
     });
 };
+
 
 const toggleTheme = () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
@@ -247,3 +252,27 @@ function openFoodModal(product) {
 modalClose.onclick = () => modal.style.display = "none";
 window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
 document.addEventListener("keydown", e => { if (e.key === "Escape") modal.style.display = "none"; });
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Load stored preference:
+if (localStorage.getItem('theme') === 'dark') {
+  body.classList.add('dark-mode');
+  themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+}
+
+// Handle toggle click:
+themeToggle.addEventListener('click', () => {
+  body.classList.toggle('dark-mode');
+  const isDarkMode = body.classList.contains('dark-mode');
+
+  // Update icon and save choice
+  themeToggle.innerHTML = isDarkMode
+    ? '<i class="fa-solid fa-sun"></i>'
+    : '<i class="fa-solid fa-moon"></i>';
+
+  localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+});
+
+initApp();
+
