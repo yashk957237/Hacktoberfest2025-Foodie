@@ -121,9 +121,68 @@
             transform: scale(1.1);
         }
 
+        /* dark and light Theme  */
         .theme-toggle {
-            font-size: 22px;
+            position: relative;
+            overflow: hidden;
         }
+
+        .theme-icon-wrapper {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-icon {
+            position: absolute;
+            font-size: 20px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sun-icon {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0;
+        }
+
+        .moon-icon {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+
+        [data-theme="light"] .sun-icon {
+            transform: translateY(0) rotate(360deg);
+            opacity: 1;
+        }
+
+        [data-theme="light"] .moon-icon {
+            transform: translateY(50px) rotate(-360deg);
+            opacity: 0;
+        }
+
+        body {
+            transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                        color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                        border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                        color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Smooth transition for all themed elements */
+        header, .hero, .info-card, .contact-form, .faq-item, footer,
+        input, select, textarea, .social-btn, .map-container
+        {
+            transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                        border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                        color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.3s ease;
+        }
+
 
         .cart-badge {
             position: absolute;
