@@ -4,6 +4,12 @@
             box-sizing: border-box;
         }
 
+        html, body, header {
+            margin: 0 !important;
+            padding: 0 !important;
+            top: 0 !important;
+        }
+
         :root {
             --bg-primary: #1a1a1a;
             --bg-secondary: #2a2a2a;
@@ -40,9 +46,10 @@
         }
 
         /* Header Styles */
+        /* Match Navbar Styling from Index Page */
         header {
             background: var(--bg-secondary);
-            padding: 20px 0;
+            padding: 30px 0; /* Slightly more vertical space */
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -53,11 +60,19 @@
         nav {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            min-height: 90px; /* ✅ Ensures same thickness as index.html navbar */
         }
+
+        .nav-links a{
+            font-size: 18px; /* Matches text size from index page */
+            font-weight: 500;
+        }
+
+
 
         .logo {
             font-size: 32px;
@@ -69,14 +84,6 @@
             display: flex;
             gap: 40px;
             list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 16px;
-            transition: color 0.3s ease;
-            position: relative;
         }
 
         .nav-links a:hover {
@@ -637,4 +644,3 @@
                 padding: 0 20px;
             }
         }
-
