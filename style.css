@@ -834,3 +834,19 @@ div#card-btn-container {
   font-size: 20px;
   cursor: pointer;
 }
+
+.filter-bar {
+  justify-content: center;
+}
+
+#search, #price-filter {
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  border: 2px solid var(--gold-finger);
+  border-radius: 1rem;
+  outline: none;
+}
+
+#search:focus {
+  box-shadow: 0 0 4px var(--gold-finger);
+}
