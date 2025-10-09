@@ -609,11 +609,6 @@
             .faq-grid {
                 grid-template-columns: 1fr;
             }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 40px;
-            }
         }
 
         @media (max-width: 768px) {
@@ -633,11 +628,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
             nav {
                 padding: 0 20px;
             }
@@ -647,3 +637,6 @@
                 padding: 0 20px;
             }
         }
+
+        
+
