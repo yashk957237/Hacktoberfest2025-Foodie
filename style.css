@@ -73,7 +73,7 @@ body {
     background-color: var(--eye-ball);
     color: var(--lead);
     transition: background-color 0.4s ease, color 0.4s ease;
-    padding-top: 14vh;
+    padding-top: 15vh; /* to accommodate fixed navbar height */
     /* Added to prevent content from hiding behind the fixed navbar */
 }
 
@@ -111,6 +111,7 @@ body.dark-mode {
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 15vh; /* to accommodate fixed navbar height */
 }
 
 body::-webkit-scrollbar {
