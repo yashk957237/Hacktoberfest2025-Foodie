@@ -198,6 +198,35 @@ header {
     z-index: 1000;
 }
 
+/* Hover effect for navbar links */
+.navList a {
+    position: relative;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Add an underline animation */
+.navList a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: var(--gold-finger);
+    transition: width 0.3s ease;
+}
+
+/* On hover — text color + underline animation */
+.navList a:hover {
+    color: var(--gold-finger);
+}
+
+.navList a:hover::after {
+    width: 100%;
+}
+
 .navbar {
     height: 14vh;
 }
