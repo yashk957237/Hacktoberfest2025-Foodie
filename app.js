@@ -104,8 +104,9 @@ const updateTotalPrice = () => {
 
 }
 
+// === Show Cards ===
 const showCards = () => {
-
+    cardList.innerHTML = "";
     produtList.forEach(product => {
         const orderCard = document.createElement('div');
         orderCard.classList.add('order-card');
@@ -119,15 +120,22 @@ const showCards = () => {
             <a href="#" class="btn card-btn">Add to Cart</a>
         `;
 
-        cardList.appendChild(orderCard);
-
+        // Open modal on click
+        orderCard.addEventListener("click", (e) => {
+        if (!e.target.classList.contains('card-btn')) {
+            
+        openFoodModal(product);
+    }
+});
+        
+        // Add to cart directly
         const cardBtn = orderCard.querySelector('.card-btn');
         cardBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            addToCart(product);
-
-        })
-    })
+            addToCart(product);      
+        });
+        cardList.appendChild(orderCard);
+    });
 }
 
 const addToCart = (product) => {
@@ -210,6 +218,40 @@ const initApp = () => {
         })
 }
 
+initApp();
+
+// Modal Feature Implement
+const modal = document.getElementById("foodModal");
+const modalImage = document.getElementById("modalImage");
+const modalName = document.getElementById("modalName");
+const modalPrice = document.getElementById("modalPrice");
+const modalDescription = document.getElementById("modalDescription");
+const modalAddBtn = document.getElementById("addToCartBtn");
+const modalViewBtn = document.getElementById("viewCartBtn");
+const modalClose = document.querySelector(".modal .close");
+
+function openFoodModal(product) {
+    modalImage.src = product.image;
+    modalName.textContent = product.name;
+    modalPrice.textContent = product.price;
+    modalDescription.textContent = product.description || "No description available.";
+    modal.style.display = "flex";
+
+    modalAddBtn.onclick = () => {
+        addToCart(product);
+        modal.style.display = "none";
+    };
+
+    modalViewBtn.onclick = () => {
+        modal.style.display = "none";
+        cartTab.classList.add("cart-tab-active");
+    };
+}
+
+// Modal closing handlers
+modalClose.onclick = () => modal.style.display = "none";
+window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+document.addEventListener("keydown", e => { if (e.key === "Escape") modal.style.display = "none"; });
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
@@ -233,3 +275,4 @@ themeToggle.addEventListener('click', () => {
 });
 
 initApp();
+
