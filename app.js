@@ -81,7 +81,7 @@ themeToggles.forEach(toggle => {
 // Initialize theme on page load
 initTheme();
 
-let produtList = [];
+let productList = [];
 let AddProduct = [];
 
 const updateTotalPrice = () => {
@@ -107,7 +107,7 @@ const updateTotalPrice = () => {
 // === Show Cards ===
 const showCards = () => {
     cardList.innerHTML = "";
-    produtList.forEach(product => {
+    productList.forEach(product => {
         const orderCard = document.createElement('div');
         orderCard.classList.add('order-card');
 
@@ -213,12 +213,53 @@ const initApp = () => {
     fetch('products.json').then
         (response => response.json()).then
         (data => {
-            produtList = data;
+            productList = data;
             showCards();
         })
 }
 
 initApp();
+
+const searchInput = document.getElementById('search');
+const priceFilter = document.getElementById('price-filter');
+
+const renderCards = (filteredList) => {
+  cardList.innerHTML = ''; // Clear existing items
+  filteredList.forEach(product => {
+    const orderCard = document.createElement('div');
+    orderCard.classList.add('order-card');
+    orderCard.innerHTML = `
+      <div class="card-image"><img src="${product.image}" alt=""></div>
+      <h4>${product.name}</h4>
+      <h4 class="price">${product.price}</h4>
+      <a href="#" class="btn card-btn">Add to Cart</a>`;
+    cardList.appendChild(orderCard);
+  });
+};
+
+// Filter logic
+const applyFilters = () => {
+  const searchTerm = searchInput.value.toLowerCase();
+  const priceOption = priceFilter.value;
+
+  const filtered = productList.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm);
+
+    const priceValue = parseFloat(product.price.replace('$', ''));
+    let matchesPrice = true;
+
+    if (priceOption === 'low') matchesPrice = priceValue < 10;
+    else if (priceOption === 'mid') matchesPrice = priceValue >= 10 && priceValue <= 20;
+    else if (priceOption === 'high') matchesPrice = priceValue > 20;
+
+    return matchesSearch && matchesPrice;
+  });
+
+  renderCards(filtered);
+};
+
+searchInput.addEventListener('input', applyFilters);
+priceFilter.addEventListener('change', applyFilters);
 
 // Modal Feature Implement
 const modal = document.getElementById("foodModal");
@@ -274,5 +315,4 @@ themeToggle.addEventListener('click', () => {
   localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
 });
 
-initApp();
-
+// initApp();
