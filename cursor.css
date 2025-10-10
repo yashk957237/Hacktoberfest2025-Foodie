@@ -5,8 +5,11 @@
     body {
         cursor: none;
     }
-    
-    a, button, [role="button"], .clickable {
+
+    a,
+    button,
+    [role="button"],
+    .clickable {
         cursor: none;
     }
 }
@@ -25,13 +28,14 @@
 .cursor-dot {
     width: 12px;
     height: 12px;
-    background: rgba(242, 189, 18, 0.95); /* --gold-finger with transparency */
+    background: rgba(242, 189, 18, 0.95);
+    /* --gold-finger with transparency */
     border-radius: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
     transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
     box-shadow: 0 0 20px rgba(242, 189, 18, 0.6),
-                0 0 40px rgba(242, 189, 18, 0.3);
+        0 0 40px rgba(242, 189, 18, 0.3);
 }
 
 /* Outer Ring (Glassmorphism Effect) */
@@ -43,9 +47,9 @@
     position: absolute;
     transform: translate(-50%, -50%);
     transition: width 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55),
-                height 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55),
-                border-color 0.3s ease,
-                opacity 0.3s ease;
+        height 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+        border-color 0.3s ease,
+        opacity 0.3s ease;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(5px);
     box-shadow: 0 8px 32px rgba(242, 189, 18, 0.1);
@@ -57,7 +61,7 @@
     height: 20px;
     background: rgba(242, 189, 18, 1);
     box-shadow: 0 0 30px rgba(242, 189, 18, 0.8),
-                0 0 60px rgba(242, 189, 18, 0.4);
+        0 0 60px rgba(242, 189, 18, 0.4);
 }
 
 .custom-cursor.hover .cursor-ring {
@@ -97,6 +101,7 @@
         height: 20px;
         opacity: 1;
     }
+
     100% {
         width: 100px;
         height: 100px;
@@ -116,7 +121,7 @@
 [data-theme="dark"] .cursor-dot {
     background: rgba(242, 189, 18, 1);
     box-shadow: 0 0 25px rgba(242, 189, 18, 0.7),
-                0 0 50px rgba(242, 189, 18, 0.4);
+        0 0 50px rgba(242, 189, 18, 0.4);
 }
 
 [data-theme="dark"] .cursor-ring {
@@ -146,16 +151,17 @@ body:not([data-theme]) .cursor-ring {
 
 /* Respect Reduced Motion Preferences */
 @media (prefers-reduced-motion: reduce) {
+
     .cursor-dot,
     .cursor-ring {
         transition: none !important;
         animation: none !important;
     }
-    
+
     .cursor-ripple {
         display: none;
     }
-    
+
     .custom-cursor.hover .cursor-ring {
         width: 40px;
         height: 40px;
@@ -167,7 +173,7 @@ body:not([data-theme]) .cursor-ring {
     .custom-cursor {
         display: none;
     }
-    
+
     body {
         cursor: auto;
     }
