@@ -132,12 +132,30 @@ const addToCart = (product) => {
     let quantity = 1;
     let price = parseFloat(product.price.replace('₹', ''));
 
-    const existProduct = AddProduct.find(item => item.id === product.id);
+    // Check if product already exists in cart
+    let existProduct = AddProduct.find(item => item.id === product.id);
+
     if (existProduct) {
-        alert("Product is Already in the cart you can increase the quantity form cart");
+        // If already exists, just increase quantity
+        existProduct.quantity += 1;
+
+        // Update UI item
+        const existingCartItem = [...cartList.querySelectorAll('.item')]
+            .find(item => item.querySelector('.detail h4').textContent === product.name);
+
+        if (existingCartItem) {
+            const quantityValue = existingCartItem.querySelector('.quatity-value');
+            const itemTotal = existingCartItem.querySelector('.item-total');
+            quantityValue.textContent = parseInt(quantityValue.textContent) + 1;
+            itemTotal.textContent = `₹${(existProduct.quantity * price).toFixed(2)}`;
+        }
+
+        updateTotalPrice();
         return;
     }
 
+    // If new product, add to array
+    product.quantity = 1;
     AddProduct.push(product);
 
     const cartItem = document.createElement('div');
@@ -145,19 +163,17 @@ const addToCart = (product) => {
 
     cartItem.innerHTML = `
      <div class="images-container">
-    <img src="${product.image}">
-    </div>
-
-    <div class="detail">
-    <h4>${product.name}</h4>
-    <h4 class="item-total">₹${product.price.replace('₹', '')}</h4>
-    </div>
-
-    <div class="flex">
-    <a href="#" class="quatity-btn minus"><i class="fa-solid fa-minus"></i></a>
-    <h4 class="quatity-value">1</h4>
-    <a href="#" class="quatity-btn plus"><i class="fa-solid fa-plus"></i></a>
-    </div>
+        <img src="${product.image}">
+     </div>
+     <div class="detail">
+        <h4>${product.name}</h4>
+        <h4 class="item-total">₹${product.price.replace('₹', '')}</h4>
+     </div>
+     <div class="flex">
+        <a href="#" class="quatity-btn minus"><i class="fa-solid fa-minus"></i></a>
+        <h4 class="quatity-value">1</h4>
+        <a href="#" class="quatity-btn plus"><i class="fa-solid fa-plus"></i></a>
+     </div>
     `;
 
     cartList.appendChild(cartItem);
@@ -170,18 +186,18 @@ const addToCart = (product) => {
 
     plusBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        quantity++;
-        quantityValue.textContent = quantity;
-        itemTotal.textContent = `₹${(quantity * price).toFixed(2)}`;
+        product.quantity++;
+        quantityValue.textContent = product.quantity;
+        itemTotal.textContent = `₹${(product.quantity * price).toFixed(2)}`;
         updateTotalPrice();
-    })
+    });
 
     minusBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (quantity > 1) {
-            quantity--;
-            quantityValue.textContent = quantity;
-            itemTotal.textContent = `₹${(quantity * price).toFixed(2)}`;
+        if (product.quantity > 1) {
+            product.quantity--;
+            quantityValue.textContent = product.quantity;
+            itemTotal.textContent = `₹${(product.quantity * price).toFixed(2)}`;
             updateTotalPrice();
         } else {
             cartItem.classList.add('slide-out');
@@ -191,8 +207,8 @@ const addToCart = (product) => {
                 AddProduct = AddProduct.filter(item => item.id !== product.id);
             }, 200);
         }
-    })
-}
+    });
+};
 
 const checkoutBtn = document.querySelector('.check-out');
 
