@@ -241,7 +241,13 @@ checkoutBtn.addEventListener('click', (e) => {
     });
     
     sessionStorage.setItem('checkoutCart', JSON.stringify(checkoutData));
+<<<<<<< HEAD:app.js
     window.location.href = 'checkout.html';
+=======
+    
+    // Redirect to checkout page
+    window.location.href = '../html/checkout.html';
+>>>>>>> 232e183 (Fix issue #91: organize HTML, CSS, and JS into separate folders and update links):js/app.js
 });
 
 const initApp = () => {
@@ -292,7 +298,7 @@ const renderCards = (filteredList) => {
     const orderCard = document.createElement('div');
     orderCard.classList.add('order-card');
     orderCard.innerHTML = `
-      <div class="card-image"><img src="${product.image}" alt=""></div>
+      <div class="card-image"><img src="../img/${product.image}" alt=""></div>
       <h4>${product.name}</h4>
       <h4 class="price">${product.price}</h4>
       <a href="#" class="btn card-btn">Add to Cart</a>`;
