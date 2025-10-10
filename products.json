@@ -55,9 +55,8 @@
     "image": "imgs/spring-roll.png",
     "description": "Crispy rolls filled with seasoned vegetables, served with a tangy dipping sauce."
   },
-  {
-    "id": 9,
-    "name": "Panner Tikka",
+  { "id": 9,
+    "name": "Paneer Tikka Masala",
     "price": "$2.40",
     "image": "imgs/panner-tikka.png",
     "description": "Char-grilled paneer cubes marinated in spiced yogurt, served with mint chutney."
@@ -79,8 +78,54 @@
   {
     "id": 12,
     "name": "Mango Smoothie",
-    "price": "$1.19",
-    "image": "imgs/mango-smoothie.png",
-    "description": "A creamy, tropical blend of ripe mangoes and chilled milk for a refreshing treat."
+    "price":"$1.19",
+    "image": "imgs/mango-smoothie.png"
+  },{
+    "id": 13,
+    "name": "Spicy Tuna Sushi Roll",
+    "price": "$12.50",
+    "image": "imgs/sushi.png"
+  },
+  {
+    "id": 14,
+    "name": "Classic Beef Tacos",
+    "price": "$8.99",
+    "image": "imgs/tacos.png"
+  },
+  {
+    "id": 16,
+    "name": "Hyderabadi Chicken Biryani",
+    "price": "$10.50",
+    "image": "imgs/biryani.png"
+  },
+  {
+    "id": 17,
+    "name": "Steamed Pork Dim Sum",
+    "price": "$6.80",
+    "image": "imgs/dim-sum.png"
+  },
+  {
+    "id": 18,
+    "name": "Fresh Greek Salad",
+    "price": "$7.99",
+    "image": "imgs/greek-salad.png"
+  },
+  {
+    "id": 19,
+    "name": "Lemon Herb Grilled Salmon",
+    "price": "$14.99",
+    "image": "imgs/salmon.png"
+  },
+  {
+    "id": 20,
+    "name": "Fluffy Buttermilk Pancakes",
+    "price": "$6.49",
+    "image": "imgs/pancakes.png"
+  },
+  {
+    "id": 21,
+    "name": "Vietnamese Pho Beef Noodle Soup",
+    "price": "$9.75",
+    "image": "imgs/pho.png"
   }
 ]
