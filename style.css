@@ -73,7 +73,8 @@ body {
     background-color: var(--eye-ball);
     color: var(--lead);
     transition: background-color 0.4s ease, color 0.4s ease;
-    padding-top: 15vh; /* to accommodate fixed navbar height */
+    padding-top: 15vh;
+    /* to accommodate fixed navbar height */
     /* Added to prevent content from hiding behind the fixed navbar */
 }
 
@@ -111,7 +112,8 @@ body.dark-mode {
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 15vh; /* to accommodate fixed navbar height */
+    scroll-padding-top: 15vh;
+    /* to accommodate fixed navbar height */
 }
 
 body::-webkit-scrollbar {
@@ -235,7 +237,7 @@ header {
     justify-content: space-between;
     padding: 15px 30px;
     background-color: var(--navbar-bg, #fff);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -906,100 +908,109 @@ div#card-btn-container {
 }
 
 .custom-select {
-  position: relative;
-  border: 2px solid var(--gold-finger);
-  border-radius: 1rem;
-  background: var(--pure-while);
-  color: var(--lead);
-  width: 10rem;
-  cursor: pointer;
+    position: relative;
+    border: 2px solid var(--gold-finger);
+    border-radius: 1rem;
+    background: var(--pure-while);
+    color: var(--lead);
+    width: 10rem;
+    cursor: pointer;
 }
 
 .custom-select .selected {
-  padding: 0.7rem 1rem;
+    padding: 0.7rem 1rem;
 }
 
 .custom-select ul.options {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: none;
-  position: absolute;
-  left: 0;
-  right: 0;
-  background: var(--pure-while);
-  border: 2px solid var(--gold-finger);
-  border-radius: 1rem;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-  z-index: 5;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: var(--pure-while);
+    border: 2px solid var(--gold-finger);
+    border-radius: 1rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    z-index: 5;
 }
 
 .custom-select ul.options li {
-  padding: 0.6rem 1rem;
+    padding: 0.6rem 1rem;
 }
 
 .custom-select ul.options li:hover {
-  background: var(--hint-yellow);
+    background: var(--hint-yellow);
 }
 
 .custom-select.open ul.options {
-  display: block;
+    display: block;
 }
 
 /*  Dark Theme */
 :root[data-theme="dark"] {
-  --navbar-bg: #111;
-  --logo-color: #fff;
+    --navbar-bg: #111;
+    --logo-color: #fff;
 }
 
 /* Light Theme */
 :root {
-  --navbar-bg: #fff;
-  --logo-color: #111;
+    --navbar-bg: #fff;
+    --logo-color: #111;
 }
 
 .no-items-message {
-  text-align: center;
-  opacity: 0.7;
-  margin-top: 2rem;
-  font-size: 2.1rem;
+    text-align: center;
+    opacity: 0.7;
+    margin-top: 2rem;
+    font-size: 2.1rem;
 }
 
-.card-list{
+.card-list {
     justify-content: center;
 }
 
 /* Responsiveness */
 @media (max-width: 768px) {
-  .navbar {
-    padding: 10px 20px;
-  }
-  .logo {
-    font-size: 1.5rem;
-  }
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
 }
 
-* { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; width: 100%; }
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
 
 /* ---------- Make the header/nav span the full viewport ---------- */
 header {
-  position: fixed;     
-  top: 0;
-  left: 0;
-  right: 0;           
-  width: 100%;
-  z-index: 1000;
-  background-color: var(--navbar-bg, #111); 
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--navbar-bg, #111);
 }
 
 /* If your .wrapper globally constrains width, override it only inside header */
 header .wrapper,
 header .navbar.wrapper {
-  max-width: none !important;  
-  width: 100% !important;
-  margin: 0 !important;       
-  padding: 0 !important;      
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 /* keep inner spacing for navbar items while filling full width */
@@ -1010,17 +1021,18 @@ header .navbar.wrapper {
     align-items: center;
     justify-content: space-between;
     background-color: var(--navbar-bg, #111);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    padding: 0 4rem;          
-    box-sizing: border-box;  
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 0 4rem;
+    box-sizing: border-box;
 }
 
 
 /* simple guard to avoid horizontal overflow from using 100vw */
-body, header {
-  overflow-x: hidden;
+body,
+header {
+    overflow-x: hidden;
 }
 
-.logo{
+.logo {
     margin-left: 30px;
 }
