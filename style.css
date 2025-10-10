@@ -832,12 +832,16 @@ input[type="email"]:focus {
 }
 
 .modal-content img {
-    width: 300px;
-    height: 200px;
-    object-fit: cover;
+    width: 100%;
+    max-width: 300px;     /* keep it from getting too big */
+    height: auto;         /* keep correct aspect ratio */
+    object-fit: contain;  /* shows the entire image */
+    display: block;
+    margin: 0 auto;
     position: relative;
-    top: 30px;
+    top: 20px;            /* adjust spacing so buttons don’t overlap */
 }
+
 
 div#card-content-container {
     position: relative;
