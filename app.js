@@ -47,15 +47,20 @@ const initTheme = () => {
 const updateThemeIcons = (theme) => {
     themeToggles.forEach(toggle => {
         const icon = toggle.querySelector('i');
+        const label = toggle.querySelector('span'); // Get span if exists
+
         if (theme === 'dark') {
             icon.className = 'fa-solid fa-sun';
             toggle.classList.add('dark');
+            if (label) label.textContent = 'Light Mode'; // <-- change label
         } else {
             icon.className = 'fa-solid fa-moon';
             toggle.classList.remove('dark');
+            if (label) label.textContent = 'Dark Mode'; // <-- reset label
         }
     });
 };
+
 
 const toggleTheme = () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
@@ -74,7 +79,7 @@ themeToggles.forEach(toggle => {
 // Initialize theme on page load
 initTheme();
 
-let produtList = [];
+let productList = [];
 let AddProduct = [];
 
 const updateTotalPrice = () => {
@@ -100,7 +105,7 @@ const updateTotalPrice = () => {
 // === Show Cards ===
 const showCards = () => {
     cardList.innerHTML = "";
-    produtList.forEach(product => {
+    productList.forEach(product => {
         const orderCard = document.createElement('div');
         orderCard.classList.add('order-card');
 
@@ -206,12 +211,94 @@ const initApp = () => {
     fetch('products.json').then
         (response => response.json()).then
         (data => {
-            produtList = data;
+            productList = data;
             showCards();
         })
 }
 
 initApp();
+
+// ===== Custom Dropdown =====
+const priceSelector = document.getElementById('priceSelector');
+const selected = priceSelector.querySelector('.selected');
+const options = priceSelector.querySelectorAll('.options li');
+
+// Optional hidden <select> (only if you have one in HTML)
+const hiddenPriceFilter = document.getElementById('price-filter');
+
+// Set default selected value
+let currentPriceFilter = 'all';
+
+selected.addEventListener('click', () => {
+  priceSelector.classList.toggle('open');
+});
+
+options.forEach(opt => {
+  opt.addEventListener('click', e => {
+    currentPriceFilter = e.target.dataset.value;  // store current value
+    selected.textContent = e.target.textContent + ' ▾';
+    priceSelector.classList.remove('open');
+
+    if (hiddenPriceFilter) hiddenPriceFilter.value = currentPriceFilter;
+    applyFilters();  // trigger filtering
+  });
+});
+
+document.addEventListener('click', e => {
+  if (!priceSelector.contains(e.target)) priceSelector.classList.remove('open');
+});
+
+const renderCards = (filteredList) => {
+  cardList.innerHTML = ''; // Clear existing items
+
+  if (!filteredList || filteredList.length === 0) {
+    // Show friendly fallback when nothing matches
+    const msg = document.createElement('div');
+    msg.classList.add('no-items-message');
+    msg.textContent = 'Opps No Items Available At The Moment!!';
+    cardList.appendChild(msg);
+    return; // nothing else to render
+  }
+
+  filteredList.forEach(product => {
+    const orderCard = document.createElement('div');
+    orderCard.classList.add('order-card');
+    orderCard.innerHTML = `
+      <div class="card-image"><img src="${product.image}" alt=""></div>
+      <h4>${product.name}</h4>
+      <h4 class="price">${product.price}</h4>
+      <a href="#" class="btn card-btn">Add to Cart</a>`;
+    cardList.appendChild(orderCard);
+  });
+};
+
+// ===== Filter Logic =====
+const searchInput = document.getElementById('search');
+
+const applyFilters = () => {
+  if (!productList || productList.length === 0) return; // Guard for data not loaded
+
+  const searchTerm = searchInput.value.toLowerCase();
+  const priceOption = currentPriceFilter; // use custom dropdown's value
+
+  const filtered = productList.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm);
+
+    const priceValue = parseFloat(product.price.replace('$', ''));
+    let matchesPrice = true;
+
+    if (priceOption === 'low') matchesPrice = priceValue < 10;
+    else if (priceOption === 'mid') matchesPrice = priceValue >= 10 && priceValue <= 20;
+    else if (priceOption === 'high') matchesPrice = priceValue > 20;
+
+    return matchesSearch && matchesPrice;
+  });
+
+  renderCards(filtered); // fixed function name
+};
+
+// Listen for typing in search bar
+searchInput.addEventListener('input', applyFilters);
 
 // Modal Feature Implement
 const modal = document.getElementById("foodModal");
@@ -253,3 +340,27 @@ themeToggle.forEach(btn => {
     document.documentElement.toggleAttribute('data-theme', 'dark');
   });
 });
+
+themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Load stored preference:
+if (localStorage.getItem('theme') === 'dark') {
+  body.classList.add('dark-mode');
+  themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+}
+
+// Handle toggle click:
+themeToggle.addEventListener('click', () => {
+  body.classList.toggle('dark-mode');
+  const isDarkMode = body.classList.contains('dark-mode');
+
+  // Update icon and save choice
+  themeToggle.innerHTML = isDarkMode
+    ? '<i class="fa-solid fa-sun"></i>'
+    : '<i class="fa-solid fa-moon"></i>';
+
+  localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+});
+
+// initApp();
