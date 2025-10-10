@@ -19,8 +19,6 @@ const bars = document.querySelector('.fa-bars');
 const backToTop = document.querySelector('.back-to-top');
 const themeToggles = document.querySelectorAll('.theme-toggle');
 
-
-
 cartIcon.addEventListener('click', () => cartTab.classList.add("cart-tab-active"));
 closeBtn.addEventListener('click', () => cartTab.classList.remove("cart-tab-active"));
 hamberger.addEventListener('click', () => mobileMenu.classList.toggle("mobile-menu-active"));
@@ -92,14 +90,14 @@ const updateTotalPrice = () => {
     document.querySelectorAll('.item').forEach(item => {
 
         const quantity = parseInt(item.querySelector('.quatity-value').textContent);
-        const price = parseFloat(item.querySelector('.item-total').textContent.replace('$', ''));
+        const price = parseFloat(item.querySelector('.item-total').textContent.replace('₹', ''));
 
         totalPrice += price;
         totalQualtity += quantity;
 
     })
 
-    cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
+    cartTotal.textContent = `₹${totalPrice.toFixed(2)}`;
     cartValue.textContent = totalQualtity;
 
 }
@@ -116,7 +114,7 @@ const showCards = () => {
             <img src="${product.image}" alt="">
             </div>
             <h4>${product.name}</h4>
-            <h4 class="price">${product.price}</h4>
+            <h4 class="price">₹${product.price.replace('₹', '')}</h4>
             <a href="#" class="btn card-btn">Add to Cart</a>
         `;
 
@@ -141,7 +139,7 @@ const showCards = () => {
 const addToCart = (product) => {
 
     let quantity = 1;
-    let price = parseFloat(product.price.replace('$', ''));
+    let price = parseFloat(product.price.replace('₹', ''));
 
     const existProduct = AddProduct.find(item => item.id === product.id);
     if (existProduct) {
@@ -161,7 +159,7 @@ const addToCart = (product) => {
 
     <div class="detail">
     <h4>${product.name}</h4>
-    <h4 class="item-total">${product.price}</h4>
+    <h4 class="item-total">₹${product.price.replace('₹', '')}</h4>
     </div>
 
     <div class="flex">
@@ -184,7 +182,7 @@ const addToCart = (product) => {
 
         quantity++;
         quantityValue.textContent = quantity;
-        itemTotal.textContent = `$${(quantity * price).toFixed(2)}`;
+        itemTotal.textContent = `₹${(quantity * price).toFixed(2)}`;
         updateTotalPrice();
     })
 
@@ -194,7 +192,7 @@ const addToCart = (product) => {
         if (quantity > 1) {
             quantity--;
             quantityValue.textContent = quantity;
-            itemTotal.textContent = `$${(price / quantity).toFixed(2)}`;
+            itemTotal.textContent = `₹${(quantity * price).toFixed(2)}`;
             updateTotalPrice();
         } else {
             cartItem.classList.add('slide-out');
