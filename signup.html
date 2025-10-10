@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="./signUp.css">
     <!-- Added favicon -->
     <link rel="icon" href="imgs/fabicon.png" type="image/png">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -17,6 +21,11 @@
         <span class="icon">←</span>
         Back to Home
     </a>
+
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
     <div class="container">
         <div class="hero-section">
             <div class="logo">Foodie.</div>
@@ -201,6 +210,34 @@
             alert(`Account created successfully for: ${name} (${email})`);
             //Add signin logic here
         }
+
+        // Dark mode toggle
+        (function () {
+            const root = document.documentElement;
+            const btn  = document.getElementById('themeToggle');
+
+            function apply(theme) {
+            if (theme === 'dark') {
+                root.setAttribute('data-theme', 'dark');
+                btn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            } else {
+                root.removeAttribute('data-theme'); // light por omissão
+                btn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            }
+            localStorage.setItem('theme', theme);
+            }
+
+            const saved = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia &&
+                                window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            apply(saved ? saved : (prefersDark ? 'dark' : 'light'));
+
+            btn.addEventListener('click', () => {
+            const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            apply(next);
+            });
+        })();
     </script>
 </body>
 
