@@ -536,7 +536,6 @@
         /* Footer */
         footer {
             background: var(--bg-secondary);
-            padding: 60px 40px 30px;
             margin-top: 100px;
             border-top: 1px solid var(--border-color);
             transition: all 0.3s ease;
