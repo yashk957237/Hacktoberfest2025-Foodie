@@ -454,7 +454,6 @@ footer {
     background: var(--bg-secondary);
     margin-top: 100px;
     border-top: 1px solid var(--border-color);
-    padding: 60px 40px 30px;
     transition: all 0.3s ease;
 }
 
