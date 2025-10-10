@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Foodie</title>
     <link rel="icon" href="imgs/fabicon.png" type="image/png">
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -234,6 +235,7 @@
                 transform: translateY(-50px);
                 opacity: 0;
             }
+
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -273,24 +275,85 @@
         }
     </style>
 </head>
+
 <body>
+    <!-- HEADER -->
     <header>
         <nav class="navbar flex between wrapper">
             <div class="logo">Foodie.</div>
+
+            <!-- DESKTOP MENU -->
             <ul class="navList flex gap-3 between">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#menu">Menu</a></li>
-                <li><a href="index.html#services">Services</a></li>
-                <li><a href="index.html#about">About us</a></li>
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+                <li>
+                    <a href="#services">Services</a>
+                </li>
+                <li>
+                    <a href="#menu">Menu</a>
+                </li>
+                <li>
+                    <a href="./aboutUs.html">About us</a>
+                </li>
+                <li>
+                    <a href="./contactUs.html">Contacts</a>
+                </li>
             </ul>
+
+
             <div class="desktop-action flex gap-2">
-                <a href="index.html" class="btn">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    Back to Menu
+                <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <a href="#" class="cart-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-value">0</span>
                 </a>
+                <a href="./signup.html" class="btn">Sign in
+                    &nbsp;
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </a>
+
+                <a href="#" class="hamberger">
+                    <i class="fa-solid fa-bars"></i>
+                </a>
+
             </div>
+
+            <!-- MOBILE MENU -->
+            <ul class="mobile-menu">
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+                <li>
+                    <a href="#menu">Menu</a>
+                </li>
+                <li>
+                    <a href="#services">Services</a>
+                </li>
+                <li>
+                    <a href="./aboutUs.html">About us</a>
+                </li>
+                <li>
+                    <a href="./contactUs.html">Contacts</a>
+                </li>
+                <li>
+                    <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fa-solid fa-moon"></i>
+                        <span>Dark Mode</span>
+                    </button>
+                </li>
+                <li>
+                    <a href="./signup.html" class="btn">Sign in
+                        &nbsp;
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </a>
+                </li>
+            </ul>
         </nav>
     </header>
+
 
     <main class="checkout-container">
         <h1>Checkout</h1>
@@ -347,7 +410,8 @@
 
                         <div class="form-group">
                             <label for="notes">Delivery Notes (Optional)</label>
-                            <textarea id="notes" name="notes" rows="2" placeholder="e.g., Ring the doorbell twice"></textarea>
+                            <textarea id="notes" name="notes" rows="2"
+                                placeholder="e.g., Ring the doorbell twice"></textarea>
                         </div>
                     </form>
                 </div>
@@ -376,7 +440,7 @@
                 <div class="checkout-section order-summary">
                     <h2><i class="fa-solid fa-receipt"></i> Order Summary</h2>
                     <div id="orderItems"></div>
-                    
+
                     <div class="order-totals">
                         <div class="total-row">
                             <span>Subtotal:</span>
@@ -539,4 +603,5 @@
         }
     </script>
 </body>
+
 </html>
