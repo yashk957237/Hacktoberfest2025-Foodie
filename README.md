@@ -43,3 +43,8 @@ We welcome contributions — whether it’s bug fixes, documentation, or new fea
 Check out [CONTRIBUTING.md](./CONTRIBUTING.md) to get started.
 
 
+## License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
