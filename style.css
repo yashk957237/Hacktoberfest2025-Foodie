@@ -229,6 +229,7 @@ header {
 
 .navbar {
     height: 14vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -341,6 +342,7 @@ header {
 /* HERO SECTION */
 .hero-section {
     min-height: calc(100vh - 14vh);
+    margin-top: 14vh;
 }
 
 h1 {
@@ -975,4 +977,50 @@ div#card-btn-container {
   .logo {
     font-size: 1.5rem;
   }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; width: 100%; }
+
+/* ---------- Make the header/nav span the full viewport ---------- */
+header {
+  position: fixed;     
+  top: 0;
+  left: 0;
+  right: 0;           
+  width: 100%;
+  z-index: 1000;
+  background-color: var(--navbar-bg, #111); 
+}
+
+/* If your .wrapper globally constrains width, override it only inside header */
+header .wrapper,
+header .navbar.wrapper {
+  max-width: none !important;  
+  width: 100% !important;
+  margin: 0 !important;       
+  padding: 0 !important;      
+}
+
+/* keep inner spacing for navbar items while filling full width */
+.navbar {
+    height: 14vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--navbar-bg, #111);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 0 4rem;          
+    box-sizing: border-box;  
+}
+
+
+/* simple guard to avoid horizontal overflow from using 100vw */
+body, header {
+  overflow-x: hidden;
+}
+
+.logo{
+    margin-left: 30px;
 }
