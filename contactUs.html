@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -9,9 +10,9 @@
     <link rel="stylesheet" href="./contactUs.css">
     <link rel="icon" href="imgs/fabicon.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
-    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" 
-</head>
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -86,20 +87,20 @@
                     <h3>Follow Us</h3>
                 </div>
                 <p>Stay connected on social media for updates, offers, and more!</p>
-               <div class="media flex gap-2 mt-one">
-                        <a href="https://github.com/janavipandole" class="social-media">
-                            <img src="imgs/GitHub.png" alt="GitHub social icon in footer">
-                        </a>
-                        <a href="https://www.linkedin.com/in/janavi-pandole-80a7b2290" class="social-media linkdin">
-                            <img src="imgs/linkdin.png" alt="LinkedIn social icon in footer">
-                        </a>
-                        <a href="https://www.youtube.com/@JanaviPandole" class="social-media">
-                            <img src="imgs/youtube.png" alt="YouTube social icon in footer">
-                        </a>
-                        <a href="https://x.com/JanaviPandole" class="social-media">
-                            <img src="imgs/twitter.png" alt="Twitter social icon in footer">
-                        </a>
-                    </div>
+                <div class="media flex gap-2 mt-one">
+                    <a href="https://github.com/janavipandole" class="social-media">
+                        <img src="imgs/GitHub.png" alt="GitHub social icon in footer">
+                    </a>
+                    <a href="https://www.linkedin.com/in/janavi-pandole-80a7b2290" class="social-media linkdin">
+                        <img src="imgs/linkdin.png" alt="LinkedIn social icon in footer">
+                    </a>
+                    <a href="https://www.youtube.com/@JanaviPandole" class="social-media">
+                        <img src="imgs/youtube.png" alt="YouTube social icon in footer">
+                    </a>
+                    <a href="https://x.com/JanaviPandole" class="social-media">
+                        <img src="imgs/twitter.png" alt="Twitter social icon in footer">
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -169,7 +170,8 @@
                     <span class="faq-toggle">+</span>
                 </div>
                 <div class="faq-answer">
-                    We deliver from 9:00 AM to 11:00 PM, seven days a week. Orders placed after 10:30 PM will be delivered the next day.
+                    We deliver from 9:00 AM to 11:00 PM, seven days a week. Orders placed after 10:30 PM will be
+                    delivered the next day.
                 </div>
             </div>
 
@@ -179,7 +181,8 @@
                     <span class="faq-toggle">+</span>
                 </div>
                 <div class="faq-answer">
-                    Once your order is confirmed, you'll receive a tracking link via SMS and email. You can also track your order in real-time through our app.
+                    Once your order is confirmed, you'll receive a tracking link via SMS and email. You can also track
+                    your order in real-time through our app.
                 </div>
             </div>
 
@@ -189,7 +192,8 @@
                     <span class="faq-toggle">+</span>
                 </div>
                 <div class="faq-answer">
-                    We accept all major credit/debit cards, UPI, net banking, digital wallets, and cash on delivery for eligible orders.
+                    We accept all major credit/debit cards, UPI, net banking, digital wallets, and cash on delivery for
+                    eligible orders.
                 </div>
             </div>
 
@@ -199,13 +203,14 @@
                     <span class="faq-toggle">+</span>
                 </div>
                 <div class="faq-answer">
-                    You can cancel or modify your order within 5 minutes of placing it. After that, please contact our support team for assistance.
+                    You can cancel or modify your order within 5 minutes of placing it. After that, please contact our
+                    support team for assistance.
                 </div>
             </div>
         </div>
     </section>
-  
-<!-- FOOTER -->
+
+    <!-- FOOTER -->
     <footer id="contacts">
         <div class="footer-container">
             <div class="flex wrapper gap-4">
@@ -284,28 +289,28 @@
     </footer>
 
     <!-- Back to Top Button -->
-<a href="#home" class="back-to-top" aria-label="Back to top">
-  <i class="fa-solid fa-arrow-up"></i>
-</a>
+    <a href="#home" class="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
 
 
     <script>
         // Unified Dark/Light Theme Logic
         document.addEventListener("DOMContentLoaded", () => {
-        const html = document.documentElement;
-        const themeToggle = document.querySelector(".theme-toggle");
+            const html = document.documentElement;
+            const themeToggle = document.querySelector(".theme-toggle");
 
-        // Load saved theme or default to light
-        const savedTheme = localStorage.getItem("theme") || "light";
-        html.setAttribute("data-theme", savedTheme);
+            // Load saved theme or default to light
+            const savedTheme = localStorage.getItem("theme") || "light";
+            html.setAttribute("data-theme", savedTheme);
 
-        // Toggle theme on click
-        themeToggle.addEventListener("click", () => {
-            const currentTheme = html.getAttribute("data-theme");
-            const newTheme = currentTheme === "dark" ? "light" : "dark";
-            html.setAttribute("data-theme", newTheme);
-            localStorage.setItem("theme", newTheme);
-        });
+            // Toggle theme on click
+            themeToggle.addEventListener("click", () => {
+                const currentTheme = html.getAttribute("data-theme");
+                const newTheme = currentTheme === "dark" ? "light" : "dark";
+                html.setAttribute("data-theme", newTheme);
+                localStorage.setItem("theme", newTheme);
+            });
         });
 
         // Initialize theme on page load
@@ -316,9 +321,9 @@
             const firstName = document.getElementById('firstName').value;
             const lastName = document.getElementById('lastName').value;
             const email = document.getElementById('email').value;
-            
+
             alert(`Thank you, ${firstName} ${lastName}! We've received your message and will respond to ${email} within 24 hours.`);
-            
+
             // Reset form
             event.target.reset();
         }
@@ -331,48 +336,49 @@
                     faq.classList.remove('active');
                 }
             });
-            
+
             // Toggle current FAQ
             element.classList.toggle('active');
         }
 
-    // Simple dark mode sync
-    if (localStorage.getItem("theme") === "dark") {
-    document.documentElement.setAttribute("data-theme", "dark");
-    document.body.classList.add("dark-mode");
-    }
+        // Simple dark mode sync
+        if (localStorage.getItem("theme") === "dark") {
+            document.documentElement.setAttribute("data-theme", "dark");
+            document.body.classList.add("dark-mode");
+        }
 
-    // Optional toggle sync if you want button behavior too
-    const themeToggle = document.querySelector(".theme-toggle");
-    if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-        const currentTheme = document.documentElement.getAttribute("data-theme");
-        const newTheme = currentTheme === "dark" ? "light" : "dark";
-        document.documentElement.setAttribute("data-theme", newTheme);
-        document.body.classList.toggle("dark-mode", newTheme === "dark");
-        localStorage.setItem("theme", newTheme);
-    });
-    }
+        // Optional toggle sync if you want button behavior too
+        const themeToggle = document.querySelector(".theme-toggle");
+        if (themeToggle) {
+            themeToggle.addEventListener("click", () => {
+                const currentTheme = document.documentElement.getAttribute("data-theme");
+                const newTheme = currentTheme === "dark" ? "light" : "dark";
+                document.documentElement.setAttribute("data-theme", newTheme);
+                document.body.classList.toggle("dark-mode", newTheme === "dark");
+                localStorage.setItem("theme", newTheme);
+            });
+        }
 
-    const backToTop = document.querySelector('.back-to-top');
+        const backToTop = document.querySelector('.back-to-top');
 
-    // Show/hide button on scroll
-    window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) {
-        backToTop && backToTop.classList.add('visible');
-    } else {
-        backToTop && backToTop.classList.remove('visible');
-    }
-    });
+        // Show/hide button on scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTop && backToTop.classList.add('visible');
+            } else {
+                backToTop && backToTop.classList.remove('visible');
+            }
+        });
 
-    // Smooth scroll to top
-    backToTop && backToTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+        // Smooth scroll to top
+        backToTop && backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
     </script>
     <script src="app.js"></script>
 
 </body>
+
 </html>
