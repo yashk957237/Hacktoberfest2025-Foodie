@@ -7,279 +7,18 @@
     <link rel="icon" href="../imgs/fabicon.png" type="image/png">
     <title>Checkout - Foodie</title>
 
-
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/cursor.css" />
+    <!-- CSS links -->
+    <link rel="stylesheet" href="../CSS/style.css" />
+    <link rel="stylesheet" href="../CSS/checkout.css" />
+    <link rel="stylesheet" href="../CSS/cursor.css" />
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Razorpay -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
-
-    <style>
-        .checkout-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            margin-top: 100px;
-        }
-
-        .checkout-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .checkout-section {
-            background: var(--card-bg, #fff);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--text-color, #333);
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #ff6b35;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .order-summary {
-            position: sticky;
-            top: 100px;
-        }
-
-        .order-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .order-item img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .order-item-details {
-            flex: 1;
-        }
-
-        .order-item-name {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .order-item-quantity {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .order-item-price {
-            font-weight: 600;
-            color: #ff6b35;
-        }
-
-        .order-totals {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 2px solid #e0e0e0;
-        }
-
-        .total-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.75rem;
-        }
-
-        .total-row.final {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #ff6b35;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 2px solid #ff6b35;
-        }
-
-        .place-order-btn {
-            width: 100%;
-            padding: 1rem;
-            background: #ff6b35;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-top: 1.5rem;
-        }
-
-        .place-order-btn:hover {
-            background: #e55a28;
-        }
-
-        .payment-methods {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .payment-method {
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .payment-method:hover {
-            border-color: #ff6b35;
-        }
-
-        .payment-method.active {
-            border-color: #ff6b35;
-            background: #fff5f2;
-        }
-
-        .payment-method i {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .empty-cart {
-            text-align: center;
-            padding: 3rem;
-        }
-
-        .empty-cart i {
-            font-size: 4rem;
-            color: #ccc;
-            margin-bottom: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            .checkout-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .order-summary {
-                position: static;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .payment-methods {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .success-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 10000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .success-modal.active {
-            display: flex;
-        }
-
-        .success-content {
-            background: white;
-            padding: 3rem;
-            border-radius: 16px;
-            text-align: center;
-            max-width: 500px;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            background: #4caf50;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-        }
-
-        .success-icon i {
-            font-size: 3rem;
-            color: white;
-        }
-
-        .error-message {
-            color: #f44336;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-            display: none;
-        }
-
-        .form-group.error input,
-        .form-group.error select {
-            border-color: #f44336;
-        }
-
-        .form-group.error .error-message {
-            display: block;
-        }
-    </style>
 </head>
 
 <body>
@@ -290,53 +29,33 @@
 
             <!-- DESKTOP MENU -->
             <ul class="navList flex gap-3 between">
-                <li><a href="../html/index.html">Home</a></li>
-                <li><a href="../html/index.html#menu">Menu</a></li>
-                <li><a href="../html/index.html#services">Services</a></li>
-                <li><a href="../html/index.html#about">About us</a></li>
-                <li><a href="../html/index.html#contact">Contacts</a></li>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./index.html#menu">Menu</a></li>
+                <li><a href="./index.html#services">Services</a></li>
+                <li><a href="./index.html#about">About us</a></li>
+                <li><a href="./contactUs.html">Contacts</a></li>
             </ul>
-
 
             <div class="desktop-action flex gap-2">
                 <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
                     <i class="fa-solid fa-moon"></i>
                 </button>
-                <a href="#" class="cart-icon">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="cart-value">0</span>
+                <a href="./index.html" class="btn">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Back to Menu
                 </a>
-                <a href="./signup.html" class="btn">Sign in
-                    &nbsp;
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <a href="#" class="hamberger">
+                    <i class="fa-solid fa-bars"></i>
                 </a>
-
-                <a href="#" class="hamberger" aria-label="Open main menu" title="Open main menu" role="button">
-                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
-                    <span
-                        style="position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;">Open
-                        main menu</span>
-                </a>
-
             </div>
 
             <!-- MOBILE MENU -->
             <ul class="mobile-menu">
-                <li>
-                    <a href="#home">Home</a>
-                </li>
-                <li>
-                    <a href="#menu">Menu</a>
-                </li>
-                <li>
-                    <a href="#services">Services</a>
-                </li>
-                <li>
-                    <a href="./aboutUs.html">About us</a>
-                </li>
-                <li>
-                    <a href="./contactUs.html">Contacts</a>
-                </li>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./index.html#menu">Menu</a></li>
+                <li><a href="./index.html#services">Services</a></li>
+                <li><a href="./aboutUs.html">About us</a></li>
+                <li><a href="./contactUs.html">Contacts</a></li>
                 <li>
                     <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
                         <i class="fa-solid fa-moon"></i>
@@ -344,29 +63,31 @@
                     </button>
                 </li>
                 <li>
-                    <a href="./signup.html" class="btn">Sign in
-                        &nbsp;
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <a href="./index.html" class="btn">
+                        <i class="fa-solid fa-arrow-left"></i> Back to Menu
                     </a>
                 </li>
             </ul>
         </nav>
     </header>
 
-
     <main class="checkout-container">
+        <h1>Checkout</h1>
+
+        <!-- EMPTY CART MESSAGE -->
         <div id="emptyCartMessage" class="empty-cart" style="display: none;">
             <i class="fa-solid fa-cart-shopping"></i>
             <h2>Your cart is empty</h2>
             <p>Add some delicious items to get started!</p>
-            <a href="../HTML/index.html#menu" class="btn" style="margin-top: 1rem;">Browse Menu</a>
+            <a href="./index.html#menu" class="btn">Browse Menu</a>
         </div>
 
+        <!-- CHECKOUT CONTENT -->
         <div id="checkoutContent" class="checkout-grid">
-            <!-- Delivery Information -->
+            <!-- DELIVERY INFORMATION -->
             <div>
                 <div class="checkout-section">
-                    <h2><i class="fa-solid fa-location-dot"></i> Delivery Information</h2>
+                    <h3><i class="fa-solid fa-location-dot"></i> Delivery Information</h3>
                     <form id="checkoutForm">
                         <div class="form-group">
                             <label for="fullName">Full Name *</label>
@@ -413,8 +134,9 @@
                     </form>
                 </div>
 
+                <!-- PAYMENT METHOD -->
                 <div class="checkout-section" style="margin-top: 2rem;">
-                    <h2><i class="fa-solid fa-credit-card"></i> Payment Method</h2>
+                    <h3><i class="fa-solid fa-credit-card"></i> Payment Method</h3>
                     <div class="payment-methods">
                         <div class="payment-method active" data-method="card">
                             <i class="fa-solid fa-credit-card"></i>
@@ -432,41 +154,90 @@
                 </div>
             </div>
 
-            <!-- Order Summary -->
+            <!-- ORDER SUMMARY -->
             <div>
                 <div class="checkout-section order-summary">
-                    <h2><i class="fa-solid fa-receipt"></i> Order Summary</h2>
+                    <h3><i class="fa-solid fa-receipt"></i> Order Summary</h3>
                     <div id="orderItems"></div>
 
                     <div class="order-totals">
                         <div class="total-row">
                             <span>Subtotal:</span>
-                            <span id="subtotal">$0.00</span>
+                            <span id="subtotal">₹0.00</span>
                         </div>
                         <div class="total-row">
                             <span>Delivery Fee:</span>
-                            <span id="deliveryFee">$2.99</span>
+                            <span id="deliveryFee">₹29.00</span>
                         </div>
                         <div class="total-row">
                             <span>Tax (10%):</span>
-                            <span id="tax">$0.00</span>
+                            <span id="tax">₹0.00</span>
                         </div>
                         <div class="total-row final">
                             <span>Total:</span>
-                            <span id="finalTotal">$0.00</span>
+                            <span id="finalTotal">₹0.00</span>
                         </div>
                     </div>
 
                     <button class="place-order-btn" id="placeOrderBtn">
                         <i class="fa-solid fa-check"></i> Place Order
                     </button>
-
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Success Modal -->
+    <!-- FOOTER -->
+    <footer id="contacts">
+        <div class="footer-container">
+            <div class="flex wrapper gap-4">
+                <div class="footer-wrapper">
+                    <a href="#" class="logo">Foodie.</a>
+                    <p class="mt-one">We will fill your tummy with delicious <br>
+                        food with fast delivery</p>
+                    <div class="media flex gap-2 mt-one">
+                        <a href="https://github.com/janavipandole" class="social-media">
+                            <img src="../imgs/GitHub.png" alt="GitHub social icon">
+                        </a>
+                        <a href="https://www.linkedin.com/in/janavi-pandole-80a7b2290" class="social-media linkdin">
+                            <img src="../imgs/linkdin.png" alt="LinkedIn social icon">
+                        </a>
+                        <a href="https://www.youtube.com/@JanaviPandole" class="social-media">
+                            <img src="../imgs/youtube.png" alt="YouTube social icon">
+                        </a>
+                        <a href="https://x.com/JanaviPandole" class="social-media">
+                            <img src="../imgs/twitter.png" alt="Twitter social icon">
+                        </a>
+                    </div>
+                </div>
+
+                <ul class="footer-wrapper">
+                    <li><h4>Our Menu</h4></li>
+                    <li class="mt-one"><a href="#" class="footer-link">Special</a></li>
+                    <li class="mt-one"><a href="#" class="footer-link">Popular</a></li>
+                    <li class="mt-one"><a href="#" class="footer-link">Category</a></li>
+                </ul>
+
+                <ul class="footer-wrapper">
+                    <li><h4>Company</h4></li>
+                    <li class="mt-one"><a href="#" class="footer-link">Why Foodie</a></li>
+                    <li class="mt-one"><a href="./contactUs.html" class="footer-link">Partner with us</a></li>
+                    <li class="mt-one"><a href="./aboutUs.html" class="footer-link">About us</a></li>
+                    <li class="mt-one"><a href="./contactUs.html" class="footer-link">FAQ's</a></li>
+                </ul>
+
+                <ul class="footer-wrapper">
+                    <li><h4>Support</h4></li>
+                    <li class="mt-one"><a href="./signup.html" class="footer-link">Account</a></li>
+                    <li class="mt-one"><a href="./contactUs.html" class="footer-link">Support center</a></li>
+                    <li class="mt-one"><a href="./contactUs.html" class="footer-link">Feedback</a></li>
+                    <li class="mt-one"><a href="./contactUs.html" class="footer-link">Contacts</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SUCCESS MODAL -->
     <div class="success-modal" id="successModal">
         <div class="success-content">
             <div class="success-icon">
@@ -476,15 +247,14 @@
             <p>Your order has been received and is being prepared.</p>
             <p><strong>Order ID: <span id="orderId"></span></strong></p>
             <p>Estimated delivery time: 30-45 minutes</p>
-            <a href="../HTML/index.html" class="btn" style="margin-top: 1.5rem;">Back to Home</a>
+            <a href="./index.html" class="btn" style="margin-top: 1.5rem;">Back to Home</a>
         </div>
     </div>
 
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
         // Get cart data from sessionStorage
         const cartData = JSON.parse(sessionStorage.getItem('checkoutCart') || '[]');
-        const deliveryFee = 2.99;
+        const deliveryFee = 29.00;
         const taxRate = 0.10;
         let selectedPayment = 'card';
 
@@ -502,29 +272,31 @@
         function displayOrderItems() {
             const container = document.getElementById('orderItems');
             container.innerHTML = cartData.map(item => `
-            <div class="order-item">
-                <img src="../${item.image}" alt="${item.name}">
-                <div class="order-item-details">
-                    <div class="order-item-name">${item.name}</div>
-                    <div class="order-item-quantity">Qty: ${item.quantity}</div>
+                <div class="order-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="order-item-details">
+                        <div class="order-item-name">${item.name}</div>
+                        <div class="order-item-quantity">Qty: ${item.quantity}</div>
+                    </div>
+                    <div class="order-item-price">₹${(item.quantity * parseFloat(item.price.replace(/[₹$]/g, ''))).toFixed(2)}</div>
                 </div>
-                <div class="order-item-price">$${(item.quantity * parseFloat(item.price.replace('$', ''))).toFixed(2)}</div>
-            </div>
-        `).join('');
+            `).join('');
         }
 
         function calculateTotals() {
-            const subtotal = cartData.reduce((sum, item) => sum + (item.quantity * parseFloat(item.price.replace('$', ''))), 0);
+            const subtotal = cartData.reduce((sum, item) => {
+                return sum + (item.quantity * parseFloat(item.price.replace(/[₹$]/g, '')));
+            }, 0);
             const tax = subtotal * taxRate;
             const total = subtotal + deliveryFee + tax;
 
-            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
-            document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
-            document.getElementById('finalTotal').textContent = `$${total.toFixed(2)}`;
+            document.getElementById('subtotal').textContent = `₹${subtotal.toFixed(2)}`;
+            document.getElementById('tax').textContent = `₹${tax.toFixed(2)}`;
+            document.getElementById('finalTotal').textContent = `₹${total.toFixed(2)}`;
         }
 
         function setupEventListeners() {
-            // Payment selection
+            // Payment method selection
             document.querySelectorAll('.payment-method').forEach(method => {
                 method.addEventListener('click', () => {
                     document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
@@ -533,7 +305,7 @@
                 });
             });
 
-            // Place order
+            // Place order button
             document.getElementById('placeOrderBtn').addEventListener('click', (e) => {
                 e.preventDefault();
                 if (validateForm()) {
@@ -561,7 +333,7 @@
                 }
             });
 
-            // Email regex validation
+            // Email validation
             const email = document.getElementById('email');
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (email.value && !emailRegex.test(email.value)) {
@@ -573,12 +345,12 @@
         }
 
         function placeOrderRazorpay() {
-            const totalAmount = parseFloat(document.getElementById('finalTotal').textContent.replace('$', '')) * 100; // in paise
+            const totalAmount = parseFloat(document.getElementById('finalTotal').textContent.replace(/[₹$]/g, '')) * 100; // in paise
             const orderId = 'FD' + Date.now().toString().slice(-8);
             document.getElementById('orderId').textContent = orderId;
 
             const options = {
-                key: "rzp_test_RS6EdXdKAxfVLe", // your test key
+                key: "rzp_test_RS6EdXdKAxfVLe", // Replace with your Razorpay test key
                 amount: totalAmount,
                 currency: "INR",
                 name: "Foodie",
@@ -586,23 +358,23 @@
                 handler: function (response) {
                     console.log("Payment Success:", response);
                     document.getElementById('successModal').classList.add('active');
-                    sessionStorage.removeItem('checkoutCart'); // clear cart
+                    sessionStorage.removeItem('checkoutCart');
                 },
                 prefill: {
                     name: document.getElementById('fullName').value,
                     email: document.getElementById('email').value,
                     contact: document.getElementById('phone').value
                 },
-                theme: { color: "#ff6b35" }
+                theme: { color: "#F2BD12" }
             };
 
             const rzp = new Razorpay(options);
             rzp.open();
         }
     </script>
-    <script src="../js/app.js"></script>
-    <script src="../js/cursor.js"></script>
+    
+    <script src="../JS/app.js"></script>
+    <script src="../JS/cursor.js"></script>
 
 </body>
-
 </html>
