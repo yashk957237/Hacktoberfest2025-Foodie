@@ -3,129 +3,129 @@
     "id": 1,
     "name": "Ultimate Double Cheddar Burger",
     "price": "99",
-    "image": "imgs/biryani.png",
+    "image": "../imgs/biryani.png",
     "description": "A juicy double patty loaded with melted cheddar, crisp lettuce, and tangy sauce for the ultimate burger experience."
   },
   {
     "id": 2,
     "name": "Fiery Chicken Wrap Delight",
     "price": "100",
-    "image": "imgs/chicken-roll.png",
+    "image": "../imgs/chicken-roll.png",
     "description": "Spicy grilled chicken wrapped with fresh veggies and creamy dressing in a warm tortilla."
   },
   {
     "id": 3,
     "name": "Crispy Southern Fried Chicken",
     "price": "99",
-    "image": "/imgs/fried-chicken.png",
+    "image": "../imgs/fried-chicken.png",
     "description": "Golden-fried chicken pieces seasoned with southern spices for that perfect crunch and juiciness."
   },
   {
     "id": 4,
     "name": "Wood-Fired Margherita Pizza",
     "price": "299",
-    "image": "imgs/pizza.png",
+    "image": "../imgs/pizza.png",
     "description": "Classic Italian pizza baked to perfection with wood-fired crust, rich tomato sauce, and gooey mozzarella."
   },
   {
     "id": 5,
     "name": "Triple-Layer Spicy Lasagna",
     "price": "299",
-    "image": "imgs/lasagna.png",
+    "image": "../imgs/lasagna.png",
     "description": "A fiery twist on classic lasagna, layered with spicy tomato sauce, creamy béchamel, and melted cheese."
   },
   {
     "id": 6,
     "name": "Loaded Italian Deli Sandwich",
     "price": "169",
-    "image": "imgs/sandwich.png",
+    "image": "../imgs/sandwich.png",
     "description": "A hearty sandwich packed with smoked meats, crisp veggies, and zesty Italian dressing."
   },
   {
     "id": 7,
     "name": "Garlic-Herb Spaghetti Bowl",
     "price": "200",
-    "image": "imgs/spaghetti.png",
+    "image": "../imgs/spaghetti.png",
     "description": "Al dente spaghetti tossed in aromatic garlic butter sauce with a hint of herbs and spice."
   },
   {
     "id": 8,
     "name": "Golden Veggie Spring Rolls",
     "price": "50",
-    "image": "imgs/spring-roll.png",
+    "image": "../imgs/spring-roll.png",
     "description": "Crispy rolls filled with seasoned vegetables, served with a tangy dipping sauce."
   },
   { "id": 9,
     "name": "Paneer Tikka Masala",
     "price": "170",
-    "image": "imgs/panner-tikka.png",
+    "image": "../imgs/panner-tikka.png",
     "description": "Char-grilled paneer cubes marinated in spiced yogurt, served with mint chutney."
   },
   {
     "id": 10,
     "name": "Thai Basil Noodles",
     "price": "200",
-    "image": "imgs/thai-basil-noodles.png",
+    "image": "../imgs/thai-basil-noodles.png",
     "description": "Stir-fried noodles infused with Thai basil, crunchy vegetables, and a savory soy-chili glaze."
   },
   {
     "id": 11,
     "name": "Chocolate Lava Cake",
     "price": "80",
-    "image": "imgs/chocolate-lava-cake.png",
+    "image": "../imgs/chocolate-lava-cake.png",
     "description": "A warm, gooey-centered chocolate cake that melts in your mouth with every bite."
   },
   {
     "id": 12,
     "name": "Mango Smoothie",
     "price":"40",
-    "image": "imgs/mango-smoothie.png"
+    "image": "../imgs/mango-smoothie.png"
   },{
     "id": 13,
     "name": "Spicy Tuna Sushi Roll",
     "price": "450",
-    "image": "imgs/sushi.png"
+    "image": "../imgs/sushi.png"
   },
   {
     "id": 14,
     "name": "Classic Beef Tacos",
     "price": "190",
-    "image": "imgs/tacos.png"
+    "image": "../imgs/tacos.png"
   },
   {
     "id": 16,
     "name": "Hyderabadi Chicken Biryani",
     "price": "299",
-    "image": "imgs/biryani.png"
+    "image": "../imgs/biryani.png"
   },
   {
     "id": 17,
     "name": "Steamed Pork Dim Sum",
     "price": "220",
-    "image": "imgs/dim-sum.png"
+    "image": "../imgs/dim-sum.png"
   },
   {
     "id": 18,
     "name": "Fresh Greek Salad",
     "price": "170",
-    "image": "imgs/greek-salad.png"
+    "image": "../imgs/greek-salad.png"
   },
   {
     "id": 19,
     "name": "Lemon Herb Grilled Salmon",
     "price": "270",
-    "image": "imgs/salmon.png"
+    "image": "../imgs/salmon.png"
   },
   {
     "id": 20,
     "name": "Fluffy Buttermilk Pancakes",
     "price": "150",
-    "image": "imgs/pancakes.png"
+    "image": "../imgs/pancakes.png"
   },
   {
     "id": 21,
     "name": "Vietnamese Pho Beef Noodle Soup",
     "price": "170",
-    "image": "imgs/pho.png"
+    "image": "../imgs/pho.png"
   }
 ]
