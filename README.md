@@ -6,8 +6,8 @@
 
 [![Hacktoberfest 2025](https://img.shields.io/badge/Hacktoberfest-2025-blueviolet?style=for-the-badge\&logo=github)](https://hacktoberfest.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Stars](https://img.shields.io/github/stars/janavipandole/Foodie?style=for-the-badge)](https://github.com/janavipandole/Foodie/stargazers)
-[![Forks](https://img.shields.io/github/forks/janavipandole/Foodie?style=for-the-badge)](https://github.com/janavipandole/Foodie/forks)
+[![Stars](https://img.shields.io/github/stars/janavipandole/Foodie?style=for-the-badge)](https://github.com/janavipandole/Hacktoberfest2025-Foodie/stargazers)
+[![Forks](https://img.shields.io/github/forks/janavipandole/Foodie?style=for-the-badge)](https://github.com/janavipandole/Hacktoberfest2025-Foodie/forks)
 
 <img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
 
