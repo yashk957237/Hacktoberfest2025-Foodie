@@ -142,6 +142,28 @@ See the [LICENSE](LICENSE) file for full details.
 
 <img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
 
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=90&section=header" width="100%"/>
+
+## Contributors
+
+<img src="https://contributors-img.web.app/image?repo=janavipandole/Hacktoberfest2025-Foodie"/>
+
+<img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/45123f007c79aa8d0c8d9b11b3ff72d6bf4744c7/Assets/Star%20Light%20Line.gif" width="100%">
+
+## Stargazers
+
+<img src="https://reporoster.com/stars/dark/janavipandole/Hacktoberfest2025-Foodie"/>
+
+<img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/45123f007c79aa8d0c8d9b11b3ff72d6bf4744c7/Assets/Star%20Light%20Line.gif" width="100%">
+
+## Forkers
+
+<img src="https://reporoster.com/forks/dark/janavipandole/Hacktoberfest2025-Foodie"/>
+
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient"/>
+
+
 ## 🌟 Support the Project
 
 If you found this helpful:
@@ -151,3 +173,6 @@ If you found this helpful:
 
 > “Good food brings people together — so does open source.” 🍕💻
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer" width="100%"/>
+
+
+
