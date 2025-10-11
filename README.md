@@ -1,50 +1,153 @@
-## 🎃 Hacktoberfest 2025
 
-This repository is participating in **Hacktoberfest 2025**!  
-! Don't forget to Star ⭐️ the Repo and show your support!
 
-**Responsive Food Delivery Website**
-# 🍽️Foodie.
+# 🎃 Hacktoberfest 2025
 
-## 🏗️ Tech Stack
-  **CSS, HTML5, Js**
-  Deployment:GitHub Pages
-  
-# Fully Responsive Food Delivery App
-A sleek, mobile-first food delivery platform built with modern web technologies to ensure seamless user experience across all devices. Designed with accessibility, performance, and scalability in mind, this app empowers users to browse menus, customize orders, and track deliveries with ease.
+### 🍽️ **Foodie — Responsive Food Delivery Website**
 
-# Key Features:
-Responsive Design: Optimized for mobile, tablet, and desktop using Tailwind CSS and semantic HTML.
-Intuitive UI/UX: Clean layout with accessible navigation, dynamic components, and smooth transitions.
-Real-Time Order Tracking: Live updates on order status and estimated delivery time.
-Smart Cart System: Add, remove, and modify items with instant price recalculations.
-Secure Checkout: Integrated payment flow with validation and confirmation screens.
-Reusable Components: Modular architecture for scalability and maintainability.
+[![Hacktoberfest 2025](https://img.shields.io/badge/Hacktoberfest-2025-blueviolet?style=for-the-badge\&logo=github)](https://hacktoberfest.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Stars](https://img.shields.io/github/stars/janavipandole/Foodie?style=for-the-badge)](https://github.com/janavipandole/Foodie/stargazers)
+[![Forks](https://img.shields.io/github/forks/janavipandole/Foodie?style=for-the-badge)](https://github.com/janavipandole/Foodie/forks)
 
- ## 🚀 Getting Started
+<img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
 
-Follow these steps to run DineFit on your local machine:
+## 🧁 Overview
 
-1. **Clone the repository**
-   ```sh
-    https://github.com/janavipandole/Foodie.git
-   ```
+**Foodie** is a sleek, **responsive food delivery web app** built using **HTML5**, **CSS**, and **JavaScript**.
+Designed for performance, accessibility, and user delight — it offers an effortless browsing and ordering experience across all devices.
 
-2. **Navigate into the project folder**
-   ```sh
-   cd Foodie
-   ```
+> ⭐ Don’t forget to **Star** the repo if you like it — it helps others discover this project!
+
+<img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
+
+## 🧰 Tech Stack
+
+| Technology              | Description                                        |
+| ----------------------- | -------------------------------------------------- |
+| **HTML5**               | Semantic and accessible markup                     |
+| **CSS3 / Tailwind CSS** | Responsive styling and layout                      |
+| **JavaScript (ES6)**    | Dynamic UI and client-side interactivity           |
+| **Deployment**          | Hosted on **GitHub Pages** for free, fast delivery |
+
+<img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
+
+## ✨ Key Features
+
+✅ **Fully Responsive** — Works seamlessly on mobile, tablet, and desktop.
+💡 **Modern UI/UX** — Minimalist design with smooth animations and intuitive navigation.
+🛒 **Smart Cart System** — Add, edit, or remove items with instant price updates.
+⏱️ **Real-Time Tracking** — Get live order status and estimated delivery time.
+🔒 **Secure Checkout** — Integrated payment simulation with form validation.
+🧩 **Reusable Components** — Modular, maintainable, and scalable architecture.
+
+<img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
+
+## 🚀 Getting Started
+
+Follow these steps to run **Foodie** locally on your system 👇
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/janavipandole/Foodie.git
+```
+
+### 2️⃣ Navigate into the Project Folder
+
+```bash
+cd Foodie
+```
+
+### 3️⃣ Open in Your Browser
+
+Simply open the `index.html` file in your browser:
+
+```bash
+open index.html
+```
+
+> Or, use **Live Server** in VS Code for the best experience:
+>
+> * Right-click → “Open with Live Server”
+
+<img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
+
 ## 🤝 Contributing
 
-We welcome contributions! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+We ❤️ **open-source contributions**!
+Whether it’s bug fixes, new features, or improving documentation — every contribution counts! 🌍
 
-### Contributing Guidelines
-We welcome contributions — whether it’s bug fixes, documentation, or new features.  
-Check out [CONTRIBUTING.md](./CONTRIBUTING.md) to get started.
+### 🪜 Steps to Contribute
 
+1. **Fork** this repository
+   Click the **Fork** button on the top right corner of this page.
 
-## License
+2. **Clone your forked repo**
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+   ```bash
+   git clone https://github.com/<your-username>/Foodie.git
+   ```
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+3. **Create a new branch**
+
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+4. **Make your changes**
+   Add your improvements or fix bugs.
+
+5. **Commit your changes**
+
+   ```bash
+   git add .
+   git commit -m "Added: new feature or improvement"
+   ```
+
+6. **Push to your branch**
+
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+7. **Create a Pull Request**
+   Go to your fork on GitHub and click **“Compare & pull request”**.
+   🎉 That’s it! Wait for review and merge.
+
+📘 For more details, see the [CONTRIBUTING.md](./CONTRIBUTING.md) file.
+
+<img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
+
+## 🌱 Hacktoberfest 2025
+
+This project proudly participates in **Hacktoberfest 2025**!
+Contribute meaningful PRs, learn new skills, and help the open-source community thrive.
+👉 **Register here:** [hacktoberfest.com](https://hacktoberfest.com/)
+
+> ⚠️ Only **quality pull requests** will be accepted (avoid spam or irrelevant PRs).
+
+<img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+See the [LICENSE](LICENSE) file for full details.
+
+<img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
+
+## 💬 Connect with the Maintainer
+
+👩‍💻 **Maintainer:** [@janavipandole](https://github.com/janavipandole)
+📧 **Contact:** Open an issue or connect via GitHub.
+
+<img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
+
+## 🌟 Support the Project
+
+If you found this helpful:
+⭐ **Star** the repository
+🍴 **Fork** it to contribute
+📢 **Share** it with others
+
+> “Good food brings people together — so does open source.” 🍕💻
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer" width="100%"/>
