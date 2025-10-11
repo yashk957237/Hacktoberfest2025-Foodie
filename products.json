@@ -57,75 +57,75 @@
   },
   { "id": 9,
     "name": "Paneer Tikka Masala",
-    "price": "$2.40",
+    "price": "170",
     "image": "imgs/panner-tikka.png",
     "description": "Char-grilled paneer cubes marinated in spiced yogurt, served with mint chutney."
   },
   {
     "id": 10,
     "name": "Thai Basil Noodles",
-    "price": "$2.16",
+    "price": "200",
     "image": "imgs/thai-basil-noodles.png",
     "description": "Stir-fried noodles infused with Thai basil, crunchy vegetables, and a savory soy-chili glaze."
   },
   {
     "id": 11,
     "name": "Chocolate Lava Cake",
-    "price": "$1.79",
+    "price": "80",
     "image": "imgs/chocolate-lava-cake.png",
     "description": "A warm, gooey-centered chocolate cake that melts in your mouth with every bite."
   },
   {
     "id": 12,
     "name": "Mango Smoothie",
-    "price":"$1.19",
+    "price":"40",
     "image": "imgs/mango-smoothie.png"
   },{
     "id": 13,
     "name": "Spicy Tuna Sushi Roll",
-    "price": "$12.50",
+    "price": "450",
     "image": "imgs/sushi.png"
   },
   {
     "id": 14,
     "name": "Classic Beef Tacos",
-    "price": "$8.99",
+    "price": "190",
     "image": "imgs/tacos.png"
   },
   {
     "id": 16,
     "name": "Hyderabadi Chicken Biryani",
-    "price": "$10.50",
+    "price": "299",
     "image": "imgs/biryani.png"
   },
   {
     "id": 17,
     "name": "Steamed Pork Dim Sum",
-    "price": "$6.80",
+    "price": "220",
     "image": "imgs/dim-sum.png"
   },
   {
     "id": 18,
     "name": "Fresh Greek Salad",
-    "price": "$7.99",
+    "price": "170",
     "image": "imgs/greek-salad.png"
   },
   {
     "id": 19,
     "name": "Lemon Herb Grilled Salmon",
-    "price": "$14.99",
+    "price": "270",
     "image": "imgs/salmon.png"
   },
   {
     "id": 20,
     "name": "Fluffy Buttermilk Pancakes",
-    "price": "$6.49",
+    "price": "150",
     "image": "imgs/pancakes.png"
   },
   {
     "id": 21,
     "name": "Vietnamese Pho Beef Noodle Soup",
-    "price": "$9.75",
+    "price": "170",
     "image": "imgs/pho.png"
   }
 ]
