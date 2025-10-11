@@ -4,21 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - Foodiesite</title>
-
-    <link rel="icon" href="imgs/fabicon.png" type="image/png">
-    <link rel="stylesheet" href="style.css" />
-
     <link rel="icon" href="../imgs/fabicon.png" type="image/png">
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/cursor.css" />
-
-    <link rel="icon" href="../imgs/fabicon.png" type="image/png">
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/cursor.css" />
     <title>Checkout - Foodie</title>
-    <link rel="icon" href="../imgs/fabicon.png" type="image/png">
-    <link rel="stylesheet" href="../CSS/style.css" />
+
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/cursor.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -299,32 +290,11 @@
 
             <!-- DESKTOP MENU -->
             <ul class="navList flex gap-3 between">
-                <li>
-                    <a href="#home">Home</a>
-                </li>
-                <li>
-                    <a href="#services">Services</a>
-                </li>
-                <li>
-                    <a href="#menu">Menu</a>
-                </li>
-                <li>
-                    <a href="./aboutUs.html">About us</a>
-                </li>
-                <li>
-                    <a href="./contactUs.html">Contacts</a>
-                </li>
-
                 <li><a href="../html/index.html">Home</a></li>
                 <li><a href="../html/index.html#menu">Menu</a></li>
                 <li><a href="../html/index.html#services">Services</a></li>
                 <li><a href="../html/index.html#about">About us</a></li>
                 <li><a href="../html/index.html#contact">Contacts</a></li>
-
-                <li><a href="../HTML/index.html">Home</a></li>
-                <li><a href="../HTML/index.html#menu">Menu</a></li>
-                <li><a href="../HTML/index.html#services">Services</a></li>
-                <li><a href="../HTML./index.html#about">About us</a></li>
             </ul>
 
 
@@ -335,11 +305,6 @@
                 <a href="#" class="cart-icon">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-value">0</span>
-                </a>
-                <a href="../html/index.html" class="btn">
-                <a href="../HTML/index.html" class="btn">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    Back to Menu
                 </a>
                 <a href="./signup.html" class="btn">Sign in
                     &nbsp;
@@ -515,126 +480,128 @@
         </div>
     </div>
 
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script>
-    // Get cart data from sessionStorage
-    const cartData = JSON.parse(sessionStorage.getItem('checkoutCart') || '[]');
-    const deliveryFee = 2.99;
-    const taxRate = 0.10;
-    let selectedPayment = 'card';
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        // Get cart data from sessionStorage
+        const cartData = JSON.parse(sessionStorage.getItem('checkoutCart') || '[]');
+        const deliveryFee = 2.99;
+        const taxRate = 0.10;
+        let selectedPayment = 'card';
 
-    document.addEventListener('DOMContentLoaded', () => {
-        if (cartData.length === 0) {
-            document.getElementById('emptyCartMessage').style.display = 'block';
-            document.getElementById('checkoutContent').style.display = 'none';
-        } else {
-            displayOrderItems();
-            calculateTotals();
-        }
-        setupEventListeners();
-    });
+        document.addEventListener('DOMContentLoaded', () => {
+            if (cartData.length === 0) {
+                document.getElementById('emptyCartMessage').style.display = 'block';
+                document.getElementById('checkoutContent').style.display = 'none';
+            } else {
+                displayOrderItems();
+                calculateTotals();
+            }
+            setupEventListeners();
+        });
 
-    function displayOrderItems() {
-        const container = document.getElementById('orderItems');
-        container.innerHTML = cartData.map(item => `
+        function displayOrderItems() {
+            const container = document.getElementById('orderItems');
+            container.innerHTML = cartData.map(item => `
             <div class="order-item">
                 <img src="../${item.image}" alt="${item.name}">
                 <div class="order-item-details">
                     <div class="order-item-name">${item.name}</div>
                     <div class="order-item-quantity">Qty: ${item.quantity}</div>
                 </div>
-                <div class="order-item-price">$${(item.quantity * parseFloat(item.price.replace('$',''))).toFixed(2)}</div>
+                <div class="order-item-price">$${(item.quantity * parseFloat(item.price.replace('$', ''))).toFixed(2)}</div>
             </div>
         `).join('');
-    }
-
-    function calculateTotals() {
-        const subtotal = cartData.reduce((sum, item) => sum + (item.quantity * parseFloat(item.price.replace('$',''))), 0);
-        const tax = subtotal * taxRate;
-        const total = subtotal + deliveryFee + tax;
-
-        document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
-        document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
-        document.getElementById('finalTotal').textContent = `$${total.toFixed(2)}`;
-    }
-
-    function setupEventListeners() {
-        // Payment selection
-        document.querySelectorAll('.payment-method').forEach(method => {
-            method.addEventListener('click', () => {
-                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
-                method.classList.add('active');
-                selectedPayment = method.dataset.method;
-            });
-        });
-
-        // Place order
-        document.getElementById('placeOrderBtn').addEventListener('click', (e) => {
-            e.preventDefault();
-            if (validateForm()) {
-                if(selectedPayment !== 'card') {
-                    alert('Currently only Card payment is integrated.');
-                    return;
-                }
-                placeOrderRazorpay();
-            }
-        });
-    }
-
-    function validateForm() {
-        const form = document.getElementById('checkoutForm');
-        const inputs = form.querySelectorAll('input[required], textarea[required]');
-        let isValid = true;
-
-        inputs.forEach(input => {
-            const formGroup = input.closest('.form-group');
-            if (!input.value.trim()) {
-                formGroup.classList.add('error');
-                isValid = false;
-            } else {
-                formGroup.classList.remove('error');
-            }
-        });
-
-        // Email regex validation
-        const email = document.getElementById('email');
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (email.value && !emailRegex.test(email.value)) {
-            email.closest('.form-group').classList.add('error');
-            isValid = false;
         }
 
-        return isValid;
-    }
+        function calculateTotals() {
+            const subtotal = cartData.reduce((sum, item) => sum + (item.quantity * parseFloat(item.price.replace('$', ''))), 0);
+            const tax = subtotal * taxRate;
+            const total = subtotal + deliveryFee + tax;
 
-    function placeOrderRazorpay() {
-        const totalAmount = parseFloat(document.getElementById('finalTotal').textContent.replace('$','')) * 100; // in paise
-        const orderId = 'FD' + Date.now().toString().slice(-8);
-        document.getElementById('orderId').textContent = orderId;
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('finalTotal').textContent = `$${total.toFixed(2)}`;
+        }
 
-        const options = {
-            key: "rzp_test_RS6EdXdKAxfVLe", // your test key
-            amount: totalAmount,
-            currency: "INR",
-            name: "Foodie",
-            description: "Order Payment",
-            handler: function(response) {
-                console.log("Payment Success:", response);
-                document.getElementById('successModal').classList.add('active');
-                sessionStorage.removeItem('checkoutCart'); // clear cart
-            },
-            prefill: {
-                name: document.getElementById('fullName').value,
-                email: document.getElementById('email').value,
-                contact: document.getElementById('phone').value
-            },
-            theme: { color: "#ff6b35" }
-        };
+        function setupEventListeners() {
+            // Payment selection
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.addEventListener('click', () => {
+                    document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+                    method.classList.add('active');
+                    selectedPayment = method.dataset.method;
+                });
+            });
 
-        const rzp = new Razorpay(options);
-        rzp.open();
-    }
-</script>
+            // Place order
+            document.getElementById('placeOrderBtn').addEventListener('click', (e) => {
+                e.preventDefault();
+                if (validateForm()) {
+                    if (selectedPayment !== 'card') {
+                        alert('Currently only Card payment is integrated.');
+                        return;
+                    }
+                    placeOrderRazorpay();
+                }
+            });
+        }
+
+        function validateForm() {
+            const form = document.getElementById('checkoutForm');
+            const inputs = form.querySelectorAll('input[required], textarea[required]');
+            let isValid = true;
+
+            inputs.forEach(input => {
+                const formGroup = input.closest('.form-group');
+                if (!input.value.trim()) {
+                    formGroup.classList.add('error');
+                    isValid = false;
+                } else {
+                    formGroup.classList.remove('error');
+                }
+            });
+
+            // Email regex validation
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email.value && !emailRegex.test(email.value)) {
+                email.closest('.form-group').classList.add('error');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function placeOrderRazorpay() {
+            const totalAmount = parseFloat(document.getElementById('finalTotal').textContent.replace('$', '')) * 100; // in paise
+            const orderId = 'FD' + Date.now().toString().slice(-8);
+            document.getElementById('orderId').textContent = orderId;
+
+            const options = {
+                key: "rzp_test_RS6EdXdKAxfVLe", // your test key
+                amount: totalAmount,
+                currency: "INR",
+                name: "Foodie",
+                description: "Order Payment",
+                handler: function (response) {
+                    console.log("Payment Success:", response);
+                    document.getElementById('successModal').classList.add('active');
+                    sessionStorage.removeItem('checkoutCart'); // clear cart
+                },
+                prefill: {
+                    name: document.getElementById('fullName').value,
+                    email: document.getElementById('email').value,
+                    contact: document.getElementById('phone').value
+                },
+                theme: { color: "#ff6b35" }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+        }
+    </script>
+    <script src="../js/app.js"></script>
+    <script src="../js/cursor.js"></script>
 
 </body>
 
