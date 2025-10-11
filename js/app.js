@@ -185,6 +185,9 @@ checkoutBtn.addEventListener('click', e => {
 
     sessionStorage.setItem('checkoutCart', JSON.stringify(checkoutData));
     window.location.href = 'checkout.html';
+    
+    // Redirect to checkout page
+    window.location.href = '../HTML/checkout.html';
 });
 
 // ===== RENDER PRODUCT CARDS =====

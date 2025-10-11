@@ -1,37 +1,37 @@
 /* Css for signup page */
 
 :root {
-  /* Light theme (default) */
-  --lead: #212121;
-  --gold-finger: #F2BD12;
-  --eye-ball: #FFFDF7;
-  --hint-yellow: #FCF1CC;
-  --pure-while: #FFF;
-  --text-primary: #212121;
-  --text-secondary: #666666;
-  --bg-primary: #FFFDF7;
-  --bg-secondary: #FFF;
-  --bg-accent: #FCF1CC;
-  --border-color: #E0E0E0;
-  --shadow: rgba(0, 0, 0, 0.1);
-  --shadow-strong: rgba(0, 0, 0, 0.2);
+    /* Light theme (default) */
+    --lead: #212121;
+    --gold-finger: #F2BD12;
+    --eye-ball: #FFFDF7;
+    --hint-yellow: #FCF1CC;
+    --pure-while: #FFF;
+    --text-primary: #212121;
+    --text-secondary: #666666;
+    --bg-primary: #FFFDF7;
+    --bg-secondary: #FFF;
+    --bg-accent: #FCF1CC;
+    --border-color: #E0E0E0;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-strong: rgba(0, 0, 0, 0.2);
 }
 
 [data-theme="dark"] {
-  /* Dark theme */
-  --lead: #E0E0E0;
-  --gold-finger: #F2BD12;
-  --eye-ball: #1A1A1A;
-  --hint-yellow: #2D2D2D;
-  --pure-while: #2D2D2D;
-  --text-primary: #E0E0E0;
-  --text-secondary: #B0B0B0;
-  --bg-primary: #1A1A1A;
-  --bg-secondary: #2D2D2D;
-  --bg-accent: #2D2D2D;
-  --border-color: #404040;
-  --shadow: rgba(0, 0, 0, 0.3);
-  --shadow-strong: rgba(0, 0, 0, 0.5);
+    /* Dark theme */
+    --lead: #E0E0E0;
+    --gold-finger: #F2BD12;
+    --eye-ball: #1A1A1A;
+    --hint-yellow: #2D2D2D;
+    --pure-while: #2D2D2D;
+    --text-primary: #E0E0E0;
+    --text-secondary: #B0B0B0;
+    --bg-primary: #1A1A1A;
+    --bg-secondary: #2D2D2D;
+    --bg-accent: #2D2D2D;
+    --border-color: #404040;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow-strong: rgba(0, 0, 0, 0.5);
 }
 
 /* Back to Home Button Styles */
@@ -252,7 +252,7 @@ label {
 input {
     width: 100%;
     padding: 14px 18px;
-    background: var(--bg-primary); 
+    background: var(--bg-primary);
     border: 2px solid var(--border-color);
     border-radius: 10px;
     color: var(--text-primary);
@@ -262,7 +262,7 @@ input {
 
 input:focus {
     outline: none;
-    border-color: var(--gold-finger); 
+    border-color: var(--gold-finger);
     background: var(--bg-secondary);
 }
 
@@ -361,7 +361,7 @@ input::placeholder {
 .social-btn {
     flex: 1;
     padding: 12px;
-    background: var(--bg-primary); 
+    background: var(--bg-primary);
     border: 2px solid var(--border-color);
     border-radius: 10px;
     color: var(--text-primary);
@@ -462,10 +462,12 @@ input::placeholder {
     right: 20px;
     z-index: 1100;
 }
+
 .theme-toggle:hover {
     background-color: var(--bg-accent);
     transform: scale(1.1);
 }
+
 .theme-toggle i {
     transition: transform 0.3s ease, color 0.3s ease;
 }
