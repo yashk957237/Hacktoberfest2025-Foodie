@@ -5,13 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Foodie</title>
-<<<<<<< HEAD:checkout.html
-    <link rel="icon" href="imgs/fabicon.png" type="image/png">
-    <link rel="stylesheet" href="style.css" />
-=======
     <link rel="icon" href="../imgs/fabicon.png" type="image/png">
-    <link rel="stylesheet" href="../css/style.css"/>
->>>>>>> 232e183 (Fix issue #91: organize HTML, CSS, and JS into separate folders and update links):html/checkout.html
+    <link rel="stylesheet" href="../CSS/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -289,44 +284,25 @@
 
             <!-- DESKTOP MENU -->
             <ul class="navList flex gap-3 between">
-<<<<<<< HEAD:checkout.html
-                <li>
-                    <a href="#home">Home</a>
-                </li>
-                <li>
-                    <a href="#services">Services</a>
-                </li>
-                <li>
-                    <a href="#menu">Menu</a>
-                </li>
-                <li>
-                    <a href="./aboutUs.html">About us</a>
-                </li>
-                <li>
-                    <a href="./contactUs.html">Contacts</a>
-                </li>
-=======
-                <li><a href="../html/index.html">Home</a></li>
-                <li><a href="../html/index.html#menu">Menu</a></li>
-                <li><a href="../html/index.html#services">Services</a></li>
-                <li><a href="../html./index.html#about">About us</a></li>
->>>>>>> 232e183 (Fix issue #91: organize HTML, CSS, and JS into separate folders and update links):html/checkout.html
+
+                <li><a href="../HTML/index.html">Home</a></li>
+                <li><a href="../HTML/index.html#menu">Menu</a></li>
+                <li><a href="../HTML/index.html#services">Services</a></li>
+                <li><a href="../HTML./index.html#about">About us</a></li>
             </ul>
 
 
             <div class="desktop-action flex gap-2">
-<<<<<<< HEAD:checkout.html
                 <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
                     <i class="fa-solid fa-moon"></i>
                 </button>
                 <a href="#" class="cart-icon">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-value">0</span>
-=======
-                <a href="../html/index.html" class="btn">
+                </a>
+                <a href="../HTML/index.html" class="btn">
                     <i class="fa-solid fa-arrow-left"></i>
                     Back to Menu
->>>>>>> 232e183 (Fix issue #91: organize HTML, CSS, and JS into separate folders and update links):html/checkout.html
                 </a>
                 <a href="./signup.html" class="btn">Sign in
                     &nbsp;
@@ -374,13 +350,11 @@
 
 
     <main class="checkout-container">
-        <h1>Checkout</h1>
-
         <div id="emptyCartMessage" class="empty-cart" style="display: none;">
             <i class="fa-solid fa-cart-shopping"></i>
             <h2>Your cart is empty</h2>
             <p>Add some delicious items to get started!</p>
-            <a href="../html/index.html#menu" class="btn" style="margin-top: 1rem;">Browse Menu</a>
+            <a href="../HTML/index.html#menu" class="btn" style="margin-top: 1rem;">Browse Menu</a>
         </div>
 
         <div id="checkoutContent" class="checkout-grid">
@@ -496,7 +470,7 @@
             <p>Your order has been received and is being prepared.</p>
             <p><strong>Order ID: <span id="orderId"></span></strong></p>
             <p>Estimated delivery time: 30-45 minutes</p>
-            <a href="../html/index.html" class="btn" style="margin-top: 1.5rem;">Back to Home</a>
+            <a href="../HTML/index.html" class="btn" style="margin-top: 1.5rem;">Back to Home</a>
         </div>
     </div>
 
