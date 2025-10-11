@@ -4,7 +4,9 @@
     box-sizing: border-box;
 }
 
-html, body, header {
+html,
+body,
+header {
     margin: 0 !important;
     padding: 0 !important;
     top: 0 !important;
@@ -189,6 +191,7 @@ nav {
     z-index: 1000;
     top: 20px;
 }
+
 .hero {
     background: var(--bg-secondary);
     padding: 80px 40px;
@@ -322,7 +325,9 @@ label {
     font-weight: 500;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
     width: 100%;
     padding: 14px 18px;
     background: var(--bg-tertiary);
@@ -334,13 +339,16 @@ input, select, textarea {
     transition: all 0.3s ease;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
     outline: none;
     border-color: var(--accent-primary);
     background: var(--bg-hover);
 }
 
-input::placeholder, textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
     color: var(--text-tertiary);
 }
 
@@ -436,8 +444,15 @@ select {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .faq-toggle {

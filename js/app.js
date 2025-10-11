@@ -241,13 +241,9 @@ checkoutBtn.addEventListener('click', (e) => {
     });
     
     sessionStorage.setItem('checkoutCart', JSON.stringify(checkoutData));
-<<<<<<< HEAD:app.js
-    window.location.href = 'checkout.html';
-=======
     
     // Redirect to checkout page
-    window.location.href = '../html/checkout.html';
->>>>>>> 232e183 (Fix issue #91: organize HTML, CSS, and JS into separate folders and update links):js/app.js
+    window.location.href = '../HTML/checkout.html';
 });
 
 const initApp = () => {

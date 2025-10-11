@@ -833,13 +833,17 @@ input[type="email"]:focus {
 
 .modal-content img {
     width: 100%;
-    max-width: 300px;     /* keep it from getting too big */
-    height: auto;         /* keep correct aspect ratio */
-    object-fit: contain;  /* shows the entire image */
+    max-width: 300px;
+    /* keep it from getting too big */
+    height: auto;
+    /* keep correct aspect ratio */
+    object-fit: contain;
+    /* shows the entire image */
     display: block;
     margin: 0 auto;
     position: relative;
-    top: 20px;            /* adjust spacing so buttons don’t overlap */
+    top: 20px;
+    /* adjust spacing so buttons don’t overlap */
 }
 
 

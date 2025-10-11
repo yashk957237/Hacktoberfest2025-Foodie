@@ -8,7 +8,8 @@ body {
 }
 
 body:hover {
-  background: #f1f3f9; /* subtle hover effect on popup */
+  background: #f1f3f9;
+  /* subtle hover effect on popup */
 }
 
 h2 {
@@ -39,7 +40,8 @@ button {
 
 button:hover {
   background: #283593;
-  transform: scale(1.02); /* subtle hover scale effect */
+  transform: scale(1.02);
+  /* subtle hover scale effect */
 }
 
 .hint {
