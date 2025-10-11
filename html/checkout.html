@@ -5,16 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Foodie</title>
-<<<<<<< HEAD:checkout.html
+
     <link rel="icon" href="imgs/fabicon.png" type="image/png">
     <link rel="stylesheet" href="style.css" />
-=======
+
     <link rel="icon" href="../imgs/fabicon.png" type="image/png">
-    <link rel="stylesheet" href="../css/style.css"/>
->>>>>>> 232e183 (Fix issue #91: organize HTML, CSS, and JS into separate folders and update links):html/checkout.html
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/cursor.css" />
+
+    <link rel="icon" href="../imgs/fabicon.png" type="image/png">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/cursor.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
     <style>
         .checkout-container {
             max-width: 1200px;
@@ -289,7 +296,6 @@
 
             <!-- DESKTOP MENU -->
             <ul class="navList flex gap-3 between">
-<<<<<<< HEAD:checkout.html
                 <li>
                     <a href="#home">Home</a>
                 </li>
@@ -305,36 +311,37 @@
                 <li>
                     <a href="./contactUs.html">Contacts</a>
                 </li>
-=======
+
                 <li><a href="../html/index.html">Home</a></li>
                 <li><a href="../html/index.html#menu">Menu</a></li>
                 <li><a href="../html/index.html#services">Services</a></li>
-                <li><a href="../html./index.html#about">About us</a></li>
->>>>>>> 232e183 (Fix issue #91: organize HTML, CSS, and JS into separate folders and update links):html/checkout.html
+                <li><a href="../html/index.html#about">About us</a></li>
+                <li><a href="../html/index.html#contact">Contacts</a></li>
             </ul>
 
 
             <div class="desktop-action flex gap-2">
-<<<<<<< HEAD:checkout.html
                 <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
                     <i class="fa-solid fa-moon"></i>
                 </button>
                 <a href="#" class="cart-icon">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-value">0</span>
-=======
+                </a>
                 <a href="../html/index.html" class="btn">
                     <i class="fa-solid fa-arrow-left"></i>
                     Back to Menu
->>>>>>> 232e183 (Fix issue #91: organize HTML, CSS, and JS into separate folders and update links):html/checkout.html
                 </a>
                 <a href="./signup.html" class="btn">Sign in
                     &nbsp;
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                 </a>
 
-                <a href="#" class="hamberger">
-                    <i class="fa-solid fa-bars"></i>
+                <a href="#" class="hamberger" aria-label="Open main menu" title="Open main menu" role="button">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                    <span
+                        style="position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;">Open
+                        main menu</span>
                 </a>
 
             </div>
@@ -481,6 +488,7 @@
                     <button class="place-order-btn" id="placeOrderBtn">
                         <i class="fa-solid fa-check"></i> Place Order
                     </button>
+
                 </div>
             </div>
         </div>
@@ -500,127 +508,127 @@
         </div>
     </div>
 
-    <script>
-        // Get cart data from sessionStorage (passed from main page)
-        const cartData = JSON.parse(sessionStorage.getItem('checkoutCart') || '[]');
-        const deliveryFee = 2.99;
-        const taxRate = 0.10;
-        let selectedPayment = 'card';
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    // Get cart data from sessionStorage
+    const cartData = JSON.parse(sessionStorage.getItem('checkoutCart') || '[]');
+    const deliveryFee = 2.99;
+    const taxRate = 0.10;
+    let selectedPayment = 'card';
 
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', () => {
-            if (cartData.length === 0) {
-                document.getElementById('emptyCartMessage').style.display = 'block';
-                document.getElementById('checkoutContent').style.display = 'none';
-            } else {
-                displayOrderItems();
-                calculateTotals();
-            }
+    document.addEventListener('DOMContentLoaded', () => {
+        if (cartData.length === 0) {
+            document.getElementById('emptyCartMessage').style.display = 'block';
+            document.getElementById('checkoutContent').style.display = 'none';
+        } else {
+            displayOrderItems();
+            calculateTotals();
+        }
+        setupEventListeners();
+    });
 
-            setupEventListeners();
+    function displayOrderItems() {
+        const container = document.getElementById('orderItems');
+        container.innerHTML = cartData.map(item => `
+            <div class="order-item">
+                <img src="../${item.image}" alt="${item.name}">
+                <div class="order-item-details">
+                    <div class="order-item-name">${item.name}</div>
+                    <div class="order-item-quantity">Qty: ${item.quantity}</div>
+                </div>
+                <div class="order-item-price">$${(item.quantity * parseFloat(item.price.replace('$',''))).toFixed(2)}</div>
+            </div>
+        `).join('');
+    }
+
+    function calculateTotals() {
+        const subtotal = cartData.reduce((sum, item) => sum + (item.quantity * parseFloat(item.price.replace('$',''))), 0);
+        const tax = subtotal * taxRate;
+        const total = subtotal + deliveryFee + tax;
+
+        document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+        document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
+        document.getElementById('finalTotal').textContent = `$${total.toFixed(2)}`;
+    }
+
+    function setupEventListeners() {
+        // Payment selection
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', () => {
+                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+                method.classList.add('active');
+                selectedPayment = method.dataset.method;
+            });
         });
 
-        function displayOrderItems() {
-            const container = document.getElementById('orderItems');
-            container.innerHTML = cartData.map(item => `
-                <div class="order-item">
-                 <img src="../imgs/${item.image}" alt="${item.name}">
-
-                    <div class="order-item-details">
-                        <div class="order-item-name">${item.name}</div>
-                        <div class="order-item-quantity">Qty: ${item.quantity}</div>
-                    </div>
-                    <div class="order-item-price">$${(item.quantity * parseFloat(item.price.replace('$', ''))).toFixed(2)}</div>
-                </div>
-            `).join('');
-        }
-
-        function calculateTotals() {
-            const subtotal = cartData.reduce((sum, item) => {
-                return sum + (item.quantity * parseFloat(item.price.replace('$', '')));
-            }, 0);
-
-            const tax = subtotal * taxRate;
-            const total = subtotal + deliveryFee + tax;
-
-            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
-            document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
-            document.getElementById('finalTotal').textContent = `$${total.toFixed(2)}`;
-        }
-
-        function setupEventListeners() {
-            // Payment method selection
-            document.querySelectorAll('.payment-method').forEach(method => {
-                method.addEventListener('click', () => {
-                    document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
-                    method.classList.add('active');
-                    selectedPayment = method.dataset.method;
-                });
-            });
-
-            // Form submission
-            document.getElementById('placeOrderBtn').addEventListener('click', (e) => {
-                e.preventDefault();
-                if (validateForm()) {
-                    placeOrder();
+        // Place order
+        document.getElementById('placeOrderBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            if (validateForm()) {
+                if(selectedPayment !== 'card') {
+                    alert('Currently only Card payment is integrated.');
+                    return;
                 }
-            });
-        }
-
-        function validateForm() {
-            const form = document.getElementById('checkoutForm');
-            const inputs = form.querySelectorAll('input[required], textarea[required]');
-            let isValid = true;
-
-            inputs.forEach(input => {
-                const formGroup = input.closest('.form-group');
-                if (!input.value.trim()) {
-                    formGroup.classList.add('error');
-                    isValid = false;
-                } else {
-                    formGroup.classList.remove('error');
-                }
-            });
-
-            // Email validation
-            const email = document.getElementById('email');
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (email.value && !emailRegex.test(email.value)) {
-                email.closest('.form-group').classList.add('error');
-                isValid = false;
+                placeOrderRazorpay();
             }
+        });
+    }
 
-            return isValid;
+    function validateForm() {
+        const form = document.getElementById('checkoutForm');
+        const inputs = form.querySelectorAll('input[required], textarea[required]');
+        let isValid = true;
+
+        inputs.forEach(input => {
+            const formGroup = input.closest('.form-group');
+            if (!input.value.trim()) {
+                formGroup.classList.add('error');
+                isValid = false;
+            } else {
+                formGroup.classList.remove('error');
+            }
+        });
+
+        // Email regex validation
+        const email = document.getElementById('email');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email.value && !emailRegex.test(email.value)) {
+            email.closest('.form-group').classList.add('error');
+            isValid = false;
         }
 
-        function placeOrder() {
-            const formData = {
-                fullName: document.getElementById('fullName').value,
+        return isValid;
+    }
+
+    function placeOrderRazorpay() {
+        const totalAmount = parseFloat(document.getElementById('finalTotal').textContent.replace('$','')) * 100; // in paise
+        const orderId = 'FD' + Date.now().toString().slice(-8);
+        document.getElementById('orderId').textContent = orderId;
+
+        const options = {
+            key: "rzp_test_RS6EdXdKAxfVLe", // your test key
+            amount: totalAmount,
+            currency: "INR",
+            name: "Foodie",
+            description: "Order Payment",
+            handler: function(response) {
+                console.log("Payment Success:", response);
+                document.getElementById('successModal').classList.add('active');
+                sessionStorage.removeItem('checkoutCart'); // clear cart
+            },
+            prefill: {
+                name: document.getElementById('fullName').value,
                 email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                address: document.getElementById('address').value,
-                city: document.getElementById('city').value,
-                zipCode: document.getElementById('zipCode').value,
-                notes: document.getElementById('notes').value,
-                paymentMethod: selectedPayment,
-                items: cartData,
-                total: document.getElementById('finalTotal').textContent
-            };
+                contact: document.getElementById('phone').value
+            },
+            theme: { color: "#ff6b35" }
+        };
 
-            // Generate order ID
-            const orderId = 'FD' + Date.now().toString().slice(-8);
-            document.getElementById('orderId').textContent = orderId;
+        const rzp = new Razorpay(options);
+        rzp.open();
+    }
+</script>
 
-            // Show success modal
-            document.getElementById('successModal').classList.add('active');
-
-            // Clear cart data
-            sessionStorage.removeItem('checkoutCart');
-
-            // In a real app, you would send this data to a server
-            console.log('Order placed:', formData);
-        }
-    </script>
 </body>
 
 </html>
