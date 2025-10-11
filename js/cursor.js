@@ -61,10 +61,9 @@
         ringY += (mouseY - ringY) * ringSpeed;
 
         // Apply transforms
-        cursorDot.style.left = `${dotX}px`;
-        cursorDot.style.top = `${dotY}px`;
-        cursorRing.style.left = ` ${ringX}px`;
-        cursorRing.style.top = `${ringY}px`;
+       cursorDot.style.transform = `translate3d(${dotX}px, ${dotY}px, 0)`;
+cursorRing.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+
 
         requestAnimationFrame(animateCursor);
     }
@@ -170,8 +169,8 @@
     function createRipple(x, y) {
         const ripple = document.createElement('div');
         ripple.className = 'cursor-ripple';
-        ripple.style.left = `${x} px`;
-        ripple.style.top = `${y} px`;
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
         document.body.appendChild(ripple);
 
         // Remove ripple after animation

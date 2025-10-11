@@ -51,7 +51,7 @@
         border-color 0.3s ease,
         opacity 0.3s ease;
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(2px);
     box-shadow: 0 8px 32px rgba(242, 189, 18, 0.1);
 }
 
@@ -154,6 +154,7 @@ body:not([data-theme]) .cursor-ring {
 
     .cursor-dot,
     .cursor-ring {
+         will-change: transform;
         transition: none !important;
         animation: none !important;
     }
@@ -169,12 +170,8 @@ body:not([data-theme]) .cursor-ring {
 }
 
 /* Hide on Touch Devices */
-@media (hover: none) and (pointer: coarse) {
-    .custom-cursor {
-        display: none;
-    }
-
-    body {
-        cursor: auto;
+@media (hover: hover) and (pointer: fine) {
+    body, a, button, input, textarea, select, [role="button"], .clickable {
+        cursor: none !important;
     }
 }
