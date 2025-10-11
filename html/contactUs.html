@@ -293,7 +293,7 @@
         </div>
     </footer>
 
-    
+
 
     <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -399,6 +399,38 @@ backToTop && backToTop.addEventListener('click', (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+// Toggle theme on button click
+if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+        const currentTheme = document.documentElement.getAttribute("data-theme");
+        applyTheme(currentTheme === "dark" ? "light" : "dark");
+    });
+}
+    // Handle contact form submission
+    function handleSubmit(event) {
+        event.preventDefault();
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const email = document.getElementById("email").value;
+
+        alert(`Thank you, ${firstName} ${lastName}! We've received your message and will respond to ${email} within 24 hours.`);
+
+        event.target.reset();
+    }
+
+    // Toggle FAQ items
+    function toggleFaq(element) {
+        const allFaqs = document.querySelectorAll(".faq-item");
+        allFaqs.forEach(faq => {
+            if (faq !== element && faq.classList.contains("active")) {
+                faq.classList.remove("active");
+            }
+        });
+
+        element.classList.toggle("active");
+    }
+
 </script>
     <script src="../JS/app.js"></script>
 
