@@ -60,6 +60,7 @@
     "price": "170",
     "image": "../imgs/panner-tikka.png",
     "description": "Char-grilled paneer cubes marinated in spiced yogurt, served with mint chutney."
+    
   },
   {
     "id": 10,
@@ -79,53 +80,66 @@
     "id": 12,
     "name": "Mango Smoothie",
     "price":"40",
-    "image": "../imgs/mango-smoothie.png"
+    "image": "../imgs/mango-smoothie.png",
+    "description": "A creamy and refreshing blend of ripe mangoes and yogurt, perfect for a tropical treat."
+  
+
   },{
     "id": 13,
     "name": "Spicy Tuna Sushi Roll",
     "price": "450",
-    "image": "../imgs/sushi.png"
+    "image": "../imgs/sushi.png",
+    "description": "Fresh tuna, spicy mayo, and crisp cucumber wrapped in seasoned rice."
   },
   {
     "id": 14,
     "name": "Classic Beef Tacos",
     "price": "190",
-    "image": "../imgs/tacos.png"
+    "image": "../imgs/tacos.png",
+    "description": "Soft tortillas filled with juicy spiced beef, lettuce, and cheese."
   },
   {
     "id": 16,
     "name": "Hyderabadi Chicken Biryani",
     "price": "299",
-    "image": "../imgs/biryani.png"
+    "image": "../imgs/biryani.png",
+    "description": "Aromatic basmati rice layered with flavorful chicken and saffron spices."
   },
   {
     "id": 17,
     "name": "Steamed Pork Dim Sum",
     "price": "220",
-    "image": "../imgs/dim-sum.png"
+    "image": "../imgs/dim-sum.png",
+    "description": "Soft dumplings stuffed with juicy pork and steamed to delicate perfection."
   },
+  
   {
     "id": 18,
     "name": "Fresh Greek Salad",
     "price": "170",
-    "image": "../imgs/greek-salad.png"
+    "image": "../imgs/greek-salad.png",
+    "description": "Crisp lettuce, olives, feta cheese, and cucumber tossed in tangy dressing."
+  
   },
   {
     "id": 19,
     "name": "Lemon Herb Grilled Salmon",
     "price": "270",
-    "image": "../imgs/salmon.png"
+    "image": "../imgs/salmon.png",
+    "description":"Tender salmon fillet grilled with zesty lemon and aromatic herbs."
   },
   {
     "id": 20,
     "name": "Fluffy Buttermilk Pancakes",
     "price": "150",
-    "image": "../imgs/pancakes.png"
+    "image": "../imgs/pancakes.png",
+     "description": "Golden, airy pancakes served with butter and maple syrup."
   },
   {
     "id": 21,
     "name": "Vietnamese Pho Beef Noodle Soup",
     "price": "170",
-    "image": "../imgs/pho.png"
+    "image": "../imgs/pho.png",
+    "description":"Fragrant broth with rice noodles, tender beef slices, and fresh herbs."
   }
 ]
