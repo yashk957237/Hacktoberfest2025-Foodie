@@ -40,6 +40,30 @@ header {
     --shadow: rgba(0, 0, 0, 0.1);
 }
 
+
+[data-theme="dark"] {
+    --lead: #E0E0E0;
+    --gold-finger: #F2BD12;
+    --eye-ball: #1A1A1A;
+    --hint-yellow: #2D2D2D;
+    --pure-while: #101010;
+    --text-primary: #E0E0E0;
+    --text-secondary: #B0B0B0;
+    --bg-primary: #000000;
+    --bg-secondary: #151515;
+    --bg-accent: #2D2D2D;
+    --border-color: #131313;
+    --shadow: rgb(0, 0, 0);
+    --shadow-strong: rgb(0, 0, 0);
+}
+
+[data-theme="dark"] .social-media {
+    background-color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .social-media:hover {
+    background-color: var(--gold-finger) !important;
+}
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: var(--bg-primary);

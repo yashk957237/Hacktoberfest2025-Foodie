@@ -22,28 +22,45 @@
 </head>
 
 <body>
-    <!-- HEADER -->
+    
+
+    <!-- UNIVERSAL NAVBAR  -->
     <header>
         <nav class="navbar flex between wrapper">
             <div class="logo">Foodie.</div>
 
             <!-- DESKTOP MENU -->
             <ul class="navList flex gap-3 between">
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./index.html#menu">Menu</a></li>
-                <li><a href="./index.html#services">Services</a></li>
-                <li><a href="./index.html#about">About us</a></li>
-                <li><a href="./contactUs.html">Contacts</a></li>
+                <li>
+                    <a href="./index.html#home">Home</a>
+                </li>
+                <li>
+                    <a href="./index.html#services">Services</a>
+                </li>
+                <li>
+                    <a href="./index.html#menu">Menu</a>
+                </li>
+                <li>
+                    <a href="./aboutUs.html">About us</a>
+                </li>
+                <li>
+                    <a href="./contactUs.html">Contacts</a>
+                </li>
             </ul>
 
             <div class="desktop-action flex gap-2">
                 <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
                     <i class="fa-solid fa-moon"></i>
                 </button>
-                <a href="./index.html" class="btn">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    Back to Menu
+                <a href="#" class="cart-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-value">0</span>
                 </a>
+                <a href="./signup.html" class="btn">Sign in
+                    &nbsp;
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </a>
+
                 <a href="#" class="hamberger">
                     <i class="fa-solid fa-bars"></i>
                 </a>
@@ -51,11 +68,21 @@
 
             <!-- MOBILE MENU -->
             <ul class="mobile-menu">
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./index.html#menu">Menu</a></li>
-                <li><a href="./index.html#services">Services</a></li>
-                <li><a href="./aboutUs.html">About us</a></li>
-                <li><a href="./contactUs.html">Contacts</a></li>
+                <li>
+                    <a href="./index.html#home">Home</a>
+                </li>
+                <li>
+                    <a href="./index.html#services">Services</a>
+                </li>
+                <li>
+                    <a href="./index.html#menu">Menu</a>
+                </li>
+                <li>
+                    <a href="./aboutUs.html">About us</a>
+                </li>
+                <li>
+                    <a href="./contactUs.html">Contacts</a>
+                </li>
                 <li>
                     <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
                         <i class="fa-solid fa-moon"></i>
@@ -63,13 +90,16 @@
                     </button>
                 </li>
                 <li>
-                    <a href="./index.html" class="btn">
-                        <i class="fa-solid fa-arrow-left"></i> Back to Menu
+                    <a href="./signup.html" class="btn">Sign in
+                        &nbsp;
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </a>
                 </li>
             </ul>
         </nav>
     </header>
+
+
 
     <main class="checkout-container">
         <h1>Checkout</h1>
@@ -257,6 +287,54 @@
         const deliveryFee = 29.00;
         const taxRate = 0.10;
         let selectedPayment = 'card';
+
+        const themeToggle = document.querySelector('.theme-toggle');
+        const html = document.documentElement;
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+
+        // Update icon based on theme
+        function updateThemeIcon() {
+            const icon = themeToggle.querySelector('i');
+            if (html.getAttribute('data-theme') === 'dark') {
+                // Animate icon change
+                icon.style.transform = 'rotate(360deg) scale(0)';
+                setTimeout(() => {
+                    icon.className = 'fa-solid fa-sun';
+                    icon.style.transform = 'rotate(0deg) scale(1)';
+                }, 250);
+            } else {
+                // Animate icon change
+                icon.style.transform = 'rotate(-360deg) scale(0)';
+                setTimeout(() => {
+                    icon.className = 'fa-solid fa-moon';
+                    icon.style.transform = 'rotate(0deg) scale(1)';
+                }, 250);
+            }
+        }
+
+        updateThemeIcon();
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon();
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamberger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        hamburger.addEventListener('click', (e) => {
+            e.preventDefault();
+            mobileMenu.classList.toggle('mobile-menu-active');
+        });
+
 
         document.addEventListener('DOMContentLoaded', () => {
             if (cartData.length === 0) {
