@@ -475,7 +475,7 @@ h4 {
 }
 
 .cart-tab-active {
-    inset: 0 0 0 auto;
+    inset: 8rem 0 0 auto;
 }
 
 .cart-list {
