@@ -1,298 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foodie - Login & Sign Up</title>
-    <link rel="stylesheet" href="../CSS/signUp.css" />
-    <link rel="icon" href="../imgs/fabicon.png" type="image/png" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
-      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foodie | Login & Sign Up</title>
+  <meta name="description" content="Foodie - Fast and delicious food delivery. Login or create an account to start ordering your favorite meals!" />
+  <meta name="keywords" content="Foodie, Login, Sign Up, Food Delivery, Online Ordering" />
+  <meta name="author" content="Foodie" />
+  <meta property="og:title" content="Foodie | Login & Sign Up" />
+  <meta property="og:description" content="Fast and delicious food delivery. Login or create an account to start ordering your favorite meals!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="../imgs/og-image.png" />
+  <link rel="icon" href="../imgs/fabicon.png" type="image/png" />
+  <link rel="stylesheet" href="../CSS/signUp.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
 
-  <body>
-    <a href="../HTML/index.html" class="back-home" aria-label="Back to Home">
-      <span class="icon">←</span>
-      Back to Home
-    </a>
+  <!-- Back to Home -->
+  <a href="../HTML/index.html" class="back-home" aria-label="Back to Home">
+    <span class="icon">←</span> Back to Home
+  </a>
 
-    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
-      <i class="fa-solid fa-moon"></i>
-    </button>
+  <!-- Theme Toggle Button -->
+  <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark/light mode">
+    <i class="fa-solid fa-moon"></i>
+  </button>
 
-    <div class="container">
-      <div class="hero-section">
-        <div class="logo">Foodie.</div>
-        <div class="hero-text">
-          We will fill your tummy with delicious food with fast delivery
-        </div>
-        <div class="pizza-icon">🍕</div>
-      </div>
+  <main class="container">
 
-      <div class="form-section">
-        <!-- Login Form -->
-        <div id="loginForm" class="auth-container active">
-          <h2>Welcome Back</h2>
-          <p class="subtitle">Login to your account to continue ordering</p>
+    <!-- Hero Section -->
+    <section class="hero-section" aria-label="Foodie Hero Section">
+      <div class="logo">Foodie.</div>
+      <p class="hero-text">We fill your tummy with delicious food with fast delivery</p>
+      <div class="pizza-icon" aria-hidden="true">🍕</div>
+    </section>
 
-          <div class="social-login">
-            <div id="loginGoogleBtn"></div>
-          </div>
+    <!-- Auth Forms Section -->
+    <section class="form-section" aria-label="Login and Sign Up Forms">
 
-          <div class="divider">
-            <span>OR</span>
-          </div>
+      <!-- Login Form -->
+      <article id="loginForm" class="auth-container active" aria-labelledby="loginTitle">
+        <h2 id="loginTitle">Welcome Back</h2>
+        <p class="subtitle">Login to your account to continue ordering</p>
 
-          <form onsubmit="handleLogin(event)">
-            <div class="form-group">
-              <label for="loginEmail">Email Address</label>
-              <input
-                type="email"
-                id="loginEmail"
-                placeholder="your@email.com"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="loginPassword">Password</label>
-              <div class="password-field">
-                <input
-                  type="password"
-                  id="loginPassword"
-                  placeholder="Enter your password"
-                  required
-                />
-                <button
-                  type="button"
-                  class="toggle-password"
-                  onclick="togglePassword('loginPassword')"
-                >
-                  👁️
-                </button>
-              </div>
-            </div>
-
-            <div class="forgot-password">
-              <a
-                href="#"
-                onclick="alert('Password reset feature coming soon!'); return false;"
-                >Forgot Password?</a
-              >
-            </div>
-
-            <div class="checkbox-group">
-              <input type="checkbox" id="rememberMe" />
-              <label for="rememberMe">Remember me</label>
-            </div>
-
-            <button type="submit" class="btn">Login</button>
-          </form>
-
-          <div class="switch-form">
-            Don't have an account? <a onclick="switchForm('signup')">Sign Up</a>
-          </div>
+        <div class="social-login" aria-label="Google Sign-In">
+          <div id="loginGoogleBtn"></div>
         </div>
 
-        <!-- Sign Up Form -->
-        <div id="signupForm" class="auth-container">
-          <h2>Create Account</h2>
-          <p class="subtitle">Sign up to start ordering delicious food</p>
+        <div class="divider"><span>OR</span></div>
 
-          <div class="social-login">
-            <div id="signupGoogleBtn"></div>
+        <form onsubmit="handleLogin(event)" aria-label="Login Form">
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" placeholder="your@email.com" required />
           </div>
 
-          <div class="divider">
-            <span>OR</span>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <div class="password-field">
+              <input type="password" id="loginPassword" placeholder="Enter your password" required />
+              <button type="button" class="toggle-password" onclick="togglePassword('loginPassword')" aria-label="Toggle password visibility">👁️</button>
+            </div>
           </div>
 
-          <form onsubmit="handleSignup(event)">
-            <div class="form-group">
-              <label for="signupName">Full Name</label>
-              <input
-                type="text"
-                id="signupName"
-                placeholder="John Doe"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="signupEmail">Email Address</label>
-              <input
-                type="email"
-                id="signupEmail"
-                placeholder="your@email.com"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="signupPhone">Phone Number</label>
-              <input
-                type="tel"
-                id="signupPhone"
-                placeholder="+91 12345 67890"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="signupPassword">Password</label>
-              <div class="password-field">
-                <input
-                  type="password"
-                  id="signupPassword"
-                  placeholder="Create a password"
-                  required
-                />
-                <button
-                  type="button"
-                  class="toggle-password"
-                  onclick="togglePassword('signupPassword')"
-                >
-                  👁️
-                </button>
-              </div>
-            </div>
-
-            <div class="checkbox-group">
-              <input type="checkbox" id="agreeTerms" required />
-              <label for="agreeTerms">I agree to the Terms & Conditions</label>
-            </div>
-
-            <button type="submit" class="btn">Create Account</button>
-          </form>
-
-          <div class="switch-form">
-            Already have an account? <a onclick="switchForm('login')">Login</a>
+          <div class="forgot-password">
+            <a href="#" onclick="alert('Password reset coming soon!'); return false;">Forgot Password?</a>
           </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="rememberMe" />
+            <label for="rememberMe">Remember me</label>
+          </div>
+
+          <button type="submit" class="btn">Login</button>
+        </form>
+
+        <p class="switch-form">Don't have an account? <a onclick="switchForm('signup')">Sign Up</a></p>
+      </article>
+
+      <!-- Sign Up Form -->
+      <article id="signupForm" class="auth-container" aria-labelledby="signupTitle">
+        <h2 id="signupTitle">Create Account</h2>
+        <p class="subtitle">Sign up to start ordering delicious food</p>
+
+        <div class="social-login" aria-label="Google Sign-Up">
+          <div id="signupGoogleBtn"></div>
         </div>
-      </div>
-    </div>
 
-    <script>
-      // Initializing Google Sign-In buttons for both forms
-      window.onload = function () {
-        if (window.google && google.accounts && google.accounts.id) {
-          google.accounts.id.initialize({
-            client_id: "YOUR_GOOGLE_CLIENT_ID",
-            callback: handleGoogleLogin,
-            ux_mode: "popup",
-          });
+        <div class="divider"><span>OR</span></div>
 
-          google.accounts.id.renderButton(document.getElementById("loginGoogleBtn"), {
-            theme: "outline",
-            size: "large",
-            text: "signin_with",
-            shape: "rectangular",
-            logo_alignment: "left",
-          });
+        <form onsubmit="handleSignup(event)" aria-label="Sign Up Form">
+          <div class="form-group">
+            <label for="signupName">Full Name</label>
+            <input type="text" id="signupName" placeholder="John Doe" required />
+          </div>
 
-          google.accounts.id.renderButton(document.getElementById("signupGoogleBtn"), {
-            theme: "outline",
-            size: "large",
-            text: "signup_with",
-            shape: "rectangular",
-            logo_alignment: "left",
-          });
-        }
-      };
+          <div class="form-group">
+            <label for="signupEmail">Email Address</label>
+            <input type="email" id="signupEmail" placeholder="your@email.com" required />
+          </div>
 
-      function switchForm(formType) {
-        const loginForm = document.getElementById("loginForm");
-        const signupForm = document.getElementById("signupForm");
+          <div class="form-group">
+            <label for="signupPhone">Phone Number</label>
+            <input type="tel" id="signupPhone" placeholder="+91 12345 67890" required />
+          </div>
 
-        if (formType === "login") {
-          signupForm.classList.remove("active");
-          loginForm.classList.add("active");
-        } else {
-          loginForm.classList.remove("active");
-          signupForm.classList.add("active");
-        }
-      }
+          <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <div class="password-field">
+              <input type="password" id="signupPassword" placeholder="Create a password" required />
+              <button type="button" class="toggle-password" onclick="togglePassword('signupPassword')" aria-label="Toggle password visibility">👁️</button>
+            </div>
+          </div>
 
-      function togglePassword(inputId) {
-        const input = document.getElementById(inputId);
-        const button = input.nextElementSibling;
+          <div class="checkbox-group">
+            <input type="checkbox" id="agreeTerms" required />
+            <label for="agreeTerms">I agree to the Terms & Conditions</label>
+          </div>
 
-        if (input.type === "password") {
-          input.type = "text";
-          button.textContent = "🙈";
-        } else {
-          input.type = "password";
-          button.textContent = "👁️";
-        }
-      }
+          <button type="submit" class="btn">Create Account</button>
+        </form>
 
-      function handleLogin(event) {
-        event.preventDefault();
-        const email = document.getElementById("loginEmail").value;
-        alert(`Welcome back! Logging in with: ${email}`);
-      }
+        <p class="switch-form">Already have an account? <a onclick="switchForm('login')">Login</a></p>
+      </article>
 
-      function handleSignup(event) {
-        event.preventDefault();
-        const name = document.getElementById("signupName").value;
-        const email = document.getElementById("signupEmail").value;
-        alert(`Account created successfully for: ${name} (${email})`);
-      }
+    </section>
+  </main>
 
-      function handleGoogleLogin(response) {
-        const data = parseJwt(response.credential);
-        alert(`Welcome, ${data.name}! Logged in via Google.`);
-        console.log("User details:", data);
-      }
+  <!-- Scripts -->
+  <script src="../JS/auth.js" type="module"></script>
 
-      function parseJwt(token) {
-        const base64Url = token.split(".")[1];
-        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-        const jsonPayload = decodeURIComponent(
-          atob(base64)
-            .split("")
-            .map(function (c) {
-              return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-            })
-            .join("")
-        );
-        return JSON.parse(jsonPayload);
-      }
-
-      (function () {
-        const root = document.documentElement;
-        const btn = document.getElementById("themeToggle");
-
-        function apply(theme) {
-          if (theme === "dark") {
-            root.setAttribute("data-theme", "dark");
-            btn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-          } else {
-            root.removeAttribute("data-theme");
-            btn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-          }
-          localStorage.setItem("theme", theme);
-        }
-
-        const saved = localStorage.getItem("theme");
-        const prefersDark =
-          window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-        apply(saved ? saved : prefersDark ? "dark" : "light");
-
-        btn.addEventListener("click", () => {
-          const next =
-            root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-          apply(next);
-        });
-      })();
-    </script>
-  </body>
+</body>
 </html>
