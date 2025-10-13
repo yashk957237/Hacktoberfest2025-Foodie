@@ -368,6 +368,7 @@ p {
 .image-placeholder {
     font-size: 120px;
     text-align: center;
+    cursor: default;
 }
 
 /* Mission Section */
