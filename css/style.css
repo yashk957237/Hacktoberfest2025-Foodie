@@ -22,6 +22,8 @@
     --border-color: #E0E0E0;
     --shadow: rgba(0, 0, 0, 0.1);
     --shadow-strong: rgba(0, 0, 0, 0.2);
+    --navbar-bg: transparent;
+    --logo-color: #111;
 }
 
 [data-theme="dark"] {
@@ -39,6 +41,8 @@
     --border-color: #404040;
     --shadow: rgba(0, 0, 0, 0.3);
     --shadow-strong: rgba(0, 0, 0, 0.5);
+    --navbar-bg: transparent;
+    --logo-color: #fff;
 }
 
 /* Dark theme specific improvements */
@@ -73,9 +77,8 @@ body {
     background-color: var(--eye-ball);
     color: var(--lead);
     transition: background-color 0.4s ease, color 0.4s ease;
-    padding-top: 15vh;
-    /* to accommodate fixed navbar height */
-    /* Added to prevent content from hiding behind the fixed navbar */
+    padding-top: 14vh;
+    overflow-x: hidden;
 }
 
 /* Dark mode overrides */
@@ -85,7 +88,6 @@ body.dark-mode {
     --hint-yellow: #4b3b00;
     --pure-while: #2c2c2c;
     --gold-finger: #ffca28;
-    /* brighter accent */
     background-color: var(--eye-ball);
     color: var(--lead);
 }
@@ -105,15 +107,11 @@ body.dark-mode {
     transform: rotate(15deg) scale(1.1);
     background: var(--lead);
     color: var(--pure-while);
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 15vh;
-    /* to accommodate fixed navbar height */
+    scroll-padding-top: 14vh;
 }
 
 body::-webkit-scrollbar {
@@ -188,16 +186,29 @@ img {
     margin: auto;
 }
 
-/* HEADER STYLING */
+/* HEADER STYLING - UPDATED FOR TRANSPARENT NAVBAR */
 
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    background-color: transparent;
+    box-shadow: none;
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+header.scrolled {
     background-color: var(--bg-secondary);
     box-shadow: 0 2px 5px var(--shadow);
-    z-index: 1000;
+}
+
+/* Override wrapper constraints inside header */
+header .wrapper,
+header .navbar.wrapper {
+    max-width: 100% !important;
+    padding-inline: 3rem !important;
 }
 
 /* Hover effect for navbar links */
@@ -235,9 +246,9 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 30px;
-    background-color: var(--navbar-bg, #fff);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 0 3rem;
+    background-color: transparent;
+    box-shadow: none;
 }
 
 .logo {
@@ -245,6 +256,7 @@ header {
     font-weight: bold;
     color: var(--gold-finger);
     transition: color 0.3s ease;
+    margin: 0;
 }
 
 .btn {
@@ -330,6 +342,12 @@ header {
     font-weight: 500;
 }
 
+.desktop-action {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
 .desktop-action .hamberger {
     font-size: 1.5rem;
     display: none;
@@ -386,7 +404,6 @@ p {
     display: flex;
     font-size: 2rem;
     align-items: center;
-    background: var(--hint-yellow);
     box-shadow: rgba(0, 0, 0, 0.1) 0 2px 1px;
     transition: all 0.5s ease-in-out;
 }
@@ -675,7 +692,6 @@ input[type="email"]:focus {
     color: var(--text-primary);
 }
 
-
 .back-to-top {
     position: fixed;
     right: 1.5rem;
@@ -701,9 +717,6 @@ input[type="email"]:focus {
     pointer-events: auto;
     transform: translateY(0);
 }
-
-
-
 
 /* MEDIA STYLING */
 @media screen and (max-width: 800px) {
@@ -796,9 +809,19 @@ input[type="email"]:focus {
         font-size: 3rem;
     }
 
-    /* FOOTER PART STRLING */
+    /* FOOTER PART STYLING */
     .footer-wrapper .media {
         margin-top: 2rem;
+    }
+
+    /* Navbar mobile adjustments */
+    .navbar {
+        padding: 0 1.5rem;
+    }
+
+    header .wrapper,
+    header .navbar.wrapper {
+        padding-inline: 1.5rem !important;
     }
 }
 
@@ -834,18 +857,13 @@ input[type="email"]:focus {
 .modal-content img {
     width: 100%;
     max-width: 300px;
-    /* keep it from getting too big */
     height: auto;
-    /* keep correct aspect ratio */
     object-fit: contain;
-    /* shows the entire image */
     display: block;
     margin: 0 auto;
     position: relative;
     top: 20px;
-    /* adjust spacing so buttons don’t overlap */
 }
-
 
 div#card-content-container {
     top: 40px;
@@ -955,18 +973,6 @@ div#card-btn-container {
     display: block;
 }
 
-/*  Dark Theme */
-:root[data-theme="dark"] {
-    --navbar-bg: #111;
-    --logo-color: #fff;
-}
-
-/* Light Theme */
-:root {
-    --navbar-bg: #fff;
-    --logo-color: #111;
-}
-
 .no-items-message {
     text-align: center;
     opacity: 0.7;
@@ -976,70 +982,4 @@ div#card-btn-container {
 
 .card-list {
     justify-content: center;
-}
-
-/* Responsiveness */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 10px 20px;
-    }
-
-    .logo {
-        font-size: 1.5rem;
-    }
-}
-
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
-
-/* ---------- Make the header/nav span the full viewport ---------- */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: var(--navbar-bg, #111);
-}
-
-/* If your .wrapper globally constrains width, override it only inside header */
-header .wrapper,
-header .navbar.wrapper {
-    max-width: none !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* keep inner spacing for navbar items while filling full width */
-.navbar {
-    height: 14vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--navbar-bg, #111);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    padding: 0 4rem;
-    box-sizing: border-box;
-}
-
-
-/* simple guard to avoid horizontal overflow from using 100vw */
-body,
-header {
-    overflow-x: hidden;
-}
-
-.logo {
-    margin-left: 30px;
 }
