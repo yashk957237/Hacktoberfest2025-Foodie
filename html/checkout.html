@@ -419,6 +419,17 @@
                 email.closest('.form-group').classList.add('error');
                 isValid = false;
             }
+            
+            // Phone number validation
+            const phone = document.getElementById('phone');
+            const phoneRegex = /^91[0-9]{10}$/;
+            if (!phoneRegex.test(phone.value)) {
+                phone.closest('.form-group').classList.add('error');
+                phone.nextElementSibling.textContent = "Enter valid Indian number";
+                isValid = false;
+            } else {
+                phone.closest('.form-group').classList.remove('error');
+            }
 
             return isValid;
         }
