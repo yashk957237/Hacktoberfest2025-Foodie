@@ -422,13 +422,20 @@
             
             // Phone number validation
             const phone = document.getElementById('phone');
-            const phoneRegex = /^91[0-9]{10}$/;
+            let phoneValue = phone.value.trim();
+            if (/^[0-9]{10}$/.test(phoneValue)) {
+                phoneValue = "+91 " + phoneValue;
+                phone.value = phoneValue; 
+            }
+            const phoneRegex = /^\+91\s?[0-9]{10}$/;
+
             if (!phoneRegex.test(phone.value)) {
                 phone.closest('.form-group').classList.add('error');
                 phone.nextElementSibling.textContent = "Enter valid Indian number";
                 isValid = false;
             } else {
                 phone.closest('.form-group').classList.remove('error');
+                phone.nextElementSibling.textContent = "Please enter a valid phone number";
             }
 
             return isValid;
