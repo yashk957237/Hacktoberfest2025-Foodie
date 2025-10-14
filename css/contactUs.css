@@ -109,6 +109,73 @@ nav {
 .hero h1 { font-size: 48px; margin-bottom: 15px; color: var(--text-primary); }
 .hero .highlight { color: var(--accent-primary); }
 .hero p { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+/* Contact Section */
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    text-align: center;
+}
+
+.contact-info,
+.contact-form {
+    flex: 1;
+    min-width: 320px;
+    max-width: 500px;
+}
+
+/* Info cards inside contact section */
+.info-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.info-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-primary);
+}
+
+/* Contact form styling */
+.contact-form {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: var(--accent-primary);
+    color: #fff;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: var(--accent-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 
 /* Forms */
 input, textarea, select {
