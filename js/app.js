@@ -22,9 +22,9 @@ const backToTop = document.querySelector('.back-to-top');
 const themeToggles = document.querySelectorAll('.theme-toggle');
 
 // ===== CART OPEN/CLOSE =====
-cartIcon.addEventListener('click', () => cartTab.classList.add("cart-tab-active"));
-closeBtn.addEventListener('click', () => cartTab.classList.remove("cart-tab-active"));
-hamburger.addEventListener('click', () => {
+cartIcon?.addEventListener('click', () => cartTab.classList.add("cart-tab-active"));
+closeBtn?.addEventListener('click', () => cartTab.classList.remove("cart-tab-active"));
+hamburger?.addEventListener('click', () => {
     mobileMenu.classList.toggle("mobile-menu-active");
     bars.classList.toggle("fa-xmark");
     bars.classList.toggle("fa-bars");
@@ -80,19 +80,18 @@ const initTheme = () => {
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcons(savedTheme);
 };
-
 initTheme();
 
 // ===== PRODUCTS & CART =====
 let productList = [];
-let AddProduct = [];
+let addProduct = [];
 
 const updateTotalPrice = () => {
     let totalPrice = 0;
     let totalQuantity = 0;
 
     cartList.querySelectorAll('.item').forEach(item => {
-        const quantity = parseInt(item.querySelector('.quatity-value').textContent);
+        const quantity = parseInt(item.querySelector('.quantity-value').textContent);
         const price = parseFloat(item.querySelector('.item-total').textContent.replace(/[₹$]/g, ''));
         totalPrice += price;
         totalQuantity += quantity;
@@ -105,14 +104,14 @@ const updateTotalPrice = () => {
 // ===== ADD TO CART =====
 const addToCart = product => {
     const price = parseFloat(product.price.replace(/[₹$]/g, ''));
-    let existProduct = AddProduct.find(item => item.id === product.id);
+    let existProduct = addProduct.find(item => item.id === product.id);
 
     if (existProduct) {
         existProduct.quantity++;
         const existingCartItem = [...cartList.querySelectorAll('.item')]
             .find(item => item.querySelector('.detail h4').textContent === product.name);
         if (existingCartItem) {
-            const quantityValue = existingCartItem.querySelector('.quatity-value');
+            const quantityValue = existingCartItem.querySelector('.quantity-value');
             const itemTotal = existingCartItem.querySelector('.item-total');
             quantityValue.textContent = parseInt(quantityValue.textContent) + 1;
             itemTotal.textContent = `₹${(existProduct.quantity * price).toFixed(2)}`;
@@ -122,7 +121,7 @@ const addToCart = product => {
     }
 
     product.quantity = 1;
-    AddProduct.push(product);
+    addProduct.push(product);
 
     const cartItem = document.createElement('div');
     cartItem.classList.add('item');
@@ -133,9 +132,9 @@ const addToCart = product => {
             <h4 class="item-total">₹${price.toFixed(2)}</h4>
         </div>
         <div class="flex">
-            <a href="#" class="quatity-btn minus"><i class="fa-solid fa-minus"></i></a>
-            <h4 class="quatity-value">1</h4>
-            <a href="#" class="quatity-btn plus"><i class="fa-solid fa-plus"></i></a>
+            <a href="#" class="quantity-btn minus"><i class="fa-solid fa-minus"></i></a>
+            <h4 class="quantity-value">1</h4>
+            <a href="#" class="quantity-btn plus"><i class="fa-solid fa-plus"></i></a>
         </div>
     `;
     cartList.appendChild(cartItem);
@@ -143,7 +142,7 @@ const addToCart = product => {
 
     const plusBtn = cartItem.querySelector('.plus');
     const minusBtn = cartItem.querySelector('.minus');
-    const quantityValue = cartItem.querySelector('.quatity-value');
+    const quantityValue = cartItem.querySelector('.quantity-value');
     const itemTotal = cartItem.querySelector('.item-total');
 
     plusBtn.addEventListener('click', e => {
@@ -163,7 +162,7 @@ const addToCart = product => {
             updateTotalPrice();
         } else {
             cartItem.remove();
-            AddProduct = AddProduct.filter(item => item.id !== product.id);
+            addProduct = addProduct.filter(item => item.id !== product.id);
             updateTotalPrice();
         }
     });
@@ -171,11 +170,11 @@ const addToCart = product => {
 
 // ===== CHECKOUT =====
 const checkoutBtn = document.querySelector('.check-out');
-checkoutBtn.addEventListener('click', e => {
+checkoutBtn?.addEventListener('click', e => {
     e.preventDefault();
-    if (AddProduct.length === 0) return alert('Your cart is empty!');
+    if (addProduct.length === 0) return alert('Your cart is empty!');
 
-    const checkoutData = AddProduct.map(product => ({
+    const checkoutData = addProduct.map(product => ({
         id: product.id,
         name: product.name,
         price: product.price,
@@ -184,9 +183,6 @@ checkoutBtn.addEventListener('click', e => {
     }));
 
     sessionStorage.setItem('checkoutCart', JSON.stringify(checkoutData));
-    window.location.href = 'checkout.html';
-    
-    // Redirect to checkout page
     window.location.href = '../HTML/checkout.html';
 });
 
@@ -207,7 +203,7 @@ const showCards = list => {
         card.innerHTML = `
             <div class="card-image"><img src="${product.image}" alt="${product.name}"></div>
             <h4>${product.name}</h4>
-            <h4 class="price">₹${parseFloat(product.price.replace(/[₹$]/g,'')).toFixed(2)}</h4>
+            <h4 class="price">₹${parseFloat(product.price.replace(/[₹$]/g, '')).toFixed(2)}</h4>
             <a href="#" class="btn card-btn">Add to Cart</a>
         `;
         card.addEventListener('click', e => {
@@ -223,12 +219,12 @@ const showCards = list => {
 
 // ===== SEARCH + PRICE FILTER =====
 const priceSelector = document.getElementById('priceSelector');
-const selected = priceSelector.querySelector('.selected');
-const options = priceSelector.querySelectorAll('.options li');
+const selected = priceSelector?.querySelector('.selected');
+const options = priceSelector?.querySelectorAll('.options li');
 let currentPriceFilter = 'all';
 
-selected.addEventListener('click', () => priceSelector.classList.toggle('open'));
-options.forEach(opt => {
+selected?.addEventListener('click', () => priceSelector.classList.toggle('open'));
+options?.forEach(opt => {
     opt.addEventListener('click', e => {
         currentPriceFilter = e.target.dataset.value;
         selected.textContent = e.target.textContent + ' ▾';
@@ -236,17 +232,19 @@ options.forEach(opt => {
         applyFilters();
     });
 });
-document.addEventListener('click', e => { if (!priceSelector.contains(e.target)) priceSelector.classList.remove('open'); });
+document.addEventListener('click', e => {
+    if (!priceSelector.contains(e.target)) priceSelector.classList.remove('open');
+});
 
 const searchInput = document.getElementById('search');
-searchInput.addEventListener('input', applyFilters);
+searchInput?.addEventListener('input', applyFilters);
 
 function applyFilters() {
     if (!productList) return;
     const searchTerm = searchInput.value.toLowerCase();
     const filtered = productList.filter(p => {
         const matchesSearch = p.name.toLowerCase().includes(searchTerm);
-        const price = parseFloat(p.price.replace(/[₹$]/g,''));
+        const price = parseFloat(p.price.replace(/[₹$]/g, ''));
         let matchesPrice = true;
 
         if (currentPriceFilter === 'low') matchesPrice = price < 100;
@@ -257,7 +255,6 @@ function applyFilters() {
     });
     showCards(filtered);
 }
-
 
 // ===== MODAL =====
 const modal = document.getElementById('foodModal');
@@ -272,16 +269,16 @@ const modalClose = document.querySelector('#foodModal .close');
 function openFoodModal(product) {
     modalImage.src = product.image;
     modalName.textContent = product.name;
-    modalPrice.textContent = `₹${parseFloat(product.price.replace(/[₹$]/g,'')).toFixed(2)}`;
+    modalPrice.textContent = `₹${parseFloat(product.price.replace(/[₹$]/g, '')).toFixed(2)}`;
     modalDescription.textContent = product.description || "No description available.";
     modal.style.display = 'flex';
-    modalAddBtn.onclick = () => { addToCart(product); modal.style.display='none'; };
-    modalViewBtn.onclick = () => { cartTab.classList.add('cart-tab-active'); modal.style.display='none'; };
+    modalAddBtn.onclick = () => { addToCart(product); modal.style.display = 'none'; };
+    modalViewBtn.onclick = () => { cartTab.classList.add('cart-tab-active'); modal.style.display = 'none'; };
 }
 
-modalClose.onclick = () => modal.style.display='none';
-window.onclick = e => { if (e.target === modal) modal.style.display='none'; };
-document.addEventListener('keydown', e => { if (e.key === "Escape") modal.style.display='none'; });
+modalClose?.addEventListener('click', () => modal.style.display = 'none');
+window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+document.addEventListener('keydown', e => { if (e.key === "Escape") modal.style.display = 'none'; });
 
 // ===== INIT APP =====
 fetch('../products.json')
@@ -289,4 +286,5 @@ fetch('../products.json')
     .then(data => {
         productList = data;
         showCards(productList);
-    });
+    })
+    .catch(err => console.error('Failed to load products:', err));
