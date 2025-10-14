@@ -390,11 +390,32 @@ p {
 }
 
 .content,
-.image-container,
 .srevice-card {
     flex: 1;
     flex-basis: 300px;
 }
+
+.image-container {
+  width: 600px;
+  height: 600px;
+  border-radius: 30px;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.pizza-boy {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  transition: transform 1s ease;
+  transform-style: preserve-3d;
+}
+
+/* On hover, rotate halfway */
+.image-container:hover .pizza-boy {
+  transform: rotateY(180deg);
+}
+
 
 .social-media {
     background: var(--hint-yellow);
