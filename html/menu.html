@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foodie</title>
 
-    <!-- Discription -->
+    <!-- Description -->
     <meta name="description"
         content="Experience fast, reliable food delivery with a personalized touch. Our app combines advanced algorithms with vibrant design to bring delicious meals right to your door.">
 
-    <!-- Fabicon -->
+    <!-- Favicon -->
     <link rel="icon" href="../imgs/fabicon.png" type="image/png">
 
     <!-- CSS link -->
-    <link rel="stylesheet" href="../CSS/style.css" />
-    <link rel="stylesheet" href="../CSS/cursor.css">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/cursor.css">
 
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
@@ -114,7 +114,22 @@
                 </div>
 
                 <div class="filter-bar flex gap-2 mt-one">
-                    <input type="text" id="search" placeholder="Search your favorite dish..." />
+                    <div class="search-container">
+                        <input type="text" id="search" placeholder="Search your favorite dish..." />
+                        <i class="fa-solid fa-search search-icon"></i>
+                    </div>
+                    
+                    <div class="custom-select" id="categorySelector">
+                        <div class="selected">All Categories ▾</div>
+                        <ul class="options">
+                            <li data-value="all">All Categories</li>
+                            <li data-value="appetizers">Appetizers</li>
+                            <li data-value="main-course">Main Course</li>
+                            <li data-value="desserts">Desserts</li>
+                            <li data-value="beverages">Beverages</li>
+                        </ul>
+                    </div>
+                    
                     <div class="custom-select" id="priceSelector">
                         <div class="selected">All Prices ▾</div>
                         <ul class="options">
@@ -123,6 +138,24 @@
                             <li data-value="mid">₹100 - ₹200</li>
                             <li data-value="high">Above ₹200</li>
                         </ul>
+                    </div>
+                    
+                    <button class="clear-filters-btn" id="clearFilters">
+                        <i class="fa-solid fa-rotate-right"></i> Clear
+                    </button>
+                </div>
+                
+                <div class="results-info mt-one">
+                    <span id="resultsCount">Showing all items</span>
+                    <div class="sort-options">
+                        <label for="sortSelect">Sort by:</label>
+                        <select id="sortSelect">
+                            <option value="default">Default</option>
+                            <option value="name-asc">Name (A-Z)</option>
+                            <option value="name-desc">Name (Z-A)</option>
+                            <option value="price-asc">Price (Low to High)</option>
+                            <option value="price-desc">Price (High to Low)</option>
+                        </select>
                     </div>
                 </div>
 
@@ -275,6 +308,8 @@
 
     <!-- app js -->
     <script src="../js/app.js"></script>
+    <!-- Enhanced menu functionality -->
+    <script src="../js/menu-enhanced.js"></script>
     <script src="../js/cursor.js"></script>
 </body>
 
