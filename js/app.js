@@ -280,82 +280,11 @@ modalClose?.addEventListener('click', () => modal.style.display = 'none');
 window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
 document.addEventListener('keydown', e => { if (e.key === "Escape") modal.style.display = 'none'; });
 
-// ===== LAZY LOADING OPTIMIZATION =====
-const lazyLoadImages = () => {
-    const images = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-                observer.unobserve(img);
-            }
-        });
-    }, { rootMargin: '100px 0px' });
-    
-    images.forEach(img => imageObserver.observe(img));
-};
-
-// ===== PERFORMANCE OPTIMIZATIONS =====
-let filterDebounceTimer;
-function debounce(func, delay) {
-    return function(...args) {
-        clearTimeout(filterDebounceTimer);
-        filterDebounceTimer = setTimeout(() => func.apply(this, args), delay);
-    };
-}
-
-// Optimized filter function with debouncing
-const debouncedApplyFilters = debounce(applyFilters, 300);
-searchInput?.addEventListener('input', debouncedApplyFilters);
-
-// ===== INIT APP WITH ERROR HANDLING =====
-const initApp = async () => {
-    try {
-        const response = await fetch('../products.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        
-        if (!Array.isArray(data) || data.length === 0) {
-            throw new Error('Invalid or empty product data');
-        }
-        
+// ===== INIT APP =====
+fetch('../products.json')
+    .then(res => res.json())
+    .then(data => {
         productList = data;
         showCards(productList);
-        
-        // Initialize lazy loading after products are loaded
-        setTimeout(lazyLoadImages, 100);
-        
-        console.log(`✅ Loaded ${data.length} products successfully`);
-    } catch (error) {
-        console.error('❌ Failed to load products:', error);
-        
-        // Show user-friendly error message
-        if (cardList) {
-            cardList.innerHTML = `
-                <div class="error-message" style="
-                    text-align: center;
-                    padding: 2rem;
-                    background: var(--bg-secondary);
-                    border: 2px solid #ff6b6b;
-                    border-radius: 1rem;
-                    color: var(--text-primary);
-                ">
-                    <h3>🚫 Unable to load menu items</h3>
-                    <p>Please refresh the page or try again later.</p>
-                    <button onclick="location.reload()" class="btn" style="margin-top: 1rem;">Retry</button>
-                </div>
-            `;
-        }
-    }
-};
-
-// Initialize app when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initApp);
-} else {
-    initApp();
-}
+    })
+    .catch(err => console.error('Failed to load products:', err));
