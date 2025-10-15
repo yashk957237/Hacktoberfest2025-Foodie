@@ -202,56 +202,57 @@
     </div>
 
     <section class="faq-section">
-        <div class="faq-header">
-            <h2>Frequently Asked Questions</h2>
-            <p>Quick answers to common questions</p>
-        </div>
-        <div class="faq-grid">
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question">
-                    What are your delivery hours?
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    We deliver from 9:00 AM to 11:00 PM, seven days a week. Orders placed after 10:30 PM will be
-                    delivered the next day.
-                </div>
-            </div>
+    <div class="faq-header">
+        <h2>Frequently Asked Questions</h2>
+        <p>Quick answers to your most common queries</p>
+    </div>
 
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question">
-                    How can I track my order?
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    Once your order is confirmed, you'll receive a tracking link via SMS and email. You can also track
-                    your order in real-time through our app.
-                </div>
+    <div class="faq-grid">
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>🕓 What are your delivery hours?</span>
+                <i class="fa-solid fa-chevron-down"></i>
             </div>
-
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question">
-                    What payment methods do you accept?
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    We accept all major credit/debit cards, UPI, net banking, digital wallets, and cash on delivery for
-                    eligible orders.
-                </div>
-            </div>
-
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question">
-                    Can I cancel or modify my order?
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    You can cancel or modify your order within 5 minutes of placing it. After that, please contact our
-                    support team for assistance.
-                </div>
+            <div class="faq-answer">
+                We deliver from <b>9:00 AM to 11:00 PM</b>, seven days a week.  
+                Orders placed after <b>10:30 PM</b> will be delivered the next day.
             </div>
         </div>
-    </section>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>📦 How can I track my order?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Once your order is confirmed, you’ll receive a tracking link via <b>SMS and email</b>.  
+                You can also track it in real-time through our app.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>💳 What payment methods do you accept?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                We accept <b>UPI, debit/credit cards, wallets, net banking</b>, and <b>cash on delivery</b> for eligible orders.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>❌ Can I cancel or modify my order?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                You can cancel or modify your order within <b>5 minutes</b> of placing it.  
+                After that, please reach out to our <b>support team</b> for help.
+            </div>
+        </div>
+    </div>
+</section>
+
 
     <footer id="contacts">
         <div class="footer-container">
@@ -432,9 +433,74 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         }
+
+        // ===== FAQ FUNCTIONALITY =====
+        function initFAQ() {
+            console.log('🔧 Initializing FAQ...');
+            const faqItems = document.querySelectorAll('.faq-item');
+            console.log(`📋 Found ${faqItems.length} FAQ items`);
+            
+            faqItems.forEach((item, index) => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const icon = question.querySelector('i');
+                
+                if (!question || !answer) return;
+                
+                // Set initial state
+                answer.style.maxHeight = '0px';
+                answer.style.overflow = 'hidden';
+                answer.style.transition = 'max-height 0.4s ease, opacity 0.3s ease';
+                
+                question.style.cursor = 'pointer';
+                question.setAttribute('tabindex', '0');
+                
+                question.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log(`🖱️ FAQ item ${index + 1} clicked`);
+                    
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all other FAQ items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            const otherAnswer = otherItem.querySelector('.faq-answer');
+                            const otherIcon = otherItem.querySelector('.faq-question i');
+                            
+                            if (otherAnswer) otherAnswer.style.maxHeight = '0px';
+                            if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                        }
+                    });
+                    
+                    // Toggle current FAQ item
+                    if (isActive) {
+                        item.classList.remove('active');
+                        answer.style.maxHeight = '0px';
+                        if (icon) icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        item.classList.add('active');
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        if (icon) icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+                
+                // Keyboard support
+                question.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        question.click();
+                    }
+                });
+            });
+            
+            console.log('✅ FAQ initialization complete');
+        }
+
+        // Initialize FAQ when DOM is ready
+        initFAQ();
     </script>
-    <script src="../JS/app.js"></script>
-    <script src="../JS/app.js"></script>
+    <script src="../js/app.js"></script>
 
 
 </body>

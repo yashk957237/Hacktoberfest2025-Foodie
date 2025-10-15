@@ -190,11 +190,90 @@ input, textarea, select {
 }
 input:focus, textarea:focus, select:focus { border-color: var(--accent-primary); background: var(--bg-hover); outline: none; }
 
-/* FAQ */
-.faq-item { cursor: pointer; border-radius: 15px; border: 2px solid var(--border-color); padding: 25px; transition: all 0.3s ease; }
-.faq-item:hover { border-color: var(--accent-primary); }
-.faq-item.active .faq-answer { display: block; animation: fadeIn 0.3s ease; }
-@keyframes fadeIn { from {opacity:0; transform:translateY(-10px);} to {opacity:1; transform:translateY(0);} }
+/* FAQ Section Styling */
+.faq-section {
+    padding: 4rem 1.5rem;
+    background: var(--card);
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.faq-header h2 {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.faq-header p {
+    color: var(--muted);
+    font-size: 1rem;
+}
+
+.faq-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.faq-item {
+    background: var(--bg);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1rem;
+    padding: 1.2rem 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    cursor: pointer;
+}
+
+.faq-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    border-color: var(--accent);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--accent-2);
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: color 0.3s;
+}
+
+.faq-item.active .faq-question {
+    color: var(--accent);
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    opacity: 0;
+    margin-top: 0.5rem;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    opacity: 1;
+}
 
 /* Footer */
 footer { background: var(--bg-secondary); margin-top: 100px; border-top: 1px solid var(--border-color); transition: all 0.3s ease; }

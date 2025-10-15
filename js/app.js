@@ -64,6 +64,9 @@ const updateThemeIcons = theme => {
     });
 };
 
+
+
+
 const toggleTheme = () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -329,9 +332,15 @@ const initApp = async () => {
         // Initialize lazy loading after products are loaded
         setTimeout(lazyLoadImages, 100);
         
+        // Initialize FAQ functionality
+        initFAQ();
+        
         console.log(`✅ Loaded ${data.length} products successfully`);
     } catch (error) {
         console.error('❌ Failed to load products:', error);
+        
+        // Initialize FAQ even if products fail to load
+        initFAQ();
         
         // Show user-friendly error message
         if (cardList) {
@@ -353,9 +362,103 @@ const initApp = async () => {
     }
 };
 
+// ===== FAQ ACCORDION FUNCTIONALITY =====
+const initFAQ = () => {
+    console.log('🔧 Initializing FAQ...');
+    const faqItems = document.querySelectorAll('.faq-item');
+    console.log(`📋 Found ${faqItems.length} FAQ items`);
+    
+    if (faqItems.length === 0) {
+        console.log('⚠️ No FAQ items found');
+        return;
+    }
+    
+    faqItems.forEach((item, index) => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        const icon = question.querySelector('i');
+        
+        console.log(`🔗 Setting up FAQ item ${index + 1}`);
+        
+        if (!question || !answer) {
+            console.log(`❌ Missing elements in FAQ item ${index + 1}`);
+            return;
+        }
+        
+        // Remove any existing event listeners
+        const newQuestion = question.cloneNode(true);
+        question.parentNode.replaceChild(newQuestion, question);
+        
+        newQuestion.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log(`🖱️ FAQ item ${index + 1} clicked`);
+            
+            const isActive = item.classList.contains('active');
+            
+            // Close all other FAQ items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    const otherAnswer = otherItem.querySelector('.faq-answer');
+                    const otherIcon = otherItem.querySelector('.faq-question i');
+                    
+                    if (otherAnswer) {
+                        otherAnswer.style.maxHeight = '0px';
+                    }
+                    if (otherIcon) {
+                        otherIcon.style.transform = 'rotate(0deg)';
+                    }
+                }
+            });
+            
+            // Toggle current FAQ item
+            if (isActive) {
+                console.log(`📝 Closing FAQ item ${index + 1}`);
+                item.classList.remove('active');
+                answer.style.maxHeight = '0px';
+                if (icon) icon.style.transform = 'rotate(0deg)';
+            } else {
+                console.log(`📖 Opening FAQ item ${index + 1}`);
+                item.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                if (icon) icon.style.transform = 'rotate(180deg)';
+            }
+        });
+        
+        // Add keyboard accessibility
+        newQuestion.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                newQuestion.click();
+            }
+        });
+        
+        // Make question focusable for accessibility
+        newQuestion.setAttribute('tabindex', '0');
+        newQuestion.setAttribute('role', 'button');
+        newQuestion.setAttribute('aria-expanded', 'false');
+        newQuestion.style.cursor = 'pointer';
+        
+        // Set initial state
+        answer.style.maxHeight = '0px';
+        answer.style.overflow = 'hidden';
+        answer.style.transition = 'max-height 0.4s ease, opacity 0.3s ease';
+        
+        console.log(`✅ FAQ item ${index + 1} initialized successfully`);
+    });
+    
+    console.log('✅ FAQ initialization complete');
+};
+
 // Initialize app when DOM is ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initApp);
+    document.addEventListener('DOMContentLoaded', () => {
+        initApp();
+        // Always initialize FAQ regardless of product loading
+        setTimeout(initFAQ, 100);
+    });
 } else {
     initApp();
+    // Always initialize FAQ regardless of product loading
+    setTimeout(initFAQ, 100);
 }
