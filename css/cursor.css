@@ -154,7 +154,7 @@ body:not([data-theme]) .cursor-ring {
 
     .cursor-dot,
     .cursor-ring {
-         will-change: transform;
+        will-change: transform;
         transition: none !important;
         animation: none !important;
     }
@@ -171,7 +171,15 @@ body:not([data-theme]) .cursor-ring {
 
 /* Hide on Touch Devices */
 @media (hover: hover) and (pointer: fine) {
-    body, a, button, input, textarea, select, [role="button"], .clickable {
+
+    body,
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    [role="button"],
+    .clickable {
         cursor: none !important;
     }
 }
