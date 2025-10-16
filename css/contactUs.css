@@ -6,8 +6,7 @@
 }
 
 html,
-body,
-header {
+body{
     margin: 0 !important;
     padding: 0 !important;
     top: 0 !important;
@@ -81,24 +80,6 @@ body {
     background: var(--accent-primary);
 }
 
-/* Header & Nav */
-header {
-    padding: 25px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: var(--bg-accent);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-nav {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
 /* Logo & Links */
 .logo {
