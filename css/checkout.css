@@ -27,7 +27,7 @@
     padding: 2rem;
     border-radius: 2rem;
     border: 2px solid var(--gold-finger);
-    box-shadow: 
+    box-shadow:
         var(--shadow-strong) 8px 8px 8px,
         var(--shadow-strong) 8px 8px 8px inset;
     transition: all 0.3s ease;
@@ -211,7 +211,7 @@
 .payment-method.active {
     border-color: var(--gold-finger);
     background: var(--hint-yellow);
-    box-shadow: 
+    box-shadow:
         var(--shadow) 4px 4px 8px,
         var(--shadow) 4px 4px 8px inset;
 }
@@ -309,7 +309,7 @@
     text-align: center;
     max-width: 500px;
     width: 90%;
-    box-shadow: 
+    box-shadow:
         var(--shadow-strong) 12px 12px 24px,
         var(--shadow-strong) 12px 12px 24px inset;
     animation: slideIn 0.4s ease;
@@ -320,6 +320,7 @@
         transform: translateY(-100px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
@@ -342,6 +343,7 @@
     from {
         transform: scale(0);
     }
+
     to {
         transform: scale(1);
     }
@@ -469,14 +471,14 @@
 
 /* ===== DARK MODE ENHANCEMENTS ===== */
 [data-theme="dark"] .checkout-section {
-    box-shadow: 
+    box-shadow:
         rgba(0, 0, 0, 0.4) 8px 8px 8px,
         rgba(0, 0, 0, 0.4) 8px 8px 8px inset;
 }
 
 [data-theme="dark"] .payment-method.active {
     background: var(--bg-accent);
-    box-shadow: 
+    box-shadow:
         rgba(0, 0, 0, 0.3) 4px 4px 8px,
         rgba(0, 0, 0, 0.3) 4px 4px 8px inset;
 }
@@ -494,7 +496,7 @@
 }
 
 [data-theme="dark"] .success-content {
-    box-shadow: 
+    box-shadow:
         rgba(0, 0, 0, 0.6) 12px 12px 24px,
         rgba(0, 0, 0, 0.6) 12px 12px 24px inset;
 }
