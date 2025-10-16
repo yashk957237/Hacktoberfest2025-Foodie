@@ -59,6 +59,11 @@
     color: var(--text-primary);
 }
 
+/* Ensure suggestion dropdown anchors to the field width */
+.form-group {
+    position: relative;
+}
+
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -80,6 +85,51 @@
     border-color: var(--gold-finger);
     box-shadow: 0 0 8px rgba(242, 189, 18, 0.3);
     background: var(--bg-secondary);
+}
+
+/* ===== Address Autocomplete ===== */
+.autocomplete-list {
+    position: relative;
+}
+
+.autocomplete-list.open {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    max-height: 14rem;
+    overflow: auto;
+    background: var(--bg-secondary);
+    border: 2px solid var(--gold-finger);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-strong) 0 8px 16px;
+    margin-top: 0.5rem;
+    z-index: 20;
+    padding: 0.4rem;
+}
+
+.autocomplete-item {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    color: var(--text-primary);
+    border: none;
+    padding: 0.6rem 0.8rem;
+    border-radius: 0.6rem;
+    cursor: pointer;
+}
+
+.autocomplete-item:hover {
+    background: var(--bg-accent);
+}
+
+.autocomplete-item.active {
+    background: var(--hint-yellow);
+}
+
+.zone-warning {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
 }
 
 .form-group input::placeholder,
