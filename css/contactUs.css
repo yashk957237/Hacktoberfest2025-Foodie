@@ -69,17 +69,22 @@
 
 .submit-btn {
     width: 100%;
-    background-color: var(--accent-primary);
-    color: #fff;
+    background-color: #FCF1CC;
     padding: 0.9rem;
     border: none;
+    margin-top: 0.5rem;
     border-radius: 8px;
     font-weight: 600;
     transition: background 0.3s ease;
 }
 
 .submit-btn:hover {
-    background-color: var(--accent-secondary);
+    background-color: #F2BD12;
+}
+
+.form-group {
+    text-align: left;
+    line-height: 2;
 }
 
 /* Responsive */
