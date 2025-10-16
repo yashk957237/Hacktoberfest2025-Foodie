@@ -143,6 +143,114 @@
             </div>
         </section>
 
+        <!-- ADDITIONAL SECTIONS OMITTED FOR BREVITY (keep same as yours) -->
+              <!-- NEW HOMEPAGE COMBINED SECTION: APP PROMO / REVIEWS / SUBSCRIBE -->
+        <section id="features" class="p-top p-bottom">
+            <div class="wrapper">
+                <div class="features-grid centered-cards">
+                    <!-- Left image column (promo) -->
+                    <div class="feature-image">
+                        <div class="image-container big-feature">
+                            <img src="../imgs/delivery-boy-with-phone.png" alt="Delivery with phone" class="feature-illustration">
+                        </div>
+                    </div>
+
+                    <!-- Right column: reviews only -->
+                    <div class="feature-content">
+                        <!-- Heading sits above the card to match the screenshot */ -->
+                        <div class="reviews-header">
+                            <h5>Our Reviews</h5>
+                            <h2>What They Say?</h2>
+                        </div>
+
+                        <div class="reviews-card">
+                            <!-- Swiper carousel for testimonials -->
+                            <div class="swiper testimonials-swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <article class="testimonial flex" role="group" aria-label="Testimonial from Guy Hawkins">
+                                            <img src="../imgs/profile1.jpeg" alt="Guy Hawkins" class="review-avatar">
+                                            <div class="testimonial-body">
+                                                <div class="testimonial-name">Guy Hawkins</div>
+                                                <div class="testimonial-rating" aria-hidden="true">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                </div>
+                                                <p class="review-text">Foodie is the best. Besides the many delicious meals, the service is also very good, especially very fast delivery. I highly recommend Foodie to you.</p>
+                                            </div>
+                                        </article>
+                                    </div>
+
+                                    <div class="swiper-slide">
+                                        <article class="testimonial flex" role="group" aria-label="Testimonial from Olivia Perez">
+                                            <img src="../imgs/profile2.jpeg" alt="Olivia Perez" class="review-avatar">
+                                            <div class="testimonial-body">
+                                                <div class="testimonial-name">Olivia Perez</div>
+                                                <div class="testimonial-rating" aria-hidden="true">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                </div>
+                                                <p class="review-text">Great variety and the app is so easy to use. My orders always arrive hot and on time. Love the offers too!</p>
+                                            </div>
+                                        </article>
+                                    </div>
+
+                                    <div class="swiper-slide">
+                                        <article class="testimonial flex" role="group" aria-label="Testimonial from Marcus Lee">
+                                            <img src="../imgs/profile3.jpeg" alt="Marcus Lee" class="review-avatar">
+                                            <div class="testimonial-body">
+                                                <div class="testimonial-name">Marcus Lee</div>
+                                                <div class="testimonial-rating" aria-hidden="true">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                </div>
+                                                <p class="review-text">Excellent customer service and tasty meals. The subscribe newsletter gave me a nice discount on my first order.</p>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+
+                                <!-- pagination -->
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Promo and Subscribe centered beneath the image+reviews -->
+                <div class="promo-row">
+                    <div class="app-promo">
+                        <div class="app-image">
+                            <img src="../imgs/mobile-app.png" alt="Foodie mobile app">
+                        </div>
+                        <div class="app-content">
+                            <h5>Our Application</h5>
+                            <h2>Simple Way To Order Your Food</h2>
+                            <p>Discover food wherever and whenever and get your food delivery quickly.</p>
+                            <a href="#" class="btn get-app">Get the App</a>
+                        </div>
+                    </div>
+
+                    <div class="subscribe-card text-center">
+                        <h5>Our Subscribe</h5>
+                        <h2>Subscribe To Our Newsletter</h2>
+                        <p>We recommend you to subscribe our newspaper, drop your email below to get daily update about us.</p>
+                        <form class="subscribe-form" action="#" method="post">
+                            <input type="email" name="email" placeholder="Enter your email address" required>
+                            <button class="btn subscribe-btn" type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- FOOTER -->
@@ -220,6 +328,33 @@
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
+        })();
+    </script>
+       <script>
+        // Initialize Swiper for testimonials
+        (function () {
+            if (typeof Swiper === 'undefined') return;
+            const swiper = new Swiper('.testimonials-swiper', {
+                loop: true,
+                autoplay: { delay: 3500, disableOnInteraction: false },
+                pagination: { el: '.testimonials-swiper .swiper-pagination', clickable: true },
+                navigation: { nextEl: '.testimonials-swiper .swiper-button-next', prevEl: '.testimonials-swiper .swiper-button-prev' },
+                slidesPerView: 1,
+                spaceBetween: 20,
+                breakpoints: {
+                    900: { slidesPerView: 1 },
+                }
+            });
+
+            // Pause autoplay on mouse enter and resume on leave
+            const swiperEl = document.querySelector('.testimonials-swiper');
+            if (swiperEl) {
+                swiperEl.addEventListener('mouseenter', () => { swiper.autoplay.stop(); });
+                swiperEl.addEventListener('mouseleave', () => { swiper.autoplay.start(); });
+                // handle touch interactions
+                swiperEl.addEventListener('touchstart', () => { swiper.autoplay.stop(); });
+                swiperEl.addEventListener('touchend', () => { swiper.autoplay.start(); });
+            }
         })();
     </script>
 </body>
