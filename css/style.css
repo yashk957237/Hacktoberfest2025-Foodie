@@ -152,7 +152,7 @@ li {
 .wrapper {
     max-width: 1400px;
     margin: auto;
-    padding-inline: 2rem;
+    padding-inline: 1.5rem;
 }
 
 img {
@@ -240,86 +240,6 @@ header .navbar.wrapper {
     width: 100%;
 }
 
-   .service-card h3 {
-        margin-top: 1rem; /* tighten heading spacing inside service cards */
-        margin-bottom: 0.6rem;
-        font-size: 1.6rem;
-    }
-
-    /* Make service cards more compact to remove empty whitespace */
-    .service-card {
-        background: transparent;
-        padding: 1rem 0.5rem;
-        text-align: center;
-        gap: 1rem;
-        align-items: center;
-    }
-
-    /* Override image-container specifically for service cards: smaller, square */
-    .service-card .image-container {
-        width: 8.5rem;
-        height: 8.5rem;
-        border-radius: 1rem;
-        padding: 0.5rem;
-        display: grid;
-        place-items: center;
-    }
-
-    .service-card .image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-
-    /* Reduce paragraph size inside service cards and remove extra margins */
-    .service-card p {
-        margin-top: 0.4rem;
-        font-size: 1rem;
-        color: var(--text-secondary);
-        line-height: 1.4rem;
-    }
-
-/* Backwards-compatible selectors: HTML uses the misspelling `srevice-card` in index.html. */
-.srevice-card h3 {
-    margin-top: 1rem; /* tighten heading spacing inside service cards */
-    margin-bottom: 0.6rem;
-    font-size: 1.6rem;
-}
-
-.srevice-card {
-    background: transparent;
-    padding: 1rem 0.5rem;
-    text-align: center;
-    gap: 1rem;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* vertical center of icon+text within card */
-    min-height: 220px; /* ensure equal column height */
-}
-
-.srevice-card .image-container {
-    width: 8.5rem;
-    height: 8.5rem;
-    border-radius: 1rem;
-    padding: 0.5rem;
-    display: grid;
-    place-items: center;
-}
-
-.srevice-card .image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.srevice-card p {
-    margin-top: 0.4rem;
-    font-size: 1rem;
-    color: var(--text-secondary);
-    line-height: 1.4rem;
-}
-
 .navbar {
     height: 14vh;
     width: 100%;
@@ -357,7 +277,7 @@ header .navbar.wrapper {
 .cart-icon {
     color: var(--lead);
     font-size: 1.3rem;
-    padding-block: 2.5rem; /* slightly reduce vertical padding to tighten overall flow */
+    position: relative;
 }
 
 .cart-icon .cart-value {
@@ -443,7 +363,6 @@ header .navbar.wrapper {
 .hero-section {
     min-height: calc(100vh - 14vh);
     margin-top: 1vh;
-    padding-block: 3.5rem;
 }
 
 h1 {
@@ -477,8 +396,8 @@ p {
 }
 
 .image-container {
-    width: 520px;
-    height: 520px;
+    width: 600px;
+    height: 600px;
     border-radius: 30px;
     overflow: hidden;
     perspective: 1000px;
@@ -908,24 +827,10 @@ input[type="email"]:focus {
 
     .media {
         margin: auto;
-        display: flex;
-        align-items: center; /* vertically center icons with adjacent text */
     }
 
     .social-media {
-          margin-bottom: 0; /* remove large bottom gap */
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        vertical-align: middle;
-    }
-
-    /* Ensure the images inside social links are vertically centered and sized consistently */
-    .social-media img {
-        width: 1.6rem;
-        height: 1.6rem;
-        object-fit: contain;
-        display: block;
+        margin-bottom: 3rem;
     }
 
     p {
@@ -1150,297 +1055,4 @@ div#card-btn-container {
 
 .card-list {
     justify-content: center;
-}
-
-
-/* NEW: Combined homepage section styles (features) */
-.features-grid {
-    display: grid;
-    /* make the left illustration a bit larger like the screenshot */
-    grid-template-columns: 55% 45%; /* left image larger than right column */
-    gap: 2rem; /* reduced spacing between image and card */
-    align-items: start; /* align top edges (image and reviews) */
-    align-items: stretch; /* stretch children so card can match image height */
-    justify-items: center;
-    margin-top: 2rem;
-    position: relative;
-}
-
-.feature-image img {
-    width: 100%;
-    height: 100%;
-    /* keep a consistent visual height with the reviews card on wide screens */
-    min-height: 420px;
-    border-radius: 2.6rem;
-    object-fit: cover;
-}
-
-/* give the illustration a soft rounded yellow background like the screenshot */
-.image-container.big-feature {
-    background: var(--gold-finger);
-    padding: 2.4rem;
-    border-radius: 4.6rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.feature-illustration { border-radius: 2rem; max-width: 100%; height: auto; display: block; }
-
-.feature-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.6rem; /* tighter vertical rhythm */
-    align-items: stretch; /* let reviews card fill the column */
-    width: 100%;
-    max-width: 720px; /* a bit wider to match screenshot composition */
-}
-
-/* vertically center the right column cards relative to the left image */
-.features-grid > .feature-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* align to top */
-    gap: 1.6rem;
-}
-
-.reviews-card {
-    /* theme-aware background and text so the theme toggle affects this card */
-    background: linear-gradient(180deg, var(--bg-secondary) 0%, rgba(255,255,255,0.02) 100%);
-    color: var(--text-primary);
-    padding: 2rem 2.4rem; /* slightly reduced padding for compactness */
-    border-radius: 1.6rem; /* slightly larger radius like screenshot */
-    box-shadow: 0 10px 30px rgba(20,20,20,0.06), inset 0 1px 0 rgba(255,255,255,0.02);
-    width: 100%;
-    /* allow the card to stretch to the grid row height so it matches the left illustration */
-    align-self: stretch;
-    min-height: 0; /* let the grid determine height */
-    position: relative;
-    overflow: hidden;
-}
-
-/* decorative opening quote and vertical accent stripe for the review card */
-.reviews-card::before,
-.reviews-card::after { display: none; }
-
-/* ensure inner content sits above the decorative elements */
-.reviews-card * { position: relative; z-index: 1; }
-
-/* Reviews header styling */
-.reviews-card h5 { color: var(--gold-finger); letter-spacing: 0.18rem; font-weight: 700; }
-.reviews-card h2 { font-size: 2.4rem; margin-top: 0.2rem; margin-bottom: 0.6rem; color: var(--text-primary); }
-
-/* external reviews header (large bold headline on the right column) */
-.reviews-header { margin-bottom: 1rem; }
-.reviews-header h5 { color: var(--gold-finger); letter-spacing: 0.18rem; font-weight: 800; font-size: 1rem; }
-.reviews-header h2 { font-size: 5.2rem; line-height: 0.95; margin: 0 0 1.2rem 0; color: var(--text-primary); font-weight: 900; }
-
-/* Swiper nav arrows styled as circular yellow buttons like screenshot */
-.testimonials-swiper .swiper-button-prev,
-.testimonials-swiper .swiper-button-next { display: none; }
-.testimonials-swiper .swiper-pagination { display: flex; justify-content: center; margin-top: 1.1rem; }
-@media screen and (max-width: 900px) {
-    .testimonials-swiper .swiper-pagination { display: flex; justify-content: center; margin-top: 1rem; }
-    .testimonials-swiper .swiper-button-prev, .testimonials-swiper .swiper-button-next { display: none; }
-}
-
-/* testimonial item layout */
-.testimonial { background: transparent; padding: 0; border-radius: 0; gap: 1.2rem; display: flex; align-items: flex-start; }
-.testimonial .review-avatar { width: 84px; height: 84px; box-shadow: 0 10px 30px rgba(0,0,0,0.12); border-radius: 100vh; border: 6px solid var(--bg-primary); flex-shrink: 0; }
-.testimonial-body { display: flex; flex-direction: column; gap: 0.75rem; }
-.testimonial-body h3 { font-size: 1.12rem; font-weight: 800; color: var(--text-primary); margin: 0; }
-.testimonial-body .stars { color: var(--gold-finger); font-size: 1rem; display: inline-flex; gap: 6px; align-items: center; }
-.testimonial-body .stars i { color: var(--gold-finger); }
-.review-text { color: var(--text-secondary); font-size: 1.12rem; line-height: 2; margin: 0; max-width: 68ch; }
-
-/* ensure the swiper slide fills the card vertically so the content centers nicely */
-.testimonials-swiper .swiper-slide { display: flex; align-items: center; }
-
-/* New testimonial name and rating layout */
-.testimonial-name { font-size: 1.1rem; font-weight: 800; color: var(--text-primary); }
-.testimonial-rating { margin-top: 0.5rem; display: flex; gap: 8px; color: var(--gold-finger); }
-.testimonial-rating i { font-size: 1rem; }
-
-/* center the pagination bullets and reduce dot size a bit */
-.testimonials-swiper .swiper-pagination { margin-top: 1.1rem; }
-.testimonials-swiper .swiper-pagination-bullet { width: 10px; height: 10px; }
-
-/* responsive: collapse min-heights and reduce quote size on small screens */
-@media screen and (max-width: 900px) {
-    .reviews-card { min-height: auto; padding: 1.2rem; border-radius: 1.2rem; }
-    .reviews-card::before { font-size: 4.6rem; left: 10px; top: -6px; }
-    .reviews-card::after { left: 6px; width: 6px; }
-    .testimonial .review-avatar { width: 56px; height: 56px; }
-    .reviews-card h2 { font-size: 2.2rem; }
-}
-
-@media screen and (max-width: 600px) {
-    .reviews-card::before { display: none; }
-    .reviews-card::after { display: none; }
-    .reviews-card h2 { font-size: 1.8rem; }
-    .review-text { font-size: 0.98rem; }
-}
-
-.testimonials { display: block; margin-top: 0.8rem; }
-.testimonial { background: linear-gradient(90deg, rgba(242,189,18,0.03), rgba(255,255,255,0.02)); padding: 1.2rem; border-radius: 1rem; }
-.testimonial .review-avatar { width: 4rem; height: 4rem; border-radius: 50%; flex-shrink: 0; }
-.testimonial-body h3 { font-size: 1.05rem; margin-bottom: .25rem; display: flex; align-items: center; gap: .5rem; }
-.testimonial-body .stars { color: var(--gold-finger); font-weight: 700; margin-left: .5rem; }
-.testimonial-body p { color: var(--text-secondary); margin: 0; font-size: 1rem; line-height: 1.6rem; }
-.testimonial { display: flex; align-items: flex-start; gap: 1rem; }
-
-
-.review-person { gap: 1rem; }
-.review-avatar {
-    width: 4.2rem;
-    aspect-ratio: 1;
-    border-radius: 100vh;
-    object-fit: cover;
-}
-.review-text {
-    color: var(--text-secondary);
-    margin-top: 1rem;
-    line-height: 1.8rem;
-}
-
-.app-promo {
-    /* theme-aware background so toggle affects the promo card */
-    background: linear-gradient(180deg, var(--hint-yellow) 0%, var(--bg-accent) 100%);
-    padding: 2.2rem 2rem; /* increased padding for visual weight */
-    border-radius: 2rem;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
-    box-shadow: var(--shadow-strong) 0 18px 40px rgba(0,0,0,0.06);
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    align-items: center;
-    color: var(--text-primary);
-}
-
-/* Promo row: center and size the promo card as in screenshot */
-.promo-row {
-    margin-top: 4.8rem; /* increased breathing room to separate reviews from promo */
-    display: flex;
-    gap: 4rem;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-}
-
-.app-promo { max-width: 1100px; }
-
-.app-image { display:flex; align-items:center; justify-content:center; }
-.app-image img { width: 16rem; transform: rotate(-18deg); box-shadow: rgba(0,0,0,0.15) 0 20px 30px; border-radius: 2rem; }
-.app-content h5 { letter-spacing: .2rem; color: var(--gold-finger); font-weight: 700; }
-.app-content h2 { font-size: 3rem; margin-bottom: .6rem; line-height: 1; }
-.app-content p { margin-top: .4rem; text-align: left; color: var(--text-secondary); }
-.get-app { display: inline-block; margin-top: 1.2rem; padding: .9rem 1.6rem; border-radius: 50px; }
-
-/* decorative pill behind CTA to match screenshot */
-.app-content { position: relative; }
-.app-content::after { content: ''; position: absolute; right: -20px; bottom: -20px; width: 140px; height: 56px; background: var(--gold-finger); border-radius: 40px; filter: blur(8px); opacity: 0.12; z-index: -1; }
-.app-content p { color: var(--text-secondary); }
-.get-app { margin-top: 1rem; }
-
-.subscribe-card {
-    /* theme-aware background and text so toggle affects newsletter */
-    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-    padding: 3rem 2.4rem; /* increased padding for better breathing room */
-    border-radius: 1.6rem;
-    box-shadow: var(--shadow) 0 12px 30px;
-    width: 100%;
-    position: relative;
-    border: 1px solid transparent;
-    color: var(--text-primary);
-}
-
-/* increase spacing between stacked cards */
-.features-grid.centered-cards .feature-content > * { margin-bottom: 2.4rem; }
-
-/* prominent review title similar to provided image */
-.reviews-card h2 { font-size: 3.4rem; line-height: 1; margin-top: .4rem; }
-
-/* pagination styling and centering */
-.testimonials-swiper .swiper-pagination { display: flex; justify-content: center; margin-top: 1.4rem; }
-.testimonials-swiper .swiper-pagination-bullet { width: 12px; height: 12px; margin: 0 .4rem; background: var(--border-color); opacity: 1; }
-.testimonials-swiper .swiper-pagination-bullet-active { background: var(--gold-finger); box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
-
-/* hide any leftover nav buttons */
-.testimonials-swiper .swiper-button-next, .testimonials-swiper .swiper-button-prev { display: flex; }
-.subscribe-form {
-    margin-top: 0.8rem;
-    display: flex;
-    gap: .6rem;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Swiper specific styling */
-.testimonials-swiper { width: 100%; }
-.testimonials-swiper .swiper-slide { display: flex; justify-content: center; }
-.testimonials-swiper .swiper-pagination-bullet { background: var(--border-color); opacity: 0.9; }
-.testimonials-swiper .swiper-pagination-bullet-active { background: var(--gold-finger); }
-.testimonials-swiper .swiper-button-next, .testimonials-swiper .swiper-button-prev { color: var(--lead); }
-
-.subscribe-card::before {
-    content: '';
-    position: absolute;
-    left: 8px;
-    right: 8px;
-    top: 8px;
-    bottom: 8px;
-    border-radius: 1.2rem;
-    padding: 1px;
-    background: linear-gradient(90deg, rgba(242,189,18,0.06), rgba(242,189,18,0.02));
-    z-index: -1;
-}
-
-.subscribe-card h2 { font-size: 1.9rem; margin-top: .25rem; color: var(--text-primary); }
-.subscribe-card p { color: var(--text-secondary); margin-top: .8rem; }
-.subscribe-form { margin-top: 1.2rem; display:flex; gap: .8rem; align-items:center; justify-content:center; }
-.subscribe-form input[type="email"] { padding: 1.05rem 1.2rem; border-radius: 1rem; border: 2px solid var(--border-color); box-shadow: var(--shadow) 0 6px 14px; width: 420px; max-width: 100%; color: var(--text-primary); background: transparent; }
-.subscribe-form input[type="email"]::placeholder { color: var(--text-secondary); opacity: 0.9; }
-.subscribe-btn { padding: 0.95rem 1.8rem; border-radius: 40px; background: var(--gold-finger); color: var(--lead); border: none; box-shadow: 0 8px 18px rgba(242,189,18,0.2); }
-.subscribe-btn:hover { transform: translateY(-3px); }
-
-/* Make sure input text remains readable in dark theme */
-[data-theme="dark"] .subscribe-form input[type="email"] { color: var(--text-primary); border-color: var(--border-color); }
-
-@media screen and (max-width: 900px) {
-    .features-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .image-container, .feature-image img { height: auto; max-height: 520px; }
-    .app-content h2 { font-size: 1.8rem; }
-    .feature-content { gap: 1.2rem; }
-    .reviews-card, .subscribe-card, .app-promo { padding: 1rem; }
-    /* hide desktop arrows on smaller screens (use bullets) */
-    .testimonials-swiper .swiper-button-prev, .testimonials-swiper .swiper-button-next { display: none; }
-}
-
-@media screen and (max-width: 1100px) {
-    .app-image img { width: 12.5rem; transform: rotate(-16deg); }
-    .app-content h2 { font-size: 2.4rem; }
-}
-
-@media screen and (max-width: 700px) {
-    .app-promo { grid-template-columns: 1fr; text-align: center; }
-    .app-image img { transform: rotate(-8deg); width: 10.5rem; margin: 0 auto; }
-    .app-content::after { display: none; }
-    .app-content h2 { font-size: 1.6rem; }
-    .get-app { margin: 1rem auto 0; }
-}
-
-@media screen and (max-width: 1200px) {
-    .wrapper { padding-inline: 1.6rem; }
-    .image-container { width: 460px; height: 460px; }
-}
-
-@media screen and (max-width: 600px) {
-    .wrapper { padding-inline: 1rem; }
-    .image-container { width: 100%; height: auto; }
-    h1 { font-size: 2.4rem; }
-    .hero-section { padding-block: 2rem; }
-    .features-grid { margin-top: 2rem; gap: 1.2rem; }
-    .app-content h2 { font-size: 1.6rem; }
-    .subscribe-form { flex-direction: column; gap: .6rem; }
-    .subscribe-form input[type="email"] { max-width: 100%; }
 }
