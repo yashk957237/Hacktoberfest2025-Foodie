@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Item • Foodie</title>
+	<link rel="icon" href="../imgs/fabicon.png" type="image/png">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/cursor.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+		integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+	<header>
+		<nav class="navbar flex between wrapper">
+			<div class="logo">Foodie.</div>
+			<ul class="navList flex gap-3 between">
+				<li><a href="./index.html#home">Home</a></li>
+				<li><a href="./index.html#services">Services</a></li>
+				<li><a href="./html/menu.html">Menu</a></li>
+				<li><a href="./aboutUs.html">About Us</a></li>
+				<li><a href="./contactUs.html">Contacts</a></li>
+			</ul>
+
+			<div class="desktop-action flex gap-2">
+				<button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
+					<i class="fa-solid fa-moon"></i>
+				</button>
+				<a href="#" class="cart-icon">
+					<i class="fa-solid fa-bag-shopping"></i>
+					<span class="cart-value">0</span>
+				</a>
+				<a href="./signup.html" class="btn">Sign in &nbsp; <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+				<a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
+			</div>
+		</nav>
+	</header>
+
+	<main class="wrapper mt-4">
+
+		<section class="item-detail grid">
+			<div class="item-main card">
+				<button id="backBtn" class="btn" style="margin-bottom:1rem"><i class="fa-solid fa-arrow-left"></i> Back to Menu</button>
+				<div class="item-image">
+					<img id="itemImage" src="" alt="item image">
+				</div>
+				<h2 id="itemTitle"></h2>
+				<p id="itemPrice" class="price"></p>
+				<p id="itemDescription"></p>
+				<div id="itemExtras" class="mt-one"></div>
+				<div class="mt-one">
+					<button id="addToCartBtn" class="btn">Add to Cart</button>
+				</div>
+			</div>
+
+			<aside class="recommendations">
+				<h3>Recommended for you</h3>
+				<div id="recommendList" class="recommend-list mt-2"></div>
+			</aside>
+		</section>
+
+	</main>
+
+
+	<footer>
+		<div class="footer-container">
+			<div class="flex wrapper gap-4">
+				<div class="footer-wrapper">
+					<a href="#" class="logo">Foodie.</a>
+					<p class="mt-one">We will fill your tummy with delicious <br> food with fast delivery</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<a href="#home" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
+
+	<script src="../js/app.js"></script>
+	<script src="../js/cursor.js"></script>
+	<script src="../js/item.js"></script>
+</body>
+
+</html>
