@@ -86,6 +86,29 @@ initTheme();
 let productList = [];
 let addProduct = [];
 
+// ===== FAVORITES (WISHLIST) =====
+const FAVORITES_STORAGE_KEY = 'foodie:favorites';
+let favoriteIds = new Set();
+
+const loadFavorites = () => {
+    try {
+        const raw = localStorage.getItem(FAVORITES_STORAGE_KEY) || '[]';
+        const arr = JSON.parse(raw);
+        if (Array.isArray(arr)) favoriteIds = new Set(arr);
+    } catch (_) { favoriteIds = new Set(); }
+};
+
+const saveFavorites = () => {
+    try { localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify([...favoriteIds])); } catch (_) {}
+};
+
+const isFavorite = id => favoriteIds.has(id);
+const toggleFavorite = id => {
+    if (favoriteIds.has(id)) favoriteIds.delete(id); else favoriteIds.add(id);
+    saveFavorites();
+};
+loadFavorites();
+
 const updateTotalPrice = () => {
     let totalPrice = 0;
     let totalQuantity = 0;
@@ -188,6 +211,7 @@ checkoutBtn?.addEventListener('click', e => {
 
 // ===== RENDER PRODUCT CARDS =====
 const showCards = list => {
+    if (!cardList) return; // Guard when this script runs on pages without product grid
     cardList.innerHTML = '';
     if (!list || list.length === 0) {
         const msg = document.createElement('div');
@@ -200,7 +224,11 @@ const showCards = list => {
     list.forEach(product => {
         const card = document.createElement('div');
         card.classList.add('order-card');
+        const favActive = isFavorite(product.id);
         card.innerHTML = `
+            <button class="fav-btn${favActive ? ' active' : ''}" aria-label="Toggle favorite" aria-pressed="${favActive}" title="${favActive ? 'Remove from favorites' : 'Add to favorites'}">
+                <i class="${favActive ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+            </button>
             <div class="card-image"><img src="${product.image}" alt="${product.name}"></div>
             <h4>${product.name}</h4>
             <h4 class="price">₹${parseFloat(product.price.replace(/[₹$]/g, '')).toFixed(2)}</h4>
@@ -213,6 +241,22 @@ const showCards = list => {
             e.preventDefault();
             addToCart(product);
         });
+
+        const favBtn = card.querySelector('.fav-btn');
+        favBtn.addEventListener('click', e => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleFavorite(product.id);
+            const nowActive = isFavorite(product.id);
+            favBtn.classList.toggle('active', nowActive);
+            favBtn.setAttribute('aria-pressed', String(nowActive));
+            favBtn.setAttribute('title', nowActive ? 'Remove from favorites' : 'Add to favorites');
+            const icon = favBtn.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-solid', nowActive);
+                icon.classList.toggle('fa-regular', !nowActive);
+            }
+        });
         cardList.appendChild(card);
     });
 };
@@ -222,6 +266,7 @@ const priceSelector = document.getElementById('priceSelector');
 const selected = priceSelector?.querySelector('.selected');
 const options = priceSelector?.querySelectorAll('.options li');
 let currentPriceFilter = 'all';
+let favoritesOnly = false;
 
 selected?.addEventListener('click', () => priceSelector.classList.toggle('open'));
 options?.forEach(opt => {
@@ -239,6 +284,16 @@ document.addEventListener('click', e => {
 const searchInput = document.getElementById('search');
 searchInput?.addEventListener('input', applyFilters);
 
+// Favorites-only toggle (if present in page)
+const favToggle = document.getElementById('favToggle');
+favToggle?.addEventListener('click', e => {
+    e.preventDefault();
+    favoritesOnly = !favoritesOnly;
+    favToggle.classList.toggle('active', favoritesOnly);
+    favToggle.setAttribute('aria-pressed', String(favoritesOnly));
+    applyFilters();
+});
+
 function applyFilters() {
     if (!productList) return;
     const searchTerm = searchInput.value.toLowerCase();
@@ -251,7 +306,8 @@ function applyFilters() {
         else if (currentPriceFilter === 'mid') matchesPrice = price >= 100 && price <= 200;
         else if (currentPriceFilter === 'high') matchesPrice = price > 200;
 
-        return matchesSearch && matchesPrice;
+        const matchesFavorite = !favoritesOnly || isFavorite(p.id);
+        return matchesSearch && matchesPrice && matchesFavorite;
     });
     showCards(filtered);
 }
