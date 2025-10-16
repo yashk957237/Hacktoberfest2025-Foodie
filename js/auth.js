@@ -1,12 +1,11 @@
-// Example: Toggle password visibility
+// ===== Password Toggle =====
 function togglePassword(inputId) {
   const input = document.getElementById(inputId);
   input.type = input.type === "password" ? "text" : "password";
 }
-// Make togglePassword globally accessible for inline event handlers
 window.togglePassword = togglePassword;
 
-// implementation of Toggle between login and signup forms
+// ===== Switch Login/Signup Forms =====
 function switchForm(formType) {
   const loginForm = document.getElementById("loginForm");
   const signupForm = document.getElementById("signupForm");
@@ -19,13 +18,11 @@ function switchForm(formType) {
     loginForm.classList.remove("active");
   }
 }
-
 window.switchForm = switchForm;
 
-
-// ===== THEME TOGGLE FOR AUTH PAGES =====
+// ===== Theme Toggle =====
 (() => {
-  const themeToggleBtn = document.getElementById('themeToggle') || document.querySelector('.theme-toggle');
+  const themeToggleBtn = document.getElementById('themeToggle');
 
   const applySmoothTransition = () => {
     document.documentElement.classList.add('theme-transition');
@@ -35,20 +32,14 @@ window.switchForm = switchForm;
   const updateThemeIcon = (theme) => {
     if (!themeToggleBtn) return;
     const icon = themeToggleBtn.querySelector('i');
-    const label = themeToggleBtn.querySelector('span');
     if (!icon) return;
     if (theme === 'dark') {
       icon.classList.remove('fa-moon');
       icon.classList.add('fa-sun');
-      themeToggleBtn.classList.add('dark');
-      if (label) label.textContent = 'Light Mode ☀️';
     } else {
       icon.classList.remove('fa-sun');
       icon.classList.add('fa-moon');
-      themeToggleBtn.classList.remove('dark');
-      if (label) label.textContent = 'Dark Mode 🌙';
     }
-    // small rotate effect if using CSS
     icon.classList.add('rotate-icon');
     setTimeout(() => icon.classList.remove('rotate-icon'), 600);
   };
@@ -62,7 +53,6 @@ window.switchForm = switchForm;
     updateThemeIcon(next);
   };
 
-  // Init theme on auth pages
   const initTheme = () => {
     const saved = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', saved);
@@ -70,7 +60,65 @@ window.switchForm = switchForm;
   };
 
   if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
-  // expose for debugging if needed
-  window.toggleTheme = toggleTheme;
   initTheme();
 })();
+
+// ===== Dummy Handlers =====
+function handleLogin(event) {
+  event.preventDefault();
+  alert("Regular login coming soon!");
+}
+
+function handleSignup(event) {
+  event.preventDefault();
+  alert("Regular signup coming soon!");
+}
+
+// ===== GOOGLE SIGN-IN INTEGRATION =====
+
+// ⚠️ Replace this with your real Google OAuth Client ID
+const GOOGLE_CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID_HERE";
+
+// Initialize Google Sign-In
+window.onload = function () {
+  google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    callback: handleGoogleResponse,
+  });
+
+  // Render Google buttons for login and signup
+  google.accounts.id.renderButton(
+    document.getElementById("loginGoogleBtn"),
+    { theme: "outline", size: "large", text: "signin_with" }
+  );
+  google.accounts.id.renderButton(
+    document.getElementById("signupGoogleBtn"),
+    { theme: "outline", size: "large", text: "signup_with" }
+  );
+};
+
+// Handle Google login response
+function handleGoogleResponse(response) {
+  const userData = decodeJwtResponse(response.credential);
+
+  console.log("Google User:", userData);
+
+  // Example: Display welcome message
+  alert(`Welcome, ${userData.name} (${userData.email})`);
+
+  // Here you can send userData to your backend via fetch()
+  // to create or login the user in your system.
+}
+
+// Decode Google JWT token
+function decodeJwtResponse(token) {
+  const base64Url = token.split(".")[1];
+  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  const jsonPayload = decodeURIComponent(
+    atob(base64)
+      .split("")
+      .map(c => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+      .join("")
+  );
+  return JSON.parse(jsonPayload);
+}
