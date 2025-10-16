@@ -1,7 +1,8 @@
 /* Hero Section */
 .hero {
     background: var(--bg-secondary);
-    padding: 80px 40px;
+    padding: 60px 40px;
+    padding-top: 150px;
     text-align: center;
 }
 
