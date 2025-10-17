@@ -124,22 +124,118 @@ const updateTotalPrice = () => {
     cartValue.textContent = totalQuantity;
 };
 
+// ===== UPDATE CARD BUTTON STATE =====
+const updateCardButton = (card, product) => {
+    const existProduct = addProduct.find(item => item.id === product.id);
+    const buttonContainer = card.querySelector('.card-btn-container');
+    
+    if (existProduct && existProduct.quantity > 0) {
+        // Show quantity selector
+        buttonContainer.innerHTML = `
+            <div class="quantity-selector flex">
+                <button class="qty-btn minus-btn" data-id="${product.id}">
+                    <i class="fa-solid fa-minus"></i>
+                </button>
+                <span class="qty-display">${existProduct.quantity}</span>
+                <button class="qty-btn plus-btn" data-id="${product.id}">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+        `;
+        
+        // Add event listeners to quantity buttons
+        const minusBtn = buttonContainer.querySelector('.minus-btn');
+        const plusBtn = buttonContainer.querySelector('.plus-btn');
+        
+        minusBtn.addEventListener('click', e => {
+            e.preventDefault();
+            e.stopPropagation();
+            decreaseQuantity(product, card);
+        });
+        
+        plusBtn.addEventListener('click', e => {
+            e.preventDefault();
+            e.stopPropagation();
+            increaseQuantity(product, card);
+        });
+    } else {
+        // Show "Add to Cart" button
+        buttonContainer.innerHTML = `
+            <a href="#" class="btn card-btn">Add to Cart</a>
+        `;
+        
+        buttonContainer.querySelector('.card-btn').addEventListener('click', e => {
+            e.preventDefault();
+            e.stopPropagation();
+            addToCart(product, card);
+        });
+    }
+};
+
+// ===== INCREASE QUANTITY =====
+const increaseQuantity = (product, card) => {
+    const price = parseFloat(product.price.replace(/[₹$]/g, ''));
+    let existProduct = addProduct.find(item => item.id === product.id);
+    
+    if (existProduct) {
+        existProduct.quantity++;
+        
+        // Update cart item
+        const cartItem = [...cartList.querySelectorAll('.item')]
+            .find(item => item.querySelector('.detail h4').textContent === product.name);
+        if (cartItem) {
+            const quantityValue = cartItem.querySelector('.quantity-value');
+            const itemTotal = cartItem.querySelector('.item-total');
+            quantityValue.textContent = existProduct.quantity;
+            itemTotal.textContent = `₹${(existProduct.quantity * price).toFixed(2)}`;
+        }
+        
+        // Update card button
+        updateCardButton(card, product);
+        updateTotalPrice();
+    }
+};
+
+// ===== DECREASE QUANTITY =====
+const decreaseQuantity = (product, card) => {
+    const price = parseFloat(product.price.replace(/[₹$]/g, ''));
+    let existProduct = addProduct.find(item => item.id === product.id);
+    
+    if (existProduct) {
+        existProduct.quantity--;
+        
+        if (existProduct.quantity === 0) {
+            // Remove from cart
+            addProduct = addProduct.filter(item => item.id !== product.id);
+            
+            const cartItem = [...cartList.querySelectorAll('.item')]
+                .find(item => item.querySelector('.detail h4').textContent === product.name);
+            if (cartItem) cartItem.remove();
+        } else {
+            // Update cart item
+            const cartItem = [...cartList.querySelectorAll('.item')]
+                .find(item => item.querySelector('.detail h4').textContent === product.name);
+            if (cartItem) {
+                const quantityValue = cartItem.querySelector('.quantity-value');
+                const itemTotal = cartItem.querySelector('.item-total');
+                quantityValue.textContent = existProduct.quantity;
+                itemTotal.textContent = `₹${(existProduct.quantity * price).toFixed(2)}`;
+            }
+        }
+        
+        // Update card button
+        updateCardButton(card, product);
+        updateTotalPrice();
+    }
+};
+
 // ===== ADD TO CART =====
-const addToCart = product => {
+const addToCart = (product, card) => {
     const price = parseFloat(product.price.replace(/[₹$]/g, ''));
     let existProduct = addProduct.find(item => item.id === product.id);
 
     if (existProduct) {
-        existProduct.quantity++;
-        const existingCartItem = [...cartList.querySelectorAll('.item')]
-            .find(item => item.querySelector('.detail h4').textContent === product.name);
-        if (existingCartItem) {
-            const quantityValue = existingCartItem.querySelector('.quantity-value');
-            const itemTotal = existingCartItem.querySelector('.item-total');
-            quantityValue.textContent = parseInt(quantityValue.textContent) + 1;
-            itemTotal.textContent = `₹${(existProduct.quantity * price).toFixed(2)}`;
-        }
-        updateTotalPrice();
+        increaseQuantity(product, card);
         return;
     }
 
@@ -174,6 +270,7 @@ const addToCart = product => {
         quantityValue.textContent = product.quantity;
         itemTotal.textContent = `₹${(product.quantity * price).toFixed(2)}`;
         updateTotalPrice();
+        updateCardButton(card, product);
     });
 
     minusBtn.addEventListener('click', e => {
@@ -183,12 +280,17 @@ const addToCart = product => {
             quantityValue.textContent = product.quantity;
             itemTotal.textContent = `₹${(product.quantity * price).toFixed(2)}`;
             updateTotalPrice();
+            updateCardButton(card, product);
         } else {
             cartItem.remove();
             addProduct = addProduct.filter(item => item.id !== product.id);
             updateTotalPrice();
+            updateCardButton(card, product);
         }
     });
+    
+    // Update the card button to show quantity selector
+    updateCardButton(card, product);
 };
 
 // ===== CHECKOUT =====
@@ -211,7 +313,7 @@ checkoutBtn?.addEventListener('click', e => {
 
 // ===== RENDER PRODUCT CARDS =====
 const showCards = list => {
-    if (!cardList) return; // Guard when this script runs on pages without product grid
+    if (!cardList) return;
     cardList.innerHTML = '';
     if (!list || list.length === 0) {
         const msg = document.createElement('div');
@@ -232,14 +334,16 @@ const showCards = list => {
             <div class="card-image"><img src="${product.image}" alt="${product.name}"></div>
             <h4>${product.name}</h4>
             <h4 class="price">₹${parseFloat(product.price.replace(/[₹$]/g, '')).toFixed(2)}</h4>
-            <a href="#" class="btn card-btn">Add to Cart</a>
+            <div class="card-btn-container"></div>
         `;
+        
+        // Initialize button state
+        updateCardButton(card, product);
+        
         card.addEventListener('click', e => {
-            if (!e.target.classList.contains('card-btn')) openFoodModal(product);
-        });
-        card.querySelector('.card-btn').addEventListener('click', e => {
-            e.preventDefault();
-            addToCart(product);
+            if (!e.target.closest('.card-btn-container') && !e.target.closest('.fav-btn')) {
+                openFoodModal(product);
+            }
         });
 
         const favBtn = card.querySelector('.fav-btn');
@@ -284,7 +388,6 @@ document.addEventListener('click', e => {
 const searchInput = document.getElementById('search');
 searchInput?.addEventListener('input', applyFilters);
 
-// Favorites-only toggle (if present in page)
 const favToggle = document.getElementById('favToggle');
 favToggle?.addEventListener('click', e => {
     e.preventDefault();
@@ -328,7 +431,14 @@ function openFoodModal(product) {
     modalPrice.textContent = `₹${parseFloat(product.price.replace(/[₹$]/g, '')).toFixed(2)}`;
     modalDescription.textContent = product.description || "No description available.";
     modal.style.display = 'flex';
-    modalAddBtn.onclick = () => { addToCart(product); modal.style.display = 'none'; };
+    
+    modalAddBtn.onclick = () => { 
+        const card = [...cardList.querySelectorAll('.order-card')].find(c => 
+            c.querySelector('h4').textContent === product.name
+        );
+        addToCart(product, card); 
+        modal.style.display = 'none'; 
+    };
     modalViewBtn.onclick = () => { cartTab.classList.add('cart-tab-active'); modal.style.display = 'none'; };
 }
 
