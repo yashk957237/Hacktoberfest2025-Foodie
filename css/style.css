@@ -1056,3 +1056,90 @@ div#card-btn-container {
 .card-list {
     justify-content: center;
 }
+
+/* ===== QUANTITY SELECTOR STYLES ===== */
+/* Add these styles to your existing style.css file */
+
+.card-btn-container {
+    margin-top: 1rem;
+}
+
+.quantity-selector {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    background: var(--bg-secondary);
+    border: 2px solid var(--gold-finger);
+    border-radius: 1rem;
+    padding: 0.5rem 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.qty-btn {
+    background: var(--gold-finger);
+    color: var(--lead);
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.qty-btn:hover {
+    background: var(--lead);
+    color: var(--pure-while);
+    transform: scale(1.15);
+}
+
+.qty-btn:active {
+    transform: scale(0.95);
+}
+
+.qty-display {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 2rem;
+    text-align: center;
+}
+
+/* Dark theme specific styles */
+[data-theme="dark"] .qty-btn {
+    background: var(--gold-finger);
+    color: var(--bg-primary);
+}
+
+[data-theme="dark"] .qty-btn:hover {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+}
+
+[data-theme="dark"] .quantity-selector {
+    border-color: var(--gold-finger);
+    background: var(--bg-secondary);
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 800px) {
+    .quantity-selector {
+        gap: 0.6rem;
+        padding: 0.4rem 1rem;
+    }
+
+    .qty-btn {
+        width: 1.8rem;
+        height: 1.8rem;
+        font-size: 0.8rem;
+    }
+
+    .qty-display {
+        font-size: 1.2rem;
+        min-width: 1.5rem;
+    }
+}
