@@ -110,6 +110,20 @@ select {
     transition: all 0.3s ease;
 }
 
+/* Dropdown styling */
+select option {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+select option:hover,
+select option:focus {
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+}
+
 input:focus,
 textarea:focus,
 select:focus {
