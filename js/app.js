@@ -109,6 +109,29 @@ const toggleFavorite = id => {
 };
 loadFavorites();
 
+// Show toast notification
+const showToast = (message) => {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = `
+        <i class="fa-solid fa-circle-check"></i>
+        ${message}
+    `;
+    
+    const container = document.querySelector('.toast-container');
+    container.appendChild(toast);
+    
+    // Trigger reflow for animation
+    toast.offsetHeight;
+    toast.classList.add('show');
+    
+    // Remove toast after 3 seconds
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+};
+
 const updateTotalPrice = () => {
     let totalPrice = 0;
     let totalQuantity = 0;
@@ -236,11 +259,13 @@ const addToCart = (product, card) => {
 
     if (existProduct) {
         increaseQuantity(product, card);
+        showToast(`Added another ${product.name} to cart`);
         return;
     }
 
     product.quantity = 1;
     addProduct.push(product);
+    showToast(`${product.name} added to cart`);
 
     const cartItem = document.createElement('div');
     cartItem.classList.add('item');
