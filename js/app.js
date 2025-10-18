@@ -22,7 +22,13 @@ const backToTop = document.querySelector('.back-to-top');
 const themeToggles = document.querySelectorAll('.theme-toggle');
 
 // ===== CART OPEN/CLOSE =====
-cartIcon?.addEventListener('click', () => cartTab.classList.add("cart-tab-active"));
+cartIcon?.addEventListener('click', () => {
+    cartTab.classList.add("cart-tab-active");
+    // Show skeleton cart items if cart is empty
+    if (addProduct.length === 0) {
+        showSkeletonCartItems();
+    }
+});
 closeBtn?.addEventListener('click', () => cartTab.classList.remove("cart-tab-active"));
 hamburger?.addEventListener('click', () => {
     mobileMenu.classList.toggle("mobile-menu-active");
@@ -471,11 +477,77 @@ modalClose?.addEventListener('click', () => modal.style.display = 'none');
 window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
 document.addEventListener('keydown', e => { if (e.key === "Escape") modal.style.display = 'none'; });
 
+// ===== SKELETON LOADERS =====
+const createSkeletonCard = () => {
+    const skeleton = document.createElement('div');
+    skeleton.classList.add('skeleton-card');
+    skeleton.innerHTML = `
+        <div class="skeleton skeleton-fav"></div>
+        <div class="skeleton skeleton-image"></div>
+        <div class="skeleton skeleton-text"></div>
+        <div class="skeleton skeleton-price"></div>
+        <div class="skeleton skeleton-btn"></div>
+    `;
+    return skeleton;
+};
+
+const createSkeletonCartItem = () => {
+    const skeleton = document.createElement('div');
+    skeleton.classList.add('skeleton-cart-item');
+    skeleton.innerHTML = `
+        <div class="skeleton skeleton-cart-image"></div>
+        <div class="skeleton-cart-detail">
+            <div class="skeleton skeleton-cart-text"></div>
+            <div class="skeleton skeleton-cart-total"></div>
+        </div>
+        <div class="skeleton-cart-quantity">
+            <div class="skeleton skeleton-cart-btn"></div>
+            <div class="skeleton skeleton-cart-value"></div>
+            <div class="skeleton skeleton-cart-btn"></div>
+        </div>
+    `;
+    return skeleton;
+};
+
+const showSkeletonCards = (count = 6) => {
+    if (!cardList) return;
+    cardList.innerHTML = '';
+    for (let i = 0; i < count; i++) {
+        cardList.appendChild(createSkeletonCard());
+    }
+};
+
+const showSkeletonCartItems = (count = 3) => {
+    if (!cartList) return;
+    cartList.innerHTML = '';
+    for (let i = 0; i < count; i++) {
+        cartList.appendChild(createSkeletonCartItem());
+    }
+};
+
 // ===== INIT APP =====
-fetch('../products.json')
-    .then(res => res.json())
-    .then(data => {
+const loadProducts = async (retryCount = 0) => {
+    try {
+        // Show skeleton loading state
+        showSkeletonCards();
+
+        const res = await fetch('../products.json');
+        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        const data = await res.json();
         productList = data;
         showCards(productList);
-    })
-    .catch(err => console.error('Failed to load products:', err));
+    } catch (error) {
+        console.error('Failed to load products:', error);
+        if (cardList) {
+            cardList.innerHTML = '<div class="error">Unable to load products. Please check your connection and try again.</div>';
+            // Add retry button
+            const retryBtn = document.createElement('button');
+            retryBtn.textContent = 'Retry';
+            retryBtn.className = 'retry-btn';
+            retryBtn.onclick = () => loadProducts(retryCount + 1);
+            cardList.appendChild(retryBtn);
+        }
+    }
+};
+
+loadProducts();

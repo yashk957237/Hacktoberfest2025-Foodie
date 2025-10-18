@@ -66,10 +66,29 @@
         if (currentController) currentController.abort();
         currentController = new AbortController();
         const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&limit=8&dedupe=1&countrycodes=in&q=${encodeURIComponent(q)}`;
+
+        // Show loading state
+        suggestionsEl.innerHTML = '<div class="loading">Searching cities...</div>';
+        suggestionsEl.classList.add('open');
+
         const res = await fetch(url, { headers: { 'Accept-Language': 'en-IN,en' }, signal: currentController.signal });
+        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
         const data = await res.json();
         renderSuggestions(data || [], q);
-      } catch (_) {}
+      } catch (error) {
+        if (error.name === 'AbortError') return; // Ignore aborted requests
+        console.error('City search error:', error);
+        suggestionsEl.innerHTML = '<div class="error">Unable to search cities. Please check your connection and try again.</div>';
+        suggestionsEl.classList.add('open');
+        // Add retry button
+        setTimeout(() => {
+          const retryBtn = document.createElement('button');
+          retryBtn.textContent = 'Retry';
+          retryBtn.className = 'retry-btn';
+          retryBtn.onclick = () => debouncedSearch(q);
+          suggestionsEl.appendChild(retryBtn);
+        }, 1000);
+      }
     }, 250);
 
     function renderSuggestions(items, query) {
@@ -147,7 +166,11 @@
     const lookupPin = debounce(async (pin) => {
       if (!validateLength(pin)) { setError('Pincode must be 6 digits'); return; }
       try {
+        // Show loading state
+        setError('Validating pincode...');
+
         const res = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
         const data = await res.json();
         if (!Array.isArray(data) || !data[0] || data[0].Status !== 'Success') { setError('Pincode not found'); return; }
         const postOffices = data[0].PostOffice || [];
@@ -170,8 +193,21 @@
 
         clearError();
         window.__lastPinStatus = 'ok';
-      } catch (_) {
-        setError('Unable to validate pincode');
+      } catch (error) {
+        console.error('Pincode validation error:', error);
+        setError('Unable to validate pincode. Please check your connection and try again.');
+        // Add retry mechanism
+        const group = zipInput.closest('.form-group');
+        if (group) {
+          const retryBtn = document.createElement('button');
+          retryBtn.textContent = 'Retry';
+          retryBtn.className = 'retry-btn';
+          retryBtn.onclick = () => {
+            retryBtn.remove();
+            lookupPin(pin);
+          };
+          group.appendChild(retryBtn);
+        }
       }
     }, 350);
 
