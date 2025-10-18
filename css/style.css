@@ -232,8 +232,10 @@ header .navbar.wrapper {
 }
 
 /* On hover — text color + underline animation */
-.navList a:hover {
+.navbar li a:hover,
+.navbar li a.active {
     color: var(--gold-finger);
+    border-bottom: 1px solid var(--gold-finger);
 }
 
 .navList a:hover::after {
