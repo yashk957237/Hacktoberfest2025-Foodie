@@ -447,10 +447,30 @@ window.addEventListener('click', e => { if (e.target === modal) modal.style.disp
 document.addEventListener('keydown', e => { if (e.key === "Escape") modal.style.display = 'none'; });
 
 // ===== INIT APP =====
-fetch('../products.json')
-    .then(res => res.json())
-    .then(data => {
+const loadProducts = async (retryCount = 0) => {
+    try {
+        // Show loading state
+        if (cardList) {
+            cardList.innerHTML = '<div class="loading">Loading products...</div>';
+        }
+
+        const res = await fetch('../products.json');
+        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        const data = await res.json();
         productList = data;
         showCards(productList);
-    })
-    .catch(err => console.error('Failed to load products:', err));
+    } catch (error) {
+        console.error('Failed to load products:', error);
+        if (cardList) {
+            cardList.innerHTML = '<div class="error">Unable to load products. Please check your connection and try again.</div>';
+            // Add retry button
+            const retryBtn = document.createElement('button');
+            retryBtn.textContent = 'Retry';
+            retryBtn.className = 'retry-btn';
+            retryBtn.onclick = () => loadProducts(retryCount + 1);
+            cardList.appendChild(retryBtn);
+        }
+    }
+};
+
+loadProducts();
