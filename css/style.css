@@ -791,7 +791,7 @@ input[type="email"]:focus {
         align-items: center;
         gap: 2rem;
         position: absolute;
-        top: 20%;
+        top: 90%;
         left: -100%;
         transform: translateX(-50%);
         width: 20rem;
@@ -1134,6 +1134,7 @@ div#card-btn-container {
     0% {
         background-position: -200px 0;
     }
+
     100% {
         background-position: calc(200px + 100%) 0;
     }
