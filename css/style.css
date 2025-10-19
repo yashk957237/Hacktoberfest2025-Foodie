@@ -698,8 +698,8 @@ h4 {
 input[type="email"] {
     flex: 1;
     height: 6vh;
-    background: var(--bg-primary);
-    border: 1px solid #ccc;
+    background: transparent;
+    border: none;
     font-size: 1.1rem;
     padding-left: 1rem;
     color: var(--text-primary);
