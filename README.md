@@ -1,10 +1,8 @@
-
-
 # 🎃 Hacktoberfest 2025
 
 ### 🍽️ **Foodie — Responsive Food Delivery Website**
 
-[![Hacktoberfest 2025](https://img.shields.io/badge/Hacktoberfest-2025-blueviolet?style=for-the-badge\&logo=github)](https://hacktoberfest.com/)
+[![Hacktoberfest 2025](https://img.shields.io/badge/Hacktoberfest-2025-blueviolet?style=for-the-badge&logo=github)](https://hacktoberfest.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![Stars](https://img.shields.io/github/stars/janavipandole/Hacktoberfest2025-Foodie?style=for-the-badge)](https://github.com/janavipandole/Hacktoberfest2025-Foodie/stargazers)
 [![Forks](https://img.shields.io/github/forks/janavipandole/Hacktoberfest2025-Foodie?style=for-the-badge)](https://github.com/janavipandole/Hacktoberfest2025-Foodie/forks)
@@ -25,7 +23,7 @@ Designed for performance, accessibility, and user delight — it offers an effor
 | Technology              | Description                                        |
 | ----------------------- | -------------------------------------------------- |
 | **HTML5**               | Semantic and accessible markup                     |
-| **CSS3 / Tailwind CSS** | Responsive styling and layout                      |
+| **CSS3**               | Responsive styling and layout                      |
 | **JavaScript (ES6)**    | Dynamic UI and client-side interactivity           |
 | **Deployment**          | Hosted on **GitHub Pages** for free, fast delivery |
 
@@ -49,26 +47,51 @@ Follow these steps to run **Foodie** locally on your system 👇
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/janavipandole/Foodie.git
+git clone https://github.com/janavipandole/Hacktoberfest2025-Foodie.git
 ```
 
 ### 2️⃣ Navigate into the Project Folder
 
 ```bash
-cd Foodie
+cd Hacktoberfest2025-Foodie
 ```
 
 ### 3️⃣ Open in Your Browser
 
-Simply open the `index.html` file in your browser:
+Simply open the `html/index.html` file in your browser:
 
 ```bash
-open index.html
+# Windows (PowerShell or CMD)
+start "" html\index.html
+
+# macOS
+open html/index.html
+
+# Linux
+xdg-open html/index.html
 ```
 
-> Or, use **Live Server** in VS Code for the best experience:
+> Or, use **Live Server** in VS Code:
 >
-> * Right-click → “Open with Live Server”
+> - In VS Code, right‑click `html/index.html` → “Open with Live Server”
+
+<img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
+
+## 🧩 Chrome Extension
+
+Load the extension for local testing:
+1. Open `chrome://extensions`
+2. Toggle “Developer mode”
+3. Click “Load unpacked” and select the `chrome extension/` folder
+
+<img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
+
+## 🚢 Deployment (GitHub Pages)
+
+This site’s entry file is at `html/index.html`. To use GitHub Pages:
+- Option A: Move `html/index.html` (and assets) to the repo root so the root has `index.html`.
+- Option B: Create a root `index.html` that redirects to `/html/`.
+- Option C: Use Pages “/docs” and move `html` → `docs`.
 
 <img src="https://github.com/Mayur-Pagote/README_Design_Kit/blob/730d340c8008758ac291ebc555f818f851feda0f/Assets/RGB%20Line%20Thick.gif" width="100%" />
 
@@ -85,7 +108,7 @@ Whether it’s bug fixes, new features, or improving documentation — every con
 2. **Clone your forked repo**
 
    ```bash
-   git clone https://github.com/<your-username>/Foodie.git
+   git clone https://github.com/<your-username>/Hacktoberfest2025-Foodie.git
    ```
 
 3. **Create a new branch**
