@@ -2,6 +2,10 @@
 <html lang="en">
 
 <head>
+  <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js"></script>
+<script src="../js/auth.js" type="module"></script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Foodie | Login & Sign Up</title>
@@ -78,9 +82,21 @@
         </p>
 
         <!-- Google Sign-In button after switch text -->
-        <div class="social-login" aria-label="Google Sign-In">
-          <div id="loginGoogleBtn"></div>
-        </div>
+       <!-- Google Sign-In button after switch text -->
+<div class="social-login" aria-label="Google Sign-In">
+  <div id="loginGoogleBtn"></div>
+</div>
+
+<!-- Phone Number Login Button (same size as Google) -->
+<div class="social-login" aria-label="Phone Login">
+  <button type="button" class="btn phone-login" onclick="loginWithPhone()">
+    <i class="fa-solid fa-phone"></i> Continue with Phone Number
+  </button>
+</div>
+
+<!-- Firebase requires this invisible div for reCAPTCHA -->
+<div id="recaptcha-container"></div>
+
       </article>
 
       <!-- Sign Up Form -->
@@ -143,3 +159,4 @@
 </body>
 
 </html>
+
