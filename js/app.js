@@ -142,15 +142,25 @@ const updateTotalPrice = () => {
     let totalPrice = 0;
     let totalQuantity = 0;
 
-    cartList.querySelectorAll('.item').forEach(item => {
-        const quantity = parseInt(item.querySelector('.quantity-value').textContent);
-        const price = parseFloat(item.querySelector('.item-total').textContent.replace(/[₹$]/g, ''));
-        totalPrice += price;
-        totalQuantity += quantity;
-    });
+    if (cartList && cartList.children.length > 0) {
+        cartList.querySelectorAll('.item').forEach(item => {
+            const quantity = parseInt(item.querySelector('.quantity-value').textContent);
+            const price = parseFloat(item.querySelector('.item-total').textContent.replace(/[₹$]/g, ''));
+            totalPrice += price;
+            totalQuantity += quantity;
+        });
+        if (cartTotal) cartTotal.textContent = `₹${totalPrice.toFixed(2)}`;
+        if (cartValue) cartValue.textContent = totalQuantity;
+        return;
+    }
 
-    cartTotal.textContent = `₹${totalPrice.toFixed(2)}`;
-    cartValue.textContent = totalQuantity;
+    addProduct.forEach(p => {
+        const price = parseFloat(p.price.replace(/[₹$]/g, ''));
+        totalPrice += price * (p.quantity || 0);
+        totalQuantity += (p.quantity || 0);
+    });
+    if (cartTotal) cartTotal.textContent = `₹${totalPrice.toFixed(2)}`;
+    if (cartValue) cartValue.textContent = totalQuantity;
 };
 
 // ===== UPDATE CARD BUTTON STATE =====
@@ -222,6 +232,7 @@ const increaseQuantity = (product, card) => {
         // Update card button
         updateCardButton(card, product);
         updateTotalPrice();
+        saveCart();
     }
 };
 
@@ -255,6 +266,7 @@ const decreaseQuantity = (product, card) => {
         // Update card button
         updateCardButton(card, product);
         updateTotalPrice();
+        saveCart();
     }
 };
 
@@ -289,6 +301,7 @@ const addToCart = (product, card) => {
     `;
     cartList.appendChild(cartItem);
     updateTotalPrice();
+    saveCart();
 
     const plusBtn = cartItem.querySelector('.plus');
     const minusBtn = cartItem.querySelector('.minus');
@@ -302,6 +315,7 @@ const addToCart = (product, card) => {
         itemTotal.textContent = `₹${(product.quantity * price).toFixed(2)}`;
         updateTotalPrice();
         updateCardButton(card, product);
+        saveCart();
     });
 
     minusBtn.addEventListener('click', e => {
@@ -312,11 +326,13 @@ const addToCart = (product, card) => {
             itemTotal.textContent = `₹${(product.quantity * price).toFixed(2)}`;
             updateTotalPrice();
             updateCardButton(card, product);
+            saveCart();
         } else {
             cartItem.remove();
             addProduct = addProduct.filter(item => item.id !== product.id);
             updateTotalPrice();
             updateCardButton(card, product);
+            saveCart();
         }
     });
     
@@ -536,6 +552,7 @@ const loadProducts = async (retryCount = 0) => {
         const data = await res.json();
         productList = data;
         showCards(productList);
+        restoreCartFromStorage();
     } catch (error) {
         console.error('Failed to load products:', error);
         if (cardList) {
@@ -551,3 +568,87 @@ const loadProducts = async (retryCount = 0) => {
 };
 
 loadProducts();
+
+const CART_STORAGE_KEY = 'foodie:cart';
+const loadCart = () => {
+    try {
+        const raw = localStorage.getItem(CART_STORAGE_KEY) || '[]';
+        const arr = JSON.parse(raw);
+        return Array.isArray(arr) ? arr : [];
+    } catch (_) { return []; }
+};
+const saveCart = () => {
+    try {
+        const arr = addProduct.map(p => ({ id: p.id, quantity: p.quantity }));
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(arr));
+    } catch (_) {}
+};
+const restoreCartFromStorage = () => {
+    const saved = loadCart();
+    if (!saved || saved.length === 0) { updateTotalPrice(); return; }
+    saved.forEach(s => {
+        const base = productList.find(p => p.id === s.id);
+        if (!base) return;
+        const product = { ...base, quantity: s.quantity && s.quantity > 0 ? s.quantity : 1 };
+        addProduct.push(product);
+        if (cartList) {
+            const price = parseFloat(product.price.replace(/[₹$]/g, ''));
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('item');
+            cartItem.innerHTML = `
+        <div class="images-container"><img src="${product.image}"></div>
+        <div class="detail">
+            <h4>${product.name}</h4>
+            <h4 class="item-total">₹${(price * product.quantity).toFixed(2)}</h4>
+        </div>
+        <div class="flex">
+            <a href="#" class="quantity-btn minus"><i class="fa-solid fa-minus"></i></a>
+            <h4 class="quantity-value">${product.quantity}</h4>
+            <a href="#" class="quantity-btn plus"><i class="fa-solid fa-plus"></i></a>
+        </div>
+    `;
+            cartList.appendChild(cartItem);
+            const plusBtn = cartItem.querySelector('.plus');
+            const minusBtn = cartItem.querySelector('.minus');
+            const quantityValue = cartItem.querySelector('.quantity-value');
+            const itemTotal = cartItem.querySelector('.item-total');
+            plusBtn.addEventListener('click', e => {
+                e.preventDefault();
+                product.quantity++;
+                quantityValue.textContent = product.quantity;
+                itemTotal.textContent = `₹${(product.quantity * price).toFixed(2)}`;
+                updateTotalPrice();
+                const card = cardList ? [...cardList.querySelectorAll('.order-card')].find(c => c.querySelector('h4') && c.querySelector('h4').textContent === product.name) : null;
+                if (card) updateCardButton(card, product);
+                saveCart();
+            });
+            minusBtn.addEventListener('click', e => {
+                e.preventDefault();
+                if (product.quantity > 1) {
+                    product.quantity--;
+                    quantityValue.textContent = product.quantity;
+                    itemTotal.textContent = `₹${(product.quantity * price).toFixed(2)}`;
+                    updateTotalPrice();
+                    const card = cardList ? [...cardList.querySelectorAll('.order-card')].find(c => c.querySelector('h4') && c.querySelector('h4').textContent === product.name) : null;
+                    if (card) updateCardButton(card, product);
+                    saveCart();
+                } else {
+                    cartItem.remove();
+                    addProduct = addProduct.filter(item => item.id !== product.id);
+                    updateTotalPrice();
+                    const card = cardList ? [...cardList.querySelectorAll('.order-card')].find(c => c.querySelector('h4') && c.querySelector('h4').textContent === product.name) : null;
+                    if (card) updateCardButton(card, product);
+                    saveCart();
+                }
+            });
+        }
+    });
+    updateTotalPrice();
+    if (cardList) {
+        [...cardList.querySelectorAll('.order-card')].forEach(card => {
+            const nameEl = card.querySelector('h4');
+            const prod = addProduct.find(p => nameEl && nameEl.textContent === p.name);
+            if (prod) updateCardButton(card, prod);
+        });
+    }
+};
