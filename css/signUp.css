@@ -490,3 +490,34 @@ input::placeholder {
   width: 100%;
   border: 2px solid #ffdf00;
 }
+
+
+
+
+
+
+
+
+
+.phone-login {
+  width: 100%;
+  max-width: 280px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 4px 10px rgba(106, 17, 203, 0.4);
+}
+
+.phone-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(37, 117, 252, 0.5);
+}
