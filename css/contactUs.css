@@ -208,24 +208,49 @@ select:focus {
     background: var(--accent-secondary);
 }
 
+.faq-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* consistent spacing between items */
+}
+
+.faq-item {
+  
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+ 
+}
+
+.faq-item.active {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+
 .faq-answer {
-    margin-top: 0.75rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    font-size: 1rem;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.36s ease, opacity 0.28s ease, padding 0.28s ease;
-    padding-bottom: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 1rem;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin-top: 0.75rem; /* keep it constant */
+  transition: max-height 0.4s ease, opacity 0.3s ease;
 }
 
 .faq-item.active .faq-answer {
-    max-height: 500px;
-    /* large enough for content */
-    opacity: 1;
-    padding-bottom: 0.5rem;
+  max-height: 500px;
+  opacity: 1;
 }
+
 
 @media (max-width: 900px) {
     .faq-grid {
