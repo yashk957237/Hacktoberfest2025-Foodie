@@ -163,6 +163,41 @@ const updateTotalPrice = () => {
     if (cartValue) cartValue.textContent = totalQuantity;
 };
 
+// ===== VEG/NON-VEG FILTER =====
+let currentTypeFilter = 'all';
+const filterVeg = document.getElementById('filterVeg');
+const filterNonVeg = document.getElementById('filterNonVeg');
+const filterAll = document.getElementById('filterAll');
+
+[filterVeg, filterNonVeg, filterAll].forEach(btn => {
+  if (btn) btn.classList.remove('active'); // Set all inactive by default
+});
+if (filterAll) filterAll.classList.add('active');
+
+filterVeg?.addEventListener('click', () => {
+  currentTypeFilter = 'veg';
+  setTypeActive('veg');
+  applyFilters();
+});
+filterNonVeg?.addEventListener('click', () => {
+  currentTypeFilter = 'non-veg';
+  setTypeActive('non-veg');
+  applyFilters();
+});
+filterAll?.addEventListener('click', () => {
+  currentTypeFilter = 'all';
+  setTypeActive('all');
+  applyFilters();
+});
+
+function setTypeActive(type) {
+  filterVeg.classList.toggle('active', type === 'veg');
+  filterNonVeg.classList.toggle('active', type === 'non-veg');
+  filterAll.classList.toggle('active', type === 'all');
+}
+
+
+
 // ===== UPDATE CARD BUTTON STATE =====
 const updateCardButton = (card, product) => {
     const existProduct = addProduct.find(item => item.id === product.id);
@@ -446,10 +481,10 @@ favToggle?.addEventListener('click', e => {
 
 function applyFilters() {
     if (!productList) return;
-    const searchTerm = searchInput.value.toLowerCase();
+    const searchTerm = (searchInput?.value || '').toLowerCase();
     const filtered = productList.filter(p => {
         const matchesSearch = p.name.toLowerCase().includes(searchTerm);
-        const price = parseFloat(p.price.replace(/[₹$]/g, ''));
+        const price = parseFloat((p.price || '0').toString().replace(/[₹$]/g, ''));
         let matchesPrice = true;
 
         if (currentPriceFilter === 'low') matchesPrice = price < 100;
@@ -457,7 +492,12 @@ function applyFilters() {
         else if (currentPriceFilter === 'high') matchesPrice = price > 200;
 
         const matchesFavorite = !favoritesOnly || isFavorite(p.id);
-        return matchesSearch && matchesPrice && matchesFavorite;
+
+        let matchesType = true;
+        if (currentTypeFilter === 'veg') matchesType = (p.type === 'veg');
+        else if (currentTypeFilter === 'non-veg') matchesType = (p.type === 'non-veg');
+
+        return matchesSearch && matchesPrice && matchesFavorite && matchesType;
     });
     showCards(filtered);
 }
