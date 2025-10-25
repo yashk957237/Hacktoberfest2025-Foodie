@@ -56,7 +56,7 @@
 
 .info-card:hover {
     transform: translateY(-4px);
-    border-color: var(--accent-primary);
+    border-color: #F2BD12;
 }
 
 /* Contact form styling */
@@ -69,7 +69,7 @@
 
 .submit-btn {
     width: 100%;
-    background-color: #FCF1CC;
+    background-color: #F2BD12;
     padding: 0.9rem;
     border: none;
     margin-top: 0.5rem;
@@ -78,13 +78,13 @@
     transition: background 0.3s ease;
 }
 
-.submit-btn:hover {
-    background-color: #F2BD12;
-}
-
 .form-group {
     text-align: left;
     line-height: 2;
+}
+
+.info-card p{
+    font-size: 18px;
 }
 
 /* Responsive */
@@ -95,9 +95,12 @@
     }
 }
 
+.form-header p{
+    font-size: 18px;
+}
 
-/* Forms */
-input,
+/*Forms */
+ input,
 textarea,
 select {
     width: 100%;
@@ -109,6 +112,7 @@ select {
     font-family: inherit;
     transition: all 0.3s ease;
 }
+
 
 /* Dropdown styling */
 select option {
