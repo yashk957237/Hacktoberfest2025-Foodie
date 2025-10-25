@@ -24,6 +24,10 @@
 
     <!-- Swiper.js CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- AOS for animations -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -81,14 +85,14 @@
         <!-- HERO SECTION -->
         <section id="home">
             <div class="hero-section flex wrapper">
-                <div class="content">
+                <div class="content" data-aos="fade-right">
                     <h1>Enjoy Your Delicious <span>Food</span></h1>
                     <p class="para">We will fill your tummy with delicious food with fast delivery</p>
                     <div class="flex gap-2">
                         <a href="./menu.html" class="place-order-btn btn">Order now</a>
                     </div>
                 </div>
-                <div class="image-container">
+                <div class="image-container" data-aos="fade-left">
                     <img src="../imgs/delivery-boy.png" alt="Delivery boy delivering food" class="pizza-boy">
                 </div>
             </div>
@@ -96,13 +100,13 @@
 
         <!-- SERVICES SECTION -->
         <section id="services">
-            <div class="wrapper p-top">
+            <div class="wrapper p-top" data-aos="fade-up">
                 <div class="text-center">
                     <h5>Our Services</h5>
                     <h2>How does it work?</h2>
                 </div>
                 <div class="flex text-center gap-4 mt-4">
-                    <div class="srevice-card">
+                    <div class="srevice-card" data-aos="zoom-in" data-aos-delay="100">
                         <div>
                             <img src="../imgs/easy-to-order.png" alt="Easy food ordering">
                         </div>
@@ -110,7 +114,7 @@
                         <p>You only need a few steps in ordering food.</p>
                     </div>
 
-                    <div class="srevice-card">
+                    <div class="srevice-card" data-aos="zoom-in" data-aos-delay="200">
                         <div>
                             <img src="../imgs/fast-delivery.png" alt="Fast food delivery">
                         </div>
@@ -118,7 +122,7 @@
                         <p>Delivery that is always on time, even faster.</p>
                     </div>
 
-                    <div class="srevice-card">
+                    <div class="srevice-card" data-aos="zoom-in" data-aos-delay="300">
                         <div>
                             <img src="../imgs/best-quality.png" alt="High-quality food service">
                         </div>
@@ -131,11 +135,11 @@
 
         <!-- review section -->
         <section>
-            <div class="wrapper p-top flex gap-3">
-                <div class="image-container">
+            <div class="wrapper p-top flex gap-3" data-aos="fade-up">
+                <div class="image-container" data-aos="fade-right">
                     <img src="../imgs/delivery-boy-with-phone.png" alt="Delivery boy checking orders on a smartphone">
                 </div>
-                <div class="review-container">
+                <div class="review-container" data-aos="fade-left">
                     <h5>Our reviews</h5>
                     <h2>what they say</h2>
                     <div class="swiper mySwiper">
@@ -216,12 +220,12 @@
 
         <!-- SECTION 04 -->
         <section id="about">
-            <div class="wrapper p-top ">
+            <div class="wrapper p-top " data-aos="fade-up">
                 <div class="app-container flex gap-3">
-                    <div class="app-image">
+                    <div class="app-image" data-aos="fade-right">
                         <img src="../imgs/mobile-app.png" alt="Food delivery mobile app interface">
                     </div>
-                    <div class="content">
+                    <div class="content" data-aos="fade-left">
                         <h5>Our Application</h5>
                         <h2>Simple way to <br> order your food</h2>
                         <p class="para">Crave it. Find it. Get it fast wherever, whenever.</p>
@@ -233,14 +237,14 @@
 
         <!-- SECTION 05 -->
         <section>
-            <div class="wrapper p-top">
+            <div class="wrapper p-top" data-aos="zoom-in">
                 <div class="text-center">
                     <h5>Our Subscribe</h5>
                     <h2>Subscribe to Our newsletter</h2>
                     <p class="para m-auto">We recommend you to Subscribe our newsletter,
                         drop you email below to get daily update about us.</p>
 
-                    <label class="input-container flex">
+                    <label class="input-container flex" data-aos="fade-up" data-aos-delay="200">
                         <input type="email" name="email" id="email" placeholder="Enter your email address"
                             autocomplete="off">
                         <a href="#" class="btn">Subscribe</a>
@@ -251,7 +255,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer id="contacts">
+    <footer id="contacts" data-aos="fade-up">
         <div class="footer-container">
             <div class="flex wrapper gap-4">
                 <div class="footer-wrapper">
@@ -328,6 +332,18 @@
             });
         })();
     </script>
+
+    <!-- AOS for Animations -->
+     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+      <script>
+         AOS.init({
+         duration: 1000,     // Animation duration (1s)
+         easing: 'ease-out', // Smooth easing
+         once: true,         // Animate only once per element
+         offset: 100         // Offset from bottom before trigger
+       });
+    </script>
+
 </body>
 
 </html>
