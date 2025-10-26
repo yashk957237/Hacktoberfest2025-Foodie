@@ -409,15 +409,21 @@ const showCards = list => {
         const card = document.createElement('div');
         card.classList.add('order-card');
         const favActive = isFavorite(product.id);
-        card.innerHTML = `
-            <button class="fav-btn${favActive ? ' active' : ''}" aria-label="Toggle favorite" aria-pressed="${favActive}" title="${favActive ? 'Remove from favorites' : 'Add to favorites'}">
-                <i class="${favActive ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
-            </button>
-            <div class="card-image"><img src="${product.image}" alt="${product.name}"></div>
-            <h4>${product.name}</h4>
-            <h4 class="price">₹${parseFloat(product.price.replace(/[₹$]/g, '')).toFixed(2)}</h4>
-            <div class="card-btn-container"></div>
-        `;
+       card.innerHTML = `
+    <button class="fav-btn${favActive ? ' active' : ''}" aria-label="Toggle favorite" aria-pressed="${favActive}" title="${favActive ? 'Remove from favorites' : 'Add to favorites'}">
+        <i class="${favActive ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+    </button>
+    <div class="card-image"><img src="${product.image}" alt="${product.name}"></div>
+    
+    <div class="rating">
+      <i class="fa-solid fa-star"></i> ${product.rating ? product.rating : 'N/A'}
+    </div>
+
+    <h4>${product.name}</h4>
+    <h4 class="price">₹${parseFloat(product.price.replace(/[₹$]/g, '')).toFixed(2)}</h4>
+    <div class="card-btn-container"></div>
+`;
+
         
         // Initialize button state
         updateCardButton(card, product);
