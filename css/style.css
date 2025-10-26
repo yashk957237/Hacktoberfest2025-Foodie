@@ -86,7 +86,7 @@ body.dark-mode {
     --lead: #E0E0E0;
     --eye-ball: #1c1c1c;
     --hint-yellow: #4b3b00;
-    --pure-while: #2c2c2c;
+    --pure-white: #2c2c2c;
     --gold-finger: #ffca28;
     background-color: var(--eye-ball);
     color: var(--lead);
@@ -456,7 +456,6 @@ h2 {
 
 h3 {
     font-size: 2rem;
-    text-transform: capitalize;
     color: var(--text-primary);
     transition: color 0.3s ease;
 }
@@ -1293,4 +1292,11 @@ div#card-btn-container {
 .srevice-card:hover h3 {
     color: var(--gold-finger);
     transform: translateY(-3px);
+a, button, .btn, .srevice-card, .footer-link {
+  transition: all 0.3s ease;
+}
+
+.srevice-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
