@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Near By Restaurants | Foodie</title>
+  <link rel="icon" href="../imgs/favicon.png" type="image/png" />
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/cursor.css" />
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/a2e0e6ad8b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- NAVBAR (keep same classes so style remains identical) -->
+  <header>
+    <nav class="navbar flex between wrapper">
+      <div class="logo">Foodie.</div>
+      <ul class="navList flex gap-3 between">
+        <li><a href="./index.html#home">Home</a></li>
+        <li><a href="./index.html#services">Services</a></li>
+        <li><a href="./menu.html">Menu</a></li>
+        <li><a href="./aboutUs.html">About Us</a></li>
+        <li><a href="./contactUs.html">Contact Us</a></li>
+        <li><a href="nearbyres.html" class="active">Nearby Restaurants</a></li>
+      </ul>
+
+      <div class="desktop-action flex gap-2">
+        <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <a href="./checkout.html" class="cart-icon">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-value">0</span>
+        </a>
+        <a href="./signup.html" class="btn">Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <section class="wrapper p-top" data-aos="fade-up">
+      <div class="text-center">
+        <h5>Discover Nearby</h5>
+        <h2>Top Rated Restaurants Around You 🍴</h2>
+        <p class="para m-auto">Find the best food spots nearby, handpicked for taste, quality, and service.</p>
+      </div>
+
+      <div class="restaurant-grid flex wrap gap-4 mt-5">
+        <!-- card 1 -->
+        <div class="restaurant-card" data-aos="zoom-in" data-aos-delay="100">
+          <img src="../imgs/rest1.png" alt="Spice Affair" class="restaurant-img" />
+          <div class="restaurant-info">
+            <h3>Spice Affair</h3>
+            <p>Authentic Indian Cuisine</p>
+            <p><i class="fa-solid fa-star"></i> 4.7 | 1.2 km away</p>
+          </div>
+        </div>
+
+        <!-- card 2 -->
+        <div class="restaurant-card" data-aos="zoom-in" data-aos-delay="200">
+          <img src="../imgs/rest2.png" alt="Urban Eatery" class="restaurant-img" />
+          <div class="restaurant-info">
+            <h3>Urban Eatery</h3>
+            <p>Modern Café & Grill</p>
+            <p><i class="fa-solid fa-star"></i> 4.6 | 0.8 km away</p>
+          </div>
+        </div>
+
+        <!-- card 3 -->
+        <div class="restaurant-card" data-aos="zoom-in" data-aos-delay="300">
+          <img src="../imgs/rest3.png " alt="Sushi Haven" class="restaurant-img" />
+          <div class="restaurant-info">
+            <h3>Sushi Haven</h3>
+            <p>Fresh Japanese Rolls</p>
+            <p><i class="fa-solid fa-star"></i> 4.8 | 1.5 km away</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- footer (same structure as index) -->
+  <footer id="contacts" data-aos="fade-up">
+    <div class="footer-container">
+      <div class="flex wrapper gap-4">
+        <div class="footer-wrapper">
+          <a href="#" class="logo">Foodie.</a>
+          <p class="mt-one">We will fill your tummy with delicious <br>food with fast delivery</p>
+          <div class="media flex gap-2 mt-one">
+            <a href="https://github.com/janavipandole" class="social-media"><img src="../imgs/GitHub.png" alt="GitHub"></a>
+            <a href="https://www.linkedin.com/in/janavi-pandole-80a7b2290" class="social-media linkdin"><img src="../imgs/linkdin.png" alt="LinkedIn"></a>
+            <a href="https://www.youtube.com/@JanaviPandole" class="social-media"><img src="../imgs/youtube.png" alt="YouTube"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../js/nearbyres.js" defer></script>
+  <script src="../js/cursor.js"></script>
+  <script> AOS.init({ duration: 1000, easing: 'ease-out', once: true }); </script>
+</body>
+</html>
