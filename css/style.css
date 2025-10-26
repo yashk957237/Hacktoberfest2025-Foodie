@@ -1279,3 +1279,29 @@ a, button, .btn, .srevice-card, .footer-link {
   transform: translateY(-8px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
+
+
+/* ===== Rating Badge ===== */
+.order-card {
+  position: relative;
+}
+
+.order-card .rating {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #ffd700;
+  color: #000;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.order-card .rating i {
+  color: #ff8c00;
+}
