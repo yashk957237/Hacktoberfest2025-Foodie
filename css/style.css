@@ -1303,7 +1303,7 @@ a, button, .btn, .srevice-card, .footer-link {
 }
 
 .order-card .rating i {
-  color: #ff8c00;
+  color: #417aaf;
 }
 
 /* === Nearby Restaurants Section === */
@@ -1350,5 +1350,23 @@ a, button, .btn, .srevice-card, .footer-link {
 }
 
 .restaurant-info i {
-  color: #ffb400;
+  color: #186ccc;
+}
+/* ===== Search Button Styling ===== */
+#search-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+    border: 2px solid var(--gold-finger);
+    border-radius: 1rem;
+    background-color: var(--gold-finger);
+    color: var(--lead);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 0.5rem; /* space between input and button */
+}
+
+#search-btn:hover {
+    background-color: var(--lead);
+    color: var(--pure-while);
+    transform: scale(1.05);
 }

@@ -45,20 +45,33 @@
                 <li><a href="./contactUs.html">Contact Us</a></li>
                 <li><a href="nearbyres.html">Nearby Restaurants</a></li>
             </ul>
+<div class="desktop-action flex gap-2">
+    <!-- Search Input -->
+    <form class="navbar-search" action="#" method="get">
+        <input type="text" name="search" placeholder="Search your food ..." aria-label="Search menu items">
+        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
 
-            <div class="desktop-action flex gap-2">
-                <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
-                    <i class="fa-solid fa-moon"></i>
-                </button>
-                <a href="./checkout.html" class="cart-icon">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="cart-value">0</span>
-                </a>
-                <a href="./signup.html" class="btn">
-                    Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
-                </a>
-                <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
-            </div>
+    <!-- Theme toggle -->
+    <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+    <!-- Cart Icon -->
+    <a href="./checkout.html" class="cart-icon">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-value">0</span>
+    </a>
+
+    <!-- Sign-in button -->
+    <a href="./signup.html" class="btn">
+        Sign in&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i>
+    </a>
+
+    <!-- Hamburger -->
+    <a href="#" class="hamberger"><i class="fa-solid fa-bars"></i></a>
+</div>
+
 
             <!-- MOBILE MENU -->
             <ul class="mobile-menu">
