@@ -1330,6 +1330,7 @@ div#card-btn-container {
 .srevice-card:hover h3 {
     color: var(--gold-finger);
     transform: translateY(-3px);
+}
 a, button, .btn, .srevice-card, .footer-link {
   transition: all 0.3s ease;
 }
@@ -1428,4 +1429,85 @@ a, button, .btn, .srevice-card, .footer-link {
     background-color: var(--lead);
     color: var(--pure-while);
     transform: scale(1.05);
+}
+
+
+/* Navbar search (enhanced to match app UI) */
+.navbar-search {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--bg-secondary);
+    border: 2px solid var(--gold-finger);
+    padding: 0.2rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow) 0 4px 8px;
+    transition: box-shadow 0.2s ease, transform 0.12s ease;
+    height: 2.8rem;
+}
+
+.navbar-search:focus-within {
+    box-shadow: 0 6px 18px rgba(242,189,18,0.18);
+    transform: translateY(-1px);
+}
+
+.navbar-search input[type="text"] {
+    border: none;
+    background: transparent;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    width: 12rem;
+    outline: none;
+}
+
+/* keep input compact on small screens */
+@media (max-width: 1100px) {
+    .navbar-search input[type="text"] {
+        width: 9rem;
+    }
+}
+
+#navbar-search-btn {
+    padding: 0.45rem 0.7rem;
+    font-size: 1rem;
+    border-radius: 0.75rem;
+    border: none;
+    background-color: var(--gold-finger);
+    color: var(--lead);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.18s ease, transform 0.12s ease, box-shadow 0.12s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* icon size and contrast */
+#navbar-search-btn i {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+/* hover / active states */
+#navbar-search-btn:hover {
+    background-color: var(--lead);
+    color: var(--pure-while);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+#navbar-search-btn:active {
+    transform: translateY(0) scale(0.99);
+}
+
+/* dark theme tweak */
+[data-theme="dark"] #navbar-search-btn {
+    background-color: var(--gold-finger);
+    color: var(--bg-primary);
+}
+
+[data-theme="dark"] .navbar-search {
+    background: var(--bg-secondary);
+    border-color: rgba(242,189,18,0.9);
 }
