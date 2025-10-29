@@ -244,11 +244,17 @@
                     <p class="para m-auto">We recommend you to Subscribe our newsletter,
                         drop you email below to get daily update about us.</p>
 
-                    <label class="input-container flex" data-aos="fade-up" data-aos-delay="200">
-                        <input type="email" name="email" id="email" placeholder="Enter your email address"
-                            autocomplete="off">
-                        <a href="#" class="btn">Subscribe</a>
-                    </label>
+                    <form id="newsletterForm" class="input-container flex" data-aos="fade-up" data-aos-delay="200">
+    <input 
+        type="email" 
+        name="email" 
+        id="email" 
+        placeholder="Enter your email address"
+        autocomplete="off"
+        required>
+    <button type="submit" class="btn">Subscribe</button>
+</form>
+<span class="error-message" id="emailError"></span>
                 </div>
             </div>
         </section>
@@ -343,6 +349,8 @@
          offset: 100         // Offset from bottom before trigger
        });
     </script>
+
+    <script src="../js/newsletter.js"></script>
 
 </body>
 
