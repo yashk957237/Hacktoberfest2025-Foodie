@@ -501,7 +501,7 @@ p {
 }
 
 .cta-btn.primary {
-    background: var(--lead);
+    background: black;
     color: var(--pure-white);
 }
 
