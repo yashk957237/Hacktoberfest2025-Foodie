@@ -48,9 +48,16 @@
 <div class="desktop-action flex gap-2">
     <!-- Search Input -->
     <form class="navbar-search" action="#" method="get">
-        <input type="text" name="search" placeholder="Search your food ..." aria-label="Search menu items">
-        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </form>
+    <input 
+        type="text" 
+        name="search" 
+        id="navbar-search"
+        placeholder="Search your food ..." 
+        aria-label="Search menu items">
+    <button type="submit" id="navbar-search-btn" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+</form>
 
     <!-- Theme toggle -->
     <button class="desktop-action theme-toggle" aria-label="Toggle dark mode">
