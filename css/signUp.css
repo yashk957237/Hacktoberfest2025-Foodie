@@ -269,6 +269,17 @@ input::placeholder {
   color: var(--text-secondary);
 }
 
+.form-section input[type="email"],
+.auth-container input[type="email"] {
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  padding: 14px 18px;
+  color: var(--text-primary);
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
 .password-field {
   position: relative;
 }
@@ -472,52 +483,62 @@ input::placeholder {
 }
 
 .social-login {
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
   display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.social-login > * {
+  flex: 1 1 0;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.social-login > div,
+.social-login > button,
+.social-login .social-btn,
+.social-login .phone-login {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  border: 2px solid #ffdf00;
-  border-radius: 8px;
-  background-color: #ffdf00;
-  box-shadow: 0 0 8px rgba(255, 223, 0, 0.5);
-  transition: box-shadow 0.3s ease;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--text-primary);
 }
 
-.social-login:hover {
-  box-shadow: 0 0 12px rgba(255, 223, 0, 0.8);
-  cursor: pointer;
+.social-login > div:hover,
+.social-login > button:hover,
+.social-login .social-btn:hover,
+.social-login .phone-login:hover {
+  background: var(--bg-secondary);
+  border-color: var(--gold-finger);
 }
-.social-login > div {
-  width: 100%;
-  border: 2px solid #ffdf00;
-}
-
-
-
-
-
-
-
-
 
 .phone-login {
   width: 100%;
-  max-width: 280px;
-  padding: 10px 16px;
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
+  max-width: 100%;
+  padding: 10px 14px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
   font-size: 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: transform 0.2s, box-shadow 0.3s;
-  box-shadow: 0 4px 10px rgba(106, 17, 203, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.phone-login:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(37, 117, 252, 0.5);
+.phone-login:active {
+  transform: translateY(0);
 }
